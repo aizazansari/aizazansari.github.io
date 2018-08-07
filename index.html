@@ -10,27 +10,36 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--    <link href="myportfolio.css" rel="stylesheet" type="text/css">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>
+    $("#portfolio").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#portfolionav").offset().top
+    }, 2000);
+});
+    </script>
     <title></title>
 </head>
 
 <body>
-    <section class="header">
+    <div id="header"></div>
+    <section class="header sticky-top">
         <div class="container">
-            <nav class="navbar navbar-expand sticky-top">
+            <nav class="navbar navbar-expand-lg navbar-shrink">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" id="aizaz" href="#">AIZAZ</a>
+                        <a class="nav-link" id="aizaz" href="#header">ANSARI</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" id="portfolio" href="#">PORTFOLIO</a>
+                        <a class="nav-link" id="portfolio" onclick="return function()" href="#portfolionav">PORTFOLIO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="about" href="#">ABOUT</a>
+                        <a class="nav-link" id="about" href="#aboutnav">ABOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="contact" href="#">CONTACT</a>
+                        <a class="nav-link" id="contact" href="#contactnav">CONTACT</a>
                     </li>
                 </ul>
             </nav>
@@ -41,39 +50,43 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <img class="rounded-circle profilephoto" src="DSC_4133-min.jpg" alt="Profilephoto">
+                    <img class="rounded-circle profilephoto" src="images/DSC_4133-min.jpg" alt="Profilephoto">
                     <h1 class="text1">AIZAZ ANSARI</h1>
-                    <hr class="fas fa-star linebr">
+                    <span><hr class="linebr">
+                    <i class="fas fa-star"></i>
+                        <hr class="linebr"></span>
                     <h2 class="text2">Web Designer - Photographer</h2>
                 </div>
             </div>
 
         </div>
     </section>
-    <section class="portfolio">
+    <section class="portfolio" id="portfolionav">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2 class="portfolio-header">PORTFOLIO</h2>
-                    <hr class="fas fa-star linebr">
+                    <span><hr class="linebr">
+                    <i class="fas fa-star"></i>
+                        <hr class="linebr"></span>
                     <div class="row">
                         <div class="col-md-6 col-lg-4">
-                            <img class="img-fluid portfolio-img" src="DSC_6435-min.jpg">
+                            <img class="img-fluid portfolio-img" src="images/DSC_6066-min.jpg">
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <img class="img-fluid portfolio-img" src="DSC_6435-min.jpg">
+                            <img class="img-fluid portfolio-img" src="images/DSC_6204-min.jpg">
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <img class="img-fluid portfolio-img" src="DSC_6435-min.jpg">
+                            <img class="img-fluid portfolio-img" src="images/DSC_6370-min.jpg">
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <img class="img-fluid portfolio-img" src="DSC_6435-min.jpg">
+                            <img class="img-fluid portfolio-img" src="images/DSC_6396-min.jpg">
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <img class="img-fluid portfolio-img" src="DSC_6435-min.jpg">
+                            <img class="img-fluid portfolio-img" src="images/DSC_6435-min.jpg">
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <img class="img-fluid portfolio-img" src="DSC_6435-min.jpg">
+                            <img class="img-fluid portfolio-img" src="images/DSC_6708-min.jpg">
                         </div>
                     </div>
                 </div>
@@ -81,10 +94,12 @@
         </div>
 
     </section>
-    <section class="about text-center">
+    <section class="about text-center" id="aboutnav">
         <div class="container">
             <h2 class="about-text">ABOUT</h2>
-            <hr class="fas fa-star linebr">
+            <span><hr class="linebr">
+                    <i class="fas fa-star"></i>
+                        <hr class="linebr"></span>
             <div class="row justify-content-center">
                 <div class="col-lg-4 ">
                     <p>
@@ -96,15 +111,17 @@
                 </div>
             </div>
             <div>
-                <button type="button" class="btn btn-xl btn-outline-light">Download CV</button>
+                <a href="resume.pdf" target="_blank"><button type="button" class="btn btn-xl btn-outline-light">Download CV</button></a>
             </div>
         </div>
     </section>
 
-    <section class="contact">
+    <section class="contact" id="contactnav">
         <div class="container text-center">
             <h2>CONTACT ME</h2>
-            <hr class="fas fa-star linebr">
+            <span><hr class="linebr">
+                    <i class="fas fa-star"></i>
+                        <hr class="linebr"></span>
             <form>
                 <div class="form-group">
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name">
@@ -125,28 +142,28 @@
     <section class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-4 text-center">
+                <div class="col-sm-4 text-center">
                     <h4>Location</h4>
-                    <p> 2215 John Daniel Drive Clark, MO 65243 2215 John Daniel Drive Clark, MO 65243 2215 John Daniel Drive Clark, MO 65243</p>
+                    <p> Saadiyat Island, Marina District, Abu Dhabi, UAE</p>
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-sm-4 text-center">
                     <h4>Around the Web</h4>
                     <ul class="list-inline">
                         <li class="list-inline-item">
-                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://facebook.com/aizazarifansari" target="_blank">
                         <i class="fab fa-facebook-f"></i>
                         </a></li>
                         <li class="list-inline-item">
-                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://instagram.com/aizazansari" target="_blank">
                         <i class="fab fa-instagram"></i>
                         </a></li>
                         <li class="list-inline-item">
-                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://linkedin.com/in/aizaz-ansari-2b5430159" target="_blank">
                         <i class="fab fa-linkedin-in"></i>
                         </a></li>
                     </ul>
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-sm-4 text-center">
                     <h4>More about me</h4>
                     <p> Here goes more info about me</p>
                 </div>
@@ -161,6 +178,7 @@
             <small>Copyright © Your Website 2018</small>
         </div>
     </section>
+    
 
 
     <!-- Optional JavaScript -->
