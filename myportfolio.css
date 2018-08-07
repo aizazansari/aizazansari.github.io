@@ -1,7 +1,9 @@
 .header {
     background-color: #2C3E50;
 }
-
+.fas.fa-bars{
+    color:white;
+}
 .header a {
     outline: none;
     border: none;
