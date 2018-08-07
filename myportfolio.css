@@ -1,0 +1,144 @@
+.header {
+    background-color: #2C3E50;
+}
+
+.header a {
+    outline: none;
+    border: none;
+    padding-bottom: 1rem !important;
+    padding-top: 1rem !important;
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+    font-weight: 1000;
+}
+
+#aizaz {
+    font-size: 2em;
+    color: white;
+    background: none;
+    font-family: "Montserrat";
+    letter-spacing: 0.0625rem;
+}
+
+
+
+#portfolio,
+#about,
+#contact {
+    font-size: 1em;
+    color: white;
+    background: none;
+    letter-spacing: 0.0625rem;
+}
+
+
+.intro {
+    background-color: #18BC9C;
+    color: white;
+    padding-top: 96px;
+    padding-bottom: 96px;
+}
+
+.text1 {
+    color: white;
+    font-size: 4.75em;
+    font-weight: 700;
+}
+
+.text2 {
+    font-size: 1.75em;
+    font-weight: 300;
+}
+
+.profilephoto {
+    width: 256px;
+    height: 256px;
+}
+
+hr{
+    max-width: 15rem;
+    padding: 0;
+    text-align: center;
+    border: none;
+    border-top: solid .25rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+hr.star-dark:after,
+hr.star-light:after {
+    position: relative;
+    top: -.8em;
+    display: inline-block;
+    padding: 0 .25em;
+    content: "\f005";
+    font-family: FontAwesome;
+    font-size: 2em;
+}
+
+hr.star-light:after {
+    background-color: #18BC9C;
+}
+
+hr.star-dark:after {
+    background-color: white;
+}
+
+.star-dark {
+    color: #2C3E50;
+    max-width: 15rem;
+    padding: 0;
+    text-align: center;
+    border: none;
+    border-top: solid .25rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio {
+    padding-top: 96px;
+    padding-bottom: 96px;
+    background-color: white;
+}
+
+.portfolio-header {
+    color: #2C3E50;
+    font-size: 3em;
+    font-weight: 700;
+    line-height: 2.5rem;
+}
+
+
+.about {
+    background-color: #18BC9C;
+    color: white;
+    padding-top: 96px;
+    padding-bottom: 96px;
+}
+
+.about-text {
+    font-size: 3rem;
+}
+
+.contact {
+    padding-top: 96px;
+    padding-bottom: 96px;
+    background-color: white;
+    color: #2C3E50;
+}
+.footer{
+    padding-top: 96px;
+    padding-bottom: 96px;
+    background-color: #2C3E50;
+    color: white;
+}
+.end{
+    background-color: #1a252f;
+    color: white;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
