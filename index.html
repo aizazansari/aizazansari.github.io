@@ -10,22 +10,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--    <link href="myportfolio.css" rel="stylesheet" type="text/css">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>
-        $("#portfolio").click(function() {
-            $('html, body').animate({
-                scrollTop: $("#portfolionav").offset().top
-            }, 2000);
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/14.2.1/smooth-scroll.js"></script>
     <title></title>
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="90">
     <div id="header"></div>
     <section class="header sticky-top">
         <div class="container">
-            <nav class="navbar navbar-expand-sm">
+            <nav class="navbar navbar-expand-sm navbar-shrink">
                 <a class="navbar-brand" id="aizaz" href="#header">ANSARI</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-bars"></i>
@@ -47,22 +40,22 @@
         </div>
     </section>
 
-    <section class="intro">
+    <section class="intro major-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <img class="rounded-circle profilephoto" src="images/DSC_4133-min.jpg" alt="Profilephoto">
-                    <h1 class="text1">AIZAZ ANSARI</h1>
+                    <h1 class="first-heading">AIZAZ ANSARI</h1>
                     <span><hr class="linebr">
                     <i class="fas fa-star"></i>
                         <hr class="linebr"></span>
-                    <h2 class="text2">Web Designer - Photographer</h2>
+                    <h2 class="second-heading">Web Designer - Photographer</h2>
                 </div>
             </div>
 
         </div>
     </section>
-    <section class="portfolio" id="portfolionav">
+    <section class="portfolio major-section" id="portfolionav">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -95,8 +88,8 @@
         </div>
 
     </section>
-    <section class="about text-center" id="aboutnav">
-        <div class="container">
+    <section class="about major-section" id="aboutnav">
+        <div class="container text-center">
             <h2 class="about-text">ABOUT</h2>
             <span><hr class="linebr">
                     <i class="fas fa-star"></i>
@@ -117,15 +110,16 @@
         </div>
     </section>
 
-    <section class="contact" id="contactnav">
+    <section class="contact major-section" id="contactnav">
         <div class="container text-center">
             <h2>CONTACT ME</h2>
             <span><hr class="linebr">
                     <i class="fas fa-star"></i>
                         <hr class="linebr"></span>
-            <form class="justify-content-center">
+            <div class="row justify-content-center">
+            <form class="col-12 col-md-6">
                 <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputName" placeholder="Name">
+                    <input type="text" class="form-control" id="exampleInputName" placeholder="Name">
                 </div>
                 <div class="form-group">
                     <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email">
@@ -138,9 +132,10 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Send</button>
             </form>
+            </div>
         </div>
     </section>
-    <section class="footer">
+    <section class="footer major-section">
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 text-center">
@@ -173,7 +168,7 @@
 
     </section>
 
-    <section class="end">
+    <section class="copyright-section">
 
         <div class="container text-center">
             <small>Copyright © Your Website 2018</small>
@@ -187,6 +182,20 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(function(){
+       var scroll = new SmoothScroll('a[href*="#"]'); 
+    });
+    </script>
+    <script type="text/javascript">
+    $(window).scroll(function() {
+  if ($(document).scrollTop() >= 50) {
+    $('nav').addClass('shrink');
+  } else {
+    $('nav').removeClass('shrink');
+  }
+});
+    </script>
 </body>
 
 </html>
