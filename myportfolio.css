@@ -2,9 +2,7 @@
     background-color: #2C3E50;
     transition: 0.3s;
 }
-.fas.fa-bars{
-    color:white;
-}
+
 .header .active{
     background-color:#18BC9C !important;
     border-radius: 10px;
@@ -14,7 +12,6 @@
 }
 
 .shrink{
-  height: 70px;
 }
 
 .header a {
@@ -98,11 +95,44 @@
 
 .portfolio {
     background-color: white;
+    color: #2C3E50;
 }
 
-.portfolio img {
+.portfolio-img {
     margin-bottom: 20px;
 }
+
+.overlay {
+  position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: black;
+}
+.overlay h1{
+    position: relative;
+top: 50%;
+transform: translateY(-50%); 
+font-family: "Raleway" !important;
+color: white;
+}
+
+.picture-container:hover .overlay {
+  opacity: 0.75;
+}
+
+.text-img{
+color: white;
+font-family: "Roboto";
+font-weight: 1500;
+font-size: 3rem;
+}
+
 
 .portfolio-header {
     color: #2C3E50;
@@ -142,4 +172,9 @@
     color: white;
     padding-top: 24px;
     padding-bottom: 24px;
+}
+// overrides
+
+.fas.fa-bars{
+    color:black;
 }
