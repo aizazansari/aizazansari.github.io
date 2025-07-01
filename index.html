@@ -1,222 +1,199 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="myportfolio.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--    <link href="myportfolio.css" rel="stylesheet" type="text/css">-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/14.2.1/smooth-scroll.js"></script>
-    <title></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aizaz Ansari</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&family=Manrope&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0f0f0f;
+      --text-color: #ffffff;
+      --accent-color: #768B92;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-body);
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 6%;
+    }
+
+    .title {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 500;
+      max-width: 700px;
+      line-height: 1.1;
+      color: var(--text-color);
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      margin-top: 1rem;
+      opacity: 0.85;
+      max-width: 500px;
+      white-space: nowrap;
+      overflow: hidden;
+      color: var(--text-color);
+      font-family: var(--font-body);
+      font-weight: 400;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    #cursor {
+      color: var(--text-color);
+      animation: blink 1s step-start infinite;
+      font-weight: 700;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .nav-links {
+      position: absolute;
+      bottom: 50px;
+      left: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 2;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 400;
+      transition: all 0.3s ease;
+      border-left: 2px solid transparent;
+      padding-left: 6px;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+      border-left: 2px solid var(--accent-color);
+      padding-left: 12px;
+    }
+
+    #vanta-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 65%);
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 65%);
+    }
+
+    @media (max-width: 768px) {
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      #vanta-bg {
+        display: none;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      .nav-links {
+        left: 20px;
+        bottom: 30px;
+      }
+    }
+  </style>
 </head>
+<body>
+  <div class="container">
+    <div class="title">AIZAZ ANSARI</div>
+    <div class="subtitle" id="typewriter">
+      <span id="text"></span><span id="cursor">|</span>
+    </div>
+  </div>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="90">
-    <div id="header"></div>
-    <section class="header sticky-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-sm navbar-shrink">
-                <a class="navbar-brand" id="aizaz" href="#header">ANSARI</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fas fa-sbars"></i>
-  </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" id="portfolio" href="#portfolionav">PORTFOLIO</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="about" href="#aboutnav">ABOUT</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="contact" href="#contactnav">CONTACT</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </section>
+  <div class="nav-links">
+    <a href="/blog.html">Blog</a>
+    <a href="/photography.html">Photography</a>
+    <a href="file:///Users/aizazansari/Desktop/site/about.html">About Me</a>
+  </div>
 
-    <section class="intro major-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <img class="rounded-circle profilephoto" src="images/DSC_4133-min.jpg" alt="Profilephoto">
-                    <h1 class="first-heading">AIZAZ ANSARI</h1>
-                    <span><hr class="linebr">
-                    <i class="fas fa-star"></i>
-                        <hr class="linebr"></span>
-                    <h2 class="second-heading">Web Designer - Photographer</h2>
-                </div>
-            </div>
+  <div id="vanta-bg"></div>
 
-        </div>
-    </section>
-    <section class="portfolio major-section" id="portfolionav">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2 class="portfolio-header">PORTFOLIO</h2>
-                    <span><hr class="linebr">
-                    <i class="fas fa-star"></i>
-                        <hr class="linebr"></span>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-4 picture-container">
-                            <img class="img-fluid portfolio-img" src="images/DSC_6066-min.jpg">
-                            <div class="overlay">
-                                <h1>Blue Mosque</h1>
-                            </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 picture-container">
-                        <img class="img-fluid portfolio-img" src="images/DSC_6204-min.jpg">
-                        <div class="overlay">
-                               <h1>Topkapi Palace</h1>
-                            </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 picture-container">
-                                <img class="img-fluid portfolio-img" src="images/DSC_6370-min.jpg">
-                                <div class="overlay">
-                               <h1>Topkapi Palace</h1>
-                            </div>
-                        
-                    </div>
-                    <div class="col-md-6 col-lg-4 picture-container">
-                        <img class="img-fluid portfolio-img" src="images/DSC_6396-min.jpg">
-                        <div class="overlay">
-                               <h1>Topkapi Palace</h1>
-                            </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 picture-container">
-                        <img class="img-fluid portfolio-img" src="images/DSC_6435-min.jpg">
-                        <div class="overlay">
-                               <h1>Topkapi Palace</h1>
-                            </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 picture-container">
-                        <img class="img-fluid portfolio-img" src="images/DSC_6708-min.jpg">
-                        <div class="overlay">
-                               <h1>Istanbul</h1>
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
+  <!-- Vanta.js + Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <script>
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      color: 0x768b92,
+      backgroundColor: 0x0f0f0f,
+      points: 12.0,
+      maxDistance: 25.0,
+      spacing: 18.0
+    });
+  </script>
 
-    </section>
-    <section class="about major-section" id="aboutnav">
-        <div class="container text-center">
-            <h2 class="about-text">ABOUT</h2>
-            <span><hr class="linebr">
-                    <i class="fas fa-star"></i>
-                        <hr class="linebr"></span>
-            <div class="row justify-content-center">
-                <div class="col-lg-4 ">
-                    <p>
-                        a para about myself. a para about myself a para about myself a para about myself a para about myself</p>
-                </div>
-                <div class="col-lg-4">
-                    <p>
-                        another para about myself a para about myself a para about myself a para about myself a para about myself</p>
-                </div>
-            </div>
-            <div>
-                <a href="resume.pdf" target="_blank"><button type="button" class="btn btn-xl btn-outline-light">Download CV</button></a>
-            </div>
-        </div>
-    </section>
+  <!-- Typewriter effect -->
+  <script>
+    const textEl = document.getElementById("text");
+    const fullText = "Thoughts, visuals, and stories — stitched together";
+    let index = 0;
+    let deleting = false;
 
-    <section class="contact major-section" id="contactnav">
-        <div class="container text-center">
-            <h2>CONTACT ME</h2>
-            <span><hr class="linebr">
-                    <i class="fas fa-star"></i>
-                        <hr class="linebr"></span>
-            <div class="row justify-content-center">
-                <form class="col-12 col-md-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputName" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="phone" class="form-control" id="exampleInputPhone" placeholder="Phone">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" id="exampleMessage" rows="3" placeholder="Your Message"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    <section class="footer major-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 text-center">
-                    <h4>Location</h4>
-                    <p> Saadiyat Island, Marina District, Abu Dhabi, UAE</p>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <h4>Around the Web</h4>
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://facebook.com/aizazarifansari" target="_blank">
-                        <i class="fab fa-facebook"></i>
-                        </a></li>
-                        <li class="list-inline-item">
-                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://instagram.com/aizazansari" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                        </a></li>
-                        <li class="list-inline-item">
-                            <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://linkedin.com/in/aizaz-ansari-2b5430159" target="_blank">
-                        <i class="fab fa-linkedin-in"></i>
-                        </a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <h4>More about me</h4>
-                    <p> Here goes more info about me</p>
-                </div>
-            </div>
-        </div>
+    function typeWriter() {
+      if (!deleting && index <= fullText.length) {
+        textEl.textContent = fullText.substring(0, index++);
+        setTimeout(typeWriter, 80);
+      } else if (!deleting && index > fullText.length) {
+        deleting = true;
+        setTimeout(typeWriter, 1500);
+      } else if (deleting && index >= 0) {
+        textEl.textContent = fullText.substring(0, index--);
+        setTimeout(typeWriter, 30);
+      } else {
+        deleting = false;
+        setTimeout(typeWriter, 500);
+      }
+    }
 
-    </section>
-
-    <section class="copyright-section">
-
-        <div class="container text-center">
-            <small>Copyright © Your Website 2018</small>
-        </div>
-    </section>
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $(function() {
-            var scroll = new SmoothScroll('a[href*="#"]');
-        });
-
-    </script>
-    <script type="text/javascript">
-        $(window).scroll(function() {
-            if ($(document).scrollTop() >= 50) {
-                $('nav').addClass('shrink');
-            } else {
-                $('nav').removeClass('shrink');
-            }
-        });
-
-    </script>
+    typeWriter();
+  </script>
 </body>
-
 </html>

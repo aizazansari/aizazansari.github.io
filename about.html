@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0f0f;
+      color: #e0e0e0;
+    }
+
+    a {
+      color: #768B92;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #a0bfc7;
+    }
+
+header {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  background-color: #0f0f0f;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+header nav a {
+  margin: 0 1rem;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+
+    .about-container {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 4rem 0;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background-color: #768B92;
+    }
+
+    .timeline-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 3rem 0;
+      position: relative;
+    }
+
+    .timeline-entry .content {
+      width: 40%;
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .timeline-entry .bullet {
+      position: absolute;
+      top: 0.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      border: 2px solid #768B92;
+      background-color: transparent;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .timeline-entry:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      margin-top: 4rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      font-weight: 400;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="photography.html">Photography</a>
+      <a href="tech.html">Tech</a>
+    </nav>
+  </header>
+
+  <div class="about-container">
+    <h1>About Me</h1>
+    <div class="timeline">
+      <div class="timeline-entry">
+        <div class="content">
+          <h3>Senior Software Engineer at Company A</h3>
+          <p>2022 - Present<br>Working on backend architecture and system design.</p>
+        </div>
+        <div class="bullet"></div>
+      </div>
+      <div class="timeline-entry">
+        <div class="content">
+          <h3>Software Engineer at Company B</h3>
+          <p>2020 - 2022<br>Built scalable microservices and APIs for e-commerce platforms.</p>
+        </div>
+        <div class="bullet"></div>
+      </div>
+      <div class="timeline-entry">
+        <div class="content">
+          <h3>Intern at Startup X</h3>
+          <p>2019<br>Contributed to frontend development and UX optimization.</p>
+        </div>
+        <div class="bullet"></div>
+      </div>
+    </div>
+    <div class="links">
+      <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+      <a href="mailto:you@example.com">Email</a>
+      <a href="tel:+123456789">Phone</a>
+    </div>
+  </div>
+</body>
+</html>
