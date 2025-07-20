@@ -4,53 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Me</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #0f0f0f;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
       color: #e0e0e0;
+      overflow-x: hidden;
     }
 
     a {
       color: #768B92;
       text-decoration: none;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
     }
 
     a:hover {
       color: #a0bfc7;
+      transform: translateY(-1px);
     }
 
-header {
-  display: flex;
-  justify-content: center;
-  padding: 1rem 0;
-  background-color: #0f0f0f;
-}
+    header {
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem 0;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(118, 139, 146, 0.1);
+    }
 
-header nav {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
+    header nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
 
-header nav a {
-  margin: 0 1rem;
-  color: white;
-  font-weight: 400;
-  font-size: 1rem;
-}
+    header nav a {
+      margin: 0 1.5rem;
+      color: white;
+      font-weight: 400;
+      font-size: 1rem;
+      position: relative;
+    }
 
+    header nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #768B92, #a0bfc7);
+      transition: width 0.3s ease;
+    }
+
+    header nav a:hover::after {
+      width: 100%;
+    }
 
     .about-container {
-      padding: 4rem 2rem;
-      max-width: 900px;
+      padding: 6rem 2rem;
+      max-width: 1000px;
       margin: 0 auto;
       position: relative;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 6rem;
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(118, 139, 146, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(40px);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+
+    .hero-section h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 600;
+      margin: 0;
+      background: linear-gradient(135deg, #ffffff 0%, #768B92 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      margin-top: 1rem;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .timeline {
@@ -64,54 +147,224 @@ header nav a {
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 2px;
+      width: 3px;
       height: 100%;
-      background-color: #768B92;
+      background: linear-gradient(180deg, #768B92 0%, rgba(118, 139, 146, 0.3) 100%);
+      border-radius: 2px;
     }
 
     .timeline-entry {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin: 3rem 0;
+      margin: 4rem 0;
       position: relative;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideInUp 0.8s ease-out forwards;
+    }
+
+    .timeline-entry:nth-child(2) { animation-delay: 0.2s; }
+    .timeline-entry:nth-child(3) { animation-delay: 0.4s; }
+    .timeline-entry:nth-child(4) { animation-delay: 0.6s; }
+    .timeline-entry:nth-child(5) { animation-delay: 0.8s; }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .timeline-entry .content {
-      width: 40%;
+      width: 42%;
       font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(118, 139, 146, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .timeline-entry .content:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(118, 139, 146, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .timeline-entry .content h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ffffff 0%, #768B92 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .timeline-entry .content .date {
+      color: #768B92;
+      font-weight: 400;
       font-size: 0.95rem;
-      line-height: 1.5;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .timeline-entry .content p {
+      margin: 0;
+      color: #c0c0c0;
+      line-height: 1.6;
     }
 
     .timeline-entry .bullet {
       position: absolute;
-      top: 0.4rem;
+      top: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      width: 14px;
-      height: 14px;
-      border: 2px solid #768B92;
-      background-color: transparent;
+      width: 18px;
+      height: 18px;
+      border: 3px solid #768B92;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
       border-radius: 50%;
-      z-index: 2;
+      z-index: 10;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(118, 139, 146, 0.3);
+    }
+
+    .timeline-entry:hover .bullet {
+      background: linear-gradient(135deg, #768B92 0%, #a0bfc7 100%);
+      border-color: #a0bfc7;
+      transform: translateX(-50%) scale(1.2);
+      box-shadow: 0 0 30px rgba(118, 139, 146, 0.6);
     }
 
     .timeline-entry:nth-child(even) {
       flex-direction: row-reverse;
     }
 
+    .timeline-entry:nth-child(even) .content::after {
+      left: -10px;
+      border-left-color: transparent;
+      border-right-color: rgba(118, 139, 146, 0.1);
+    }
+
+    .links-section {
+      margin-top: 6rem;
+      text-align: center;
+    }
+
+    .links-section h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #ffffff 0%, #768B92 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     .links {
       display: flex;
       justify-content: center;
-      margin-top: 4rem;
       gap: 2rem;
       flex-wrap: wrap;
     }
 
     .links a {
       font-weight: 400;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid rgba(118, 139, 146, 0.3);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(118, 139, 146, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .links a:hover::before {
+      left: 100%;
+    }
+
+    .links a:hover {
+      transform: translateY(-3px);
+      background: rgba(118, 139, 146, 0.1);
+      border-color: rgba(118, 139, 146, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    @media screen and (max-width: 768px) {
+      .about-container {
+        padding: 4rem 1.5rem;
+      }
+
+      .hero-section {
+        margin-bottom: 4rem;
+      }
+
+      .timeline-entry {
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
+        margin: 3rem 0;
+      }
+
+      .timeline-entry .content {
+        width: 90%;
+        max-width: 400px;
+      }
+
+      .timeline::before {
+        left: 20px;
+        transform: none;
+      }
+
+      .timeline-entry .bullet {
+        left: 20px;
+        transform: none;
+      }
+
+      .links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .links a {
+        width: 200px;
+        text-align: center;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      header nav a {
+        margin: 0 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .timeline-entry .content {
+        padding: 1.5rem;
+        width: 95%;
+      }
     }
   </style>
 </head>
@@ -119,42 +372,63 @@ header nav a {
   <header>
     <nav>
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
       <a href="photography.html">Photography</a>
-      <a href="tech.html">Tech</a>
+      <a href="tech.html">Blog</a>
     </nav>
   </header>
 
   <div class="about-container">
-    <h1>About Me</h1>
+    <div class="hero-section">
+      <h1>About Me</h1>
+      <p class="hero-subtitle">Software Engineer • Problem Solver • Tech Enthusiast</p>
+    </div>
+
     <div class="timeline">
       <div class="timeline-entry">
         <div class="content">
-          <h3>Senior Software Engineer at Company A</h3>
-          <p>2022 - Present<br>Working on backend architecture and system design.</p>
+          <h3>Senior Software Engineer</h3>
+          <span class="date">2022 - Present</span>
+          <p>Leading backend architecture and system design initiatives at Company A. Focused on building scalable, high-performance systems that serve millions of users.</p>
         </div>
         <div class="bullet"></div>
       </div>
+
       <div class="timeline-entry">
         <div class="content">
-          <h3>Software Engineer at Company B</h3>
-          <p>2020 - 2022<br>Built scalable microservices and APIs for e-commerce platforms.</p>
+          <h3>Software Engineer</h3>
+          <span class="date">2020 - 2022</span>
+          <p>Built scalable microservices and APIs for e-commerce platforms at Company B. Improved system performance by 40% and reduced response times significantly.</p>
         </div>
         <div class="bullet"></div>
       </div>
+
       <div class="timeline-entry">
         <div class="content">
-          <h3>Intern at Startup X</h3>
-          <p>2019<br>Contributed to frontend development and UX optimization.</p>
+          <h3>Software Development Intern</h3>
+          <span class="date">2019</span>
+          <p>Contributed to frontend development and UX optimization at Startup X. Worked closely with design teams to create intuitive user experiences.</p>
+        </div>
+        <div class="bullet"></div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="content">
+          <h3>Bachelor's in Computer Science</h3>
+          <span class="date">2015 - 2019</span>
+          <p>Studied software engineering, algorithms, and systems programming. Graduated with honors and participated in various coding competitions and hackathons.</p>
         </div>
         <div class="bullet"></div>
       </div>
     </div>
-    <div class="links">
-      <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
-      <a href="mailto:you@example.com">Email</a>
-      <a href="tel:+123456789">Phone</a>
+
+    <div class="links-section">
+      <h2>Let's Connect</h2>
+      <div class="links">
+        <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+        <a href="mailto:you@example.com">Email</a>
+        <a href="tel:+123456789">Phone</a>
+      </div>
     </div>
   </div>
 </body>
