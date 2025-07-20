@@ -68,7 +68,8 @@
       transition: width 0.3s ease;
     }
 
-    header nav a:hover::after {
+    header nav a:hover::after,
+    header nav a.active::after {
       width: 100%;
     }
 
@@ -249,12 +250,6 @@
       flex-direction: row-reverse;
     }
 
-    .timeline-entry:nth-child(even) .content::after {
-      left: -10px;
-      border-left-color: transparent;
-      border-right-color: rgba(118, 139, 146, 0.1);
-    }
-
     .links-section {
       margin-top: 6rem;
       text-align: center;
@@ -312,6 +307,7 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
+    /* Mobile Responsive Styles */
     @media screen and (max-width: 768px) {
       .about-container {
         padding: 4rem 1.5rem;
@@ -321,26 +317,45 @@
         margin-bottom: 4rem;
       }
 
-      .timeline-entry {
-        flex-direction: column !important;
-        align-items: center;
-        text-align: center;
+      .hero-section::before {
+        display: none; /* Hide floating background on mobile */
+      }
+
+      /* Mobile Timeline Styles */
+      .timeline {
         margin: 3rem 0;
       }
 
-      .timeline-entry .content {
-        width: 90%;
-        max-width: 400px;
+      .timeline::before {
+        left: 1.5rem;
+        transform: none;
+        width: 2px;
       }
 
-      .timeline::before {
-        left: 20px;
-        transform: none;
+      .timeline-entry {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        margin: 2.5rem 0;
+        padding-left: 4rem;
+      }
+
+      .timeline-entry .content {
+        width: 100%;
+        max-width: none;
+        margin: 0;
       }
 
       .timeline-entry .bullet {
-        left: 20px;
+        left: 1.5rem;
         transform: none;
+        top: 1.5rem;
+        width: 14px;
+        height: 14px;
+        border: 2px solid #768B92;
+      }
+
+      .timeline-entry:hover .bullet {
+        transform: scale(1.2);
       }
 
       .links {
@@ -361,9 +376,24 @@
         font-size: 0.9rem;
       }
 
+      .about-container {
+        padding: 3rem 1rem;
+      }
+
       .timeline-entry .content {
         padding: 1.5rem;
-        width: 95%;
+      }
+
+      .timeline-entry {
+        padding-left: 3rem;
+      }
+
+      .timeline::before {
+        left: 1rem;
+      }
+
+      .timeline-entry .bullet {
+        left: 1rem;
       }
     }
   </style>
@@ -372,8 +402,9 @@
   <header>
     <nav>
       <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
       <a href="photography.html">Photography</a>
-      <a href="tech.html">Blog</a>
+      <a href="blog.html">Blog</a>
     </nav>
   </header>
 
