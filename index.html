@@ -26,7 +26,39 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       font-family: var(--font-body);
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 60px;
+      z-index: 3;
+    }
+
+    .nav-left a,
+    .nav-right a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 8px 12px;
+    }
+
+    .nav-left a:hover,
+    .nav-right a:hover {
+      color: var(--accent-color);
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 24px;
     }
 
     .container {
@@ -74,32 +106,6 @@
       50% { opacity: 0; }
     }
 
-    .nav-links {
-      position: absolute;
-      bottom: 50px;
-      left: 60px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      z-index: 2;
-    }
-
-    .nav-links a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 1.15rem;
-      font-weight: 400;
-      transition: all 0.3s ease;
-      border-left: 2px solid transparent;
-      padding-left: 6px;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-color);
-      border-left: 2px solid var(--accent-color);
-      padding-left: 12px;
-    }
-
     #vanta-bg {
       position: absolute;
       top: 0;
@@ -112,31 +118,63 @@
       -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 65%);
     }
 
-    @media (max-width: 768px) {
-      .title {
-        font-size: 2.5rem;
-      }
+@media (max-width: 768px) {
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 20px;
+  }
 
-      .subtitle {
-        font-size: 1rem;
-      }
+  .nav-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 
-      #vanta-bg {
-        display: none;
-      }
+  .title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
 
-      .container {
-        padding: 20px;
-      }
+  .subtitle {
+    font-size: 0.95rem;
+    white-space: normal;
+    text-align: left;
+    max-width: 100%;
+    margin-top: 12px;
+  }
 
-      .nav-links {
-        left: 20px;
-        bottom: 30px;
-      }
-    }
+  .container {
+    padding: 140px 20px 20px 20px; /* header height + spacing */
+  }
+
+  #vanta-bg {
+    display: none;
+  }
+}
+
+
   </style>
 </head>
 <body>
+  <!-- Header -->
+  <header>
+    <div class="nav-left">
+<!--       <a href="index.html">Home</a> -->
+    </div>
+    <div class="nav-right">
+      <a href="blog.html">Blog</a>
+      <a href="photography.html">Photography</a>
+      <a href="about.html">About Me</a>
+    </div>
+  </header>
+
+  <!-- Main content -->
   <div class="container">
     <div class="title">AIZAZ ANSARI</div>
     <div class="subtitle" id="typewriter">
@@ -144,12 +182,7 @@
     </div>
   </div>
 
-  <div class="nav-links">
-    <a href="blog.html">Blog</a>
-    <a href="photography.html">Photography</a>
-    <a href="about.html">About Me</a>
-  </div>
-
+  <!-- Background -->
   <div id="vanta-bg"></div>
 
   <!-- Vanta.js + Three.js -->
