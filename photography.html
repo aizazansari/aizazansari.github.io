@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Photography</title>
+  <title>Photography - Aizaz Ansari</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -17,18 +17,6 @@
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
       color: #e0e0e0;
       overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    a {
-      color: #768B92;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    a:hover {
-      color: #a0bfc7;
-      transform: translateY(-1px);
     }
 
     header {
@@ -55,6 +43,8 @@
       font-weight: 400;
       font-size: 1rem;
       position: relative;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
 
     header nav a::after {
@@ -74,311 +64,647 @@
       width: 100%;
     }
 
-    .coming-soon-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: calc(100vh - 100px);
-      padding: 2rem;
-      position: relative;
+    header nav a:hover {
+      color: #a0bfc7;
+      transform: translateY(-1px);
     }
 
-    .floating-bg {
-      position: absolute;
-      background: radial-gradient(circle, rgba(118, 139, 146, 0.06) 0%, transparent 70%);
-      border-radius: 50%;
-      filter: blur(80px);
-      animation: floatPhotography 10s ease-in-out infinite;
-    }
-
-    .floating-bg:nth-child(1) {
-      width: 400px;
-      height: 400px;
-      top: 10%;
-      left: 5%;
-      animation-delay: 0s;
-    }
-
-    .floating-bg:nth-child(2) {
-      width: 250px;
-      height: 250px;
-      top: 50%;
-      right: 10%;
-      animation-delay: 3s;
-    }
-
-    .floating-bg:nth-child(3) {
-      width: 180px;
-      height: 180px;
-      bottom: 20%;
-      left: 70%;
-      animation-delay: 6s;
-    }
-
-    @keyframes floatPhotography {
-      0%, 100% { 
-        transform: translateY(0px) scale(1) rotate(0deg);
-        opacity: 0.2;
-      }
-      33% { 
-        transform: translateY(-40px) scale(1.1) rotate(2deg);
-        opacity: 0.5;
-      }
-      66% { 
-        transform: translateY(20px) scale(0.9) rotate(-1deg);
-        opacity: 0.3;
-      }
-    }
-
-    .main-content {
+    .hero-section {
       text-align: center;
-      max-width: 700px;
+      padding: 6rem 2rem 4rem;
       position: relative;
-      z-index: 10;
-    }
-
-    .camera-icon {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 2rem;
-      background: linear-gradient(135deg, rgba(118, 139, 146, 0.08) 0%, rgba(118, 139, 146, 0.03) 100%);
-      border: 3px solid rgba(118, 139, 146, 0.15);
-      border-radius: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      animation: photographyPulse 4s ease-in-out infinite;
       overflow: hidden;
     }
 
-    .camera-icon::before {
+    .hero-section::before {
       content: '';
       position: absolute;
-      width: 70px;
-      height: 50px;
-      background: linear-gradient(135deg, #768B92 0%, #a0bfc7 100%);
-      border-radius: 12px;
-      box-shadow: 
-        inset 0 4px 0 rgba(255, 255, 255, 0.1),
-        0 6px 25px rgba(118, 139, 146, 0.3);
-    }
-
-    .camera-icon::after {
-      content: '';
-      position: absolute;
-      width: 35px;
-      height: 35px;
-      background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
-      border: 3px solid rgba(255, 255, 255, 0.9);
+      top: -20%;
+      left: 30%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(118, 139, 146, 0.1) 0%, transparent 70%);
       border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 
-        0 0 20px rgba(255, 255, 255, 0.3),
-        inset 0 2px 5px rgba(0, 0, 0, 0.5);
+      filter: blur(60px);
+      animation: float 8s ease-in-out infinite;
     }
 
-    @keyframes photographyPulse {
-      0%, 100% {
-        box-shadow: 0 0 30px rgba(118, 139, 146, 0.2);
-        transform: scale(1);
-      }
-      50% {
-        box-shadow: 0 0 60px rgba(118, 139, 146, 0.4);
-        transform: scale(1.03);
-      }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-30px) scale(1.1); }
     }
 
-    h1 {
-      font-size: clamp(3rem, 8vw, 4.5rem);
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5rem);
       font-weight: 600;
-      margin: 0 0 1rem 0;
+      margin: 0;
       background: linear-gradient(135deg, #ffffff 0%, #768B92 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       letter-spacing: -0.02em;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.3s forwards;
+      position: relative;
+      z-index: 1;
     }
 
-    .subtitle {
-      font-size: 1.4rem;
+    .hero-subtitle {
+      font-size: 1.2rem;
       color: #a0a0a0;
-      margin-bottom: 3rem;
+      margin-top: 1rem;
       font-weight: 300;
       opacity: 0;
-      animation: fadeInUp 1s ease-out 0.6s forwards;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
     }
 
-    .coming-soon-banner {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(118, 139, 146, 0.15);
-      border-radius: 20px;
-      padding: 3.5rem 2.5rem;
-      backdrop-filter: blur(25px);
-      position: relative;
-      overflow: hidden;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.9s forwards;
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .coming-soon-banner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(118, 139, 146, 0.08), transparent);
-      animation: shimmerSlow 4s ease-in-out infinite;
+    .journey-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
     }
 
-    @keyframes shimmerSlow {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    .banner-title {
-      font-size: 2rem;
-      font-weight: 500;
-      color: #ffffff;
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .banner-description {
-      font-size: 1.1rem;
-      color: #c0c0c0;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .gallery-preview {
+    .country-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 1.2s forwards;
-    }
-
-    .preview-frame {
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, rgba(118, 139, 146, 0.1) 0%, rgba(118, 139, 146, 0.05) 100%);
-      border: 2px solid rgba(118, 139, 146, 0.2);
-      border-radius: 12px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      cursor: pointer;
-    }
-
-    .preview-frame:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: rgba(118, 139, 146, 0.4);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .preview-frame::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #768B92 0%, #a0bfc7 100%);
-      border-radius: 50%;
-      opacity: 0.6;
-      transition: all 0.3s ease;
-    }
-
-    .preview-frame:hover::before {
-      opacity: 0.8;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-
-    .preview-frame::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 20px;
-      height: 20px;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>');
-      background-size: contain;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    .preview-frame:hover::after {
-      opacity: 1;
-    }
-
-    .categories-preview {
-      display: flex;
-      justify-content: center;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
       gap: 2rem;
-      margin-top: 3rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 1.5s forwards;
+      margin-bottom: 4rem;
     }
 
-    .category-tag {
-      padding: 0.8rem 1.8rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(118, 139, 146, 0.2);
-      border-radius: 25px;
-      color: #c0c0c0;
-      font-weight: 400;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(15px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .category-tag::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(118, 139, 146, 0.1), transparent);
-      transition: left 0.6s ease;
-    }
-
-    .category-tag:hover {
-      transform: translateY(-3px);
-      background: rgba(118, 139, 146, 0.08);
-      border-color: rgba(118, 139, 146, 0.4);
-      color: #ffffff;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .category-tag:hover::before {
-      left: 100%;
-    }
-
-    .update-form {
+    .country-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(118, 139, 146, 0.1);
       border-radius: 16px;
-      padding: 2rem;
-      margin-top: 3rem;
-      backdrop-filter: blur(15px);
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      z-index: 2;
+      overflow: hidden;
+      height: 300px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideInUp 0.8s ease-out forwards;
     }
 
-    .form-title {
-      font-size: 1.3rem;
+    .country-card:nth-child(1) { animation-delay: 0.1s; }
+    .country-card:nth-child(2) { animation-delay: 0.2s; }
+    .country-card:nth-child(3) { animation-delay: 0.3s; }
+    .country-card:nth-child(4) { animation-delay: 0.4s; }
+    .country-card:nth-child(5) { animation-delay: 0.5s; }
+    .country-card:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .country-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(118, 139, 146, 0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .country-card:hover::before {
+      opacity: 1;
+    }
+
+    .country-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(118, 139, 146, 0.3);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .country-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 16px 16px 0 0;
+      transition: transform 0.4s ease;
+    }
+
+    .country-card:hover .country-image {
+      transform: scale(1.1);
+    }
+
+    .country-info {
+      padding: 1.5rem;
+      position: relative;
+      z-index: 2;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .country-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+    }
+
+    .country-description {
+      color: #a0a0a0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .photo-date {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      color: #768B92;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(118, 139, 146, 0.1);
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ffffff 0%, #768B92 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #768B92;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: rgba(118, 139, 146, 0.1);
+      color: #a0bfc7;
+      transform: scale(1.1);
+    }
+
+    .gallery-container {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .photo-item {
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: photoFadeIn 0.5s ease-out forwards;
+    }
+
+    .photo-item:nth-child(1) { animation-delay: 0.1s; }
+    .photo-item:nth-child(2) { animation-delay: 0.15s; }
+    .photo-item:nth-child(3) { animation-delay: 0.2s; }
+    .photo-item:nth-child(4) { animation-delay: 0.25s; }
+    .photo-item:nth-child(5) { animation-delay: 0.3s; }
+    .photo-item:nth-child(6) { animation-delay: 0.35s; }
+
+    @keyframes photoFadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .photo-item:hover {
+      transform: scale(1.05);
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .photo-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: white;
+      padding: 2rem 1rem 1rem;
+      font-size: 0.9rem;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.3s ease;
+    }
+
+    .photo-item:hover .photo-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Lightbox for individual photos */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Responsive */
+    @media screen and (max-width: 768px) {
+      .hero-section {
+        padding: 4rem 1.5rem 3rem;
+      }
+
+      .journey-container {
+        padding: 1rem;
+      }
+
+      .country-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .country-card {
+        height: 250px;
+      }
+
+      .country-image {
+        height: 150px;
+      }
+
+      .modal-header {
+        padding: 1rem;
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
+      }
+
+      .gallery-container {
+        padding: 1rem;
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      header nav a {
+        margin: 0 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="photography.html" class="active">Photography</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+  </header>
+
+  <div class="hero-section">
+    <h1 class="hero-title">Visual Journey</h1>
+    <p class="hero-subtitle">Through lens and wanderlust — stories from around the world</p>
+  </div>
+
+  <div class="journey-container">
+    <div class="country-grid">
+      <div class="country-card" data-country="japan">
+        <div class="photo-date">March 2024</div>
+        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&h=600&fit=crop" alt="Japan" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">Japan</h3>
+          <p class="country-description">Cherry blossoms, neon lights, and timeless traditions captured in the land of the rising sun.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="iceland">
+        <div class="photo-date">October 2023</div>
+        <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&h=600&fit=crop" alt="Iceland" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">Iceland</h3>
+          <p class="country-description">Fire and ice — dramatic landscapes where glaciers meet volcanic peaks under dancing auroras.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="morocco">
+        <div class="photo-date">September 2023</div>
+        <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&h=600&fit=crop" alt="Morocco" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">Morocco</h3>
+          <p class="country-description">Vibrant souks, endless dunes, and architectural wonders in the heart of North Africa.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="norway">
+        <div class="photo-date">June 2023</div>
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop" alt="Norway" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">Norway</h3>
+          <p class="country-description">Majestic fjords, midnight sun, and pristine wilderness in Scandinavia's crown jewel.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="peru">
+        <div class="photo-date">November 2022</div>
+        <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&h=600&fit=crop" alt="Peru" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">Peru</h3>
+          <p class="country-description">Ancient mysteries of Machu Picchu and the vibrant culture of the Andes mountains.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="thailand">
+        <div class="photo-date">February 2022</div>
+        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&h=600&fit=crop" alt="Thailand" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">Thailand</h3>
+          <p class="country-description">Golden temples, emerald waters, and warm smiles in the land of eternal summer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for photo gallery -->
+  <div class="modal" id="photoModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Country</h2>
+        <button class="close-btn" id="closeModal">&times;</button>
+      </div>
+      <div class="gallery-container">
+        <div class="photo-grid" id="photoGrid">
+          <!-- Photos will be loaded dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox for individual photos -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img id="lightboxImage" src="" alt="">
+  </div>
+
+  <script>
+    // Sample photo data - replace with your actual photos
+    const photoData = {
+      japan: [
+        { src: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&h=600&fit=crop', caption: 'Tokyo skyline at sunset' },
+        { src: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800&h=600&fit=crop', caption: 'Cherry blossoms in Kyoto' },
+        { src: 'https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&h=600&fit=crop', caption: 'Traditional temple architecture' },
+        { src: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&h=600&fit=crop', caption: 'Neon-lit street in Shibuya' },
+        { src: 'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=800&h=600&fit=crop', caption: 'Mount Fuji reflection' },
+        { src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop', caption: 'Traditional Japanese garden' }
+      ],
+      iceland: [
+        { src: 'https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&h=600&fit=crop', caption: 'Northern lights over glacier' },
+        { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', caption: 'Dramatic waterfall cascade' },
+        { src: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=600&fit=crop', caption: 'Ice caves exploration' },
+        { src: 'https://images.unsplash.com/photo-1464822759844-d150baec4493?w=800&h=600&fit=crop', caption: 'Volcanic landscape vista' },
+        { src: 'https://images.unsplash.com/photo-1504829857797-ddff29c27e9b?w=800&h=600&fit=crop', caption: 'Geothermal hot springs' },
+        { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop', caption: 'Midnight sun reflection' }
+      ],
+      morocco: [
+        { src: 'https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&h=600&fit=crop', caption: 'Sahara dunes at golden hour' },
+        { src: 'https://images.unsplash.com/photo-1542907825-eb8ad8d39ab7?w=800&h=600&fit=crop', caption: 'Marrakech souk colors' },
+        { src: 'https://images.unsplash.com/photo-1508123235087-8e2d60714e14?w=800&h=600&fit=crop', caption: 'Atlas Mountains village' },
+        { src: 'https://images.unsplash.com/photo-1521813016986-3b9c3c4e5d60?w=800&h=600&fit=crop', caption: 'Traditional architecture details' },
+        { src: 'https://images.unsplash.com/photo-1517821362941-f424b1e92fe4?w=800&h=600&fit=crop', caption: 'Coastal fortress at sunset' },
+        { src: 'https://images.unsplash.com/photo-1515988708786-c48aca2ae4f6?w=800&h=600&fit=crop', caption: 'Berber camp under stars' }
+      ],
+      norway: [
+        { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop', caption: 'Lofoten Islands drama' },
+        { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', caption: 'Geiranger fjord view' },
+        { src: 'https://images.unsplash.com/photo-1530841344095-b2893194affe?w=800&h=600&fit=crop', caption: 'Northern lights reflection' },
+        { src: 'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?w=800&h=600&fit=crop', caption: 'Preikestolen cliff edge' },
+        { src: 'https://images.unsplash.com/photo-1533923156502-be31de1c2630?w=800&h=600&fit=crop', caption: 'Bergen colorful houses' },
+        { src: 'https://images.unsplash.com/photo-1510312305653-8ed496efaed2?w=800&h=600&fit=crop', caption: 'Midnight sun panorama' }
+      ],
+      peru: [
+        { src: 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&h=600&fit=crop', caption: 'Machu Picchu sunrise' },
+        { src: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&h=600&fit=crop', caption: 'Sacred Valley terraces' },
+        { src: 'https://images.unsplash.com/photo-1518082593570-ca5ea94671b9?w=800&h=600&fit=crop', caption: 'Cusco colonial architecture' },
+        { src: 'https://images.unsplash.com/photo-1604574779701-4c6e6faa6e4d?w=800&h=600&fit=crop', caption: 'Alpaca in the highlands' },
+        { src: 'https://images.unsplash.com/photo-1604574779701-4c6e6faa6e4d?w=800&h=600&fit=crop', caption: 'Lake Titicaca reflections' },
+        { src: 'https://images.unsplash.com/photo-1582902636070-56eca26dad4d?w=800&h=600&fit=crop', caption: 'Andean market colors' }
+      ],
+      thailand: [
+        { src: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&h=600&fit=crop', caption: 'Golden temple spires' },
+        { src: 'https://images.unsplash.com/photo-1534008897995-27a23e859048?w=800&h=600&fit=crop', caption: 'Floating market vendors' },
+        { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', caption: 'Phi Phi Islands paradise' },
+        { src: 'https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&h=600&fit=crop', caption: 'Bangkok skyline lights' },
+        { src: 'https://images.unsplash.com/photo-1596178060810-1d86a2b3cac8?w=800&h=600&fit=crop', caption: 'Elephant sanctuary moment' },
+        { src: 'https://images.unsplash.com/photo-1561889829-14ea20a5a7b7?w=800&h=600&fit=crop', caption: 'Traditional longtail boat' }
+      ]
+    };
+
+    // DOM elements
+    const modal = document.getElementById('photoModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const photoGrid = document.getElementById('photoGrid');
+    const closeModal = document.getElementById('closeModal');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    // Open modal when country card is clicked
+    document.querySelectorAll('.country-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const country = card.dataset.country;
+        const countryName = card.querySelector('.country-name').textContent;
+        openModal(country, countryName);
+      });
+    });
+
+    // Function to open modal and load photos
+    function openModal(country, countryName) {
+      modalTitle.textContent = countryName;
+      loadPhotos(country);
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Function to load photos into the grid
+    function loadPhotos(country) {
+      const photos = photoData[country] || [];
+      photoGrid.innerHTML = '';
+      
+      photos.forEach((photo, index) => {
+        const photoItem = document.createElement('div');
+        photoItem.className = 'photo-item';
+        photoItem.innerHTML = `
+          <img src="${photo.src}" alt="${photo.caption}" loading="lazy">
+          <div class="photo-caption">${photo.caption}</div>
+        `;
+        
+        // Add click event to open lightbox
+        photoItem.addEventListener('click', () => {
+          openLightbox(photo.src, photo.caption);
+        });
+        
+        photoGrid.appendChild(photoItem);
+      });
+    }
+
+    // Function to open lightbox
+    function openLightbox(src, caption) {
+      lightboxImage.src = src;
+      lightboxImage.alt = caption;
+      lightbox.classList.add('active');
+    }
+
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close lightbox
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close lightbox when clicking outside
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    // Escape key to close modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        modal.classList.remove('active');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });

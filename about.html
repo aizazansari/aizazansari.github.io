@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me</title>
+  <title>About Me - Aizaz Ansari</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -170,6 +170,9 @@
     .timeline-entry:nth-child(3) { animation-delay: 0.4s; }
     .timeline-entry:nth-child(4) { animation-delay: 0.6s; }
     .timeline-entry:nth-child(5) { animation-delay: 0.8s; }
+    .timeline-entry:nth-child(6) { animation-delay: 1.0s; }
+    .timeline-entry:nth-child(7) { animation-delay: 1.2s; }
+    .timeline-entry:nth-child(8) { animation-delay: 1.4s; }
 
     @keyframes slideInUp {
       to {
@@ -199,6 +202,46 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
+    .company-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(118, 139, 146, 0.1);
+    }
+
+    .company-logo {
+      width: 40px;
+      height: 40px;
+      background: rgba(118, 139, 146, 0.1);
+      border: 2px solid rgba(118, 139, 146, 0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #768B92;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .company-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .company-info h4 {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #768B92;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
     .timeline-entry .content h3 {
       margin: 0 0 0.5rem 0;
       font-size: 1.3rem;
@@ -219,9 +262,86 @@
     }
 
     .timeline-entry .content p {
-      margin: 0;
+      margin: 0 0 1rem 0;
       color: #c0c0c0;
       line-height: 1.6;
+    }
+
+    .timeline-entry .content p:last-of-type {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Skills Pills Styles */
+    .skills-container {
+      margin-top: 1.5rem;
+    }
+
+    .skills-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-pill {
+      background: rgba(118, 139, 146, 0.15);
+      color: #a0bfc7;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 400;
+      border: 1px solid rgba(118, 139, 146, 0.2);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .skill-pill:hover {
+      background: rgba(118, 139, 146, 0.25);
+      border-color: rgba(118, 139, 146, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .expand-btn {
+      background: rgba(118, 139, 146, 0.1);
+      color: #768B92;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid rgba(118, 139, 146, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .expand-btn:hover {
+      background: rgba(118, 139, 146, 0.2);
+      border-color: rgba(118, 139, 146, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .expand-btn .icon {
+      transition: transform 0.3s ease;
+    }
+
+    .expand-btn.expanded .icon {
+      transform: rotate(180deg);
+    }
+
+    .hidden-skills {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .hidden-skills.show {
+      display: contents;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .timeline-entry .bullet {
@@ -244,6 +364,12 @@
       border-color: #a0bfc7;
       transform: translateX(-50%) scale(1.2);
       box-shadow: 0 0 30px rgba(118, 139, 146, 0.6);
+    }
+
+    .timeline-entry:hover .company-logo {
+      background: rgba(118, 139, 146, 0.15);
+      border-color: rgba(118, 139, 146, 0.4);
+      transform: scale(1.05);
     }
 
     .timeline-entry:nth-child(even) {
@@ -318,10 +444,9 @@
       }
 
       .hero-section::before {
-        display: none; /* Hide floating background on mobile */
+        display: none;
       }
 
-      /* Mobile Timeline Styles */
       .timeline {
         margin: 3rem 0;
       }
@@ -356,6 +481,20 @@
 
       .timeline-entry:hover .bullet {
         transform: scale(1.2);
+      }
+
+      .company-header {
+        gap: 0.8rem;
+      }
+
+      .company-logo {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+      }
+
+      .company-info h4 {
+        font-size: 0.9rem;
       }
 
       .links {
@@ -395,6 +534,17 @@
       .timeline-entry .bullet {
         left: 1rem;
       }
+
+      .company-logo {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+      }
+
+      .skill-pill, .expand-btn {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+      }
     }
   </style>
 </head>
@@ -410,43 +560,200 @@
 
   <div class="about-container">
     <div class="hero-section">
-      <h1>About Me</h1>
-      <p class="hero-subtitle">Software Engineer • Problem Solver • Tech Enthusiast</p>
+      <h1>Aizaz Ansari</h1>
     </div>
 
     <div class="timeline">
       <div class="timeline-entry">
         <div class="content">
+          <div class="company-header">
+            <div class="company-logo">
+              <img src="assets/tiktok.jpg">
+            </div>
+            <div class="company-info">
+              <h4>TikTok</h4>
+            </div>
+          </div>
           <h3>Senior Software Engineer</h3>
-          <span class="date">2022 - Present</span>
-          <p>Leading backend architecture and system design initiatives at Company A. Focused on building scalable, high-performance systems that serve millions of users.</p>
+          <span class="date">March 2025 - Present</span>
+          <p>• Leading a 3-person project to deprecate & migrate 2 global procurement platform services that enable $7B in transactions/year.</p>
+          <p>• Building solutions to automate buyer sourcing (14% reduction in manhours) and supplier payments (2.5% reduction in overdue payments).</p>
+          
+          <div class="skills-container">
+            <div class="skills-pills">
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">Spring Boot</span>
+              <span class="skill-pill">LLMs</span>
+              <span class="skill-pill">Maven</span>
+              <div class="hidden-skills">
+                <span class="skill-pill">MQ</span>
+              </div>
+              <button class="expand-btn" onclick="toggleSkills(this)">
+                <span>+2</span>
+                <span class="icon">▼</span>
+              </button>
+            </div>
+          </div>
         </div>
         <div class="bullet"></div>
       </div>
 
       <div class="timeline-entry">
         <div class="content">
+          <div class="company-header">
+            <div class="company-logo">
+              <img src="assets/noon.jpeg">
+            </div>
+            <div class="company-info">
+              <h4>Noon</h4>
+            </div>
+          </div>
+          <h3>Software Engineer 3</h3>
+          <span class="date">December 2023 - February 2025</span>
+          <p>• Led a team of 10+ backend engineers to rewrite newly acquired marketplace namshi.com which now handles 100k requests/minute with 13% lower latency and 29% higher revenue ($5M/day).</p> 
+          <p>• Designed and developed multiple e-commerce services from scratch including Search, Suggestions, Discount, Order & Payments.</p>
+          
+          <div class="skills-container">
+            <div class="skills-pills">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">FastAPI</span>
+              <span class="skill-pill">MySQL</span>
+              <span class="skill-pill">Redis</span>
+              <span class="skill-pill">Solr</span>
+              <div class="hidden-skills">
+                <span class="skill-pill">Docket</span>
+                <span class="skill-pill">Kubernetes</span>
+                <span class="skill-pill">Google Cloud</span>
+              </div>
+              <button class="expand-btn" onclick="toggleSkills(this)">
+                <span>+4</span>
+                <span class="icon">▼</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="bullet"></div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="content">
+          <div class="company-header">
+            <div class="company-logo">
+              <img src="assets/noon.jpeg">
+            </div>
+            <div class="company-info">
+              <h4>Noon</h4>
+            </div>
+          </div>
+          <h3>Software Engineer 2</h3>
+          <span class="date">February 2023 - November 2023</span>
+          <p>• Built the customer notification service (SMS, email, push, WhatsApp) with multi-tenant support, serving 300 req/s.</p>
+          
+          <div class="skills-container">
+            <div class="skills-pills">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">FastAPI</span>
+              <span class="skill-pill">MySQL</span>
+              <span class="skill-pill">Jinja</span>
+              <div class="hidden-skills">
+                <span class="skill-pill">Docket</span>
+                <span class="skill-pill">Kubernetes</span>
+                <span class="skill-pill">Google Cloud</span>
+              </div>
+              <button class="expand-btn" onclick="toggleSkills(this)">
+                <span>+3</span>
+                <span class="icon">▼</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="bullet"></div>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="content">
+          <div class="company-header">
+            <div class="company-logo">
+              <img src="assets/noon.jpeg">
+            </div>
+            <div class="company-info">
+              <h4>Noon</h4>
+            </div>
+          </div>
           <h3>Software Engineer</h3>
-          <span class="date">2020 - 2022</span>
-          <p>Built scalable microservices and APIs for e-commerce platforms at Company B. Improved system performance by 40% and reduced response times significantly.</p>
+          <span class="date">August 2021 - January 2023</span>
+          <p>• Developed the customer loyalty program in collaboration with 5 engineers to serve 1M+ active subscribers.</p>
+          
+          <div class="skills-container">
+            <div class="skills-pills">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">Flask</span>
+              <span class="skill-pill">Docket</span>
+              <span class="skill-pill">Kubernetes</span>
+            </div>
+          </div>
         </div>
         <div class="bullet"></div>
       </div>
 
       <div class="timeline-entry">
         <div class="content">
-          <h3>Software Development Intern</h3>
-          <span class="date">2019</span>
-          <p>Contributed to frontend development and UX optimization at Startup X. Worked closely with design teams to create intuitive user experiences.</p>
+          <div class="company-header">
+            <div class="company-logo">
+              <img src="assets/lm.jpeg">
+            </div>
+            <div class="company-info">
+              <h4>Lockheed Martin</h4>
+            </div>
+          </div>
+          <h3>Software Engineer (Part-time)</h3>
+          <span class="date">September 2020 - December 2020</span>
+          <p>• Created an artificial training data generation (GAN) tool with MATLAB to improve accuracy of aircraft inspection models.</p>
+          <p>• Tool is expected to save ~$4M over the next 10 years by reducing manual inspection.</p>
+          
+          <div class="skills-container">
+            <div class="skills-pills">
+              <span class="skill-pill">MATLAB</span>
+              <span class="skill-pill">GANs</span>
+              <span class="skill-pill">Machine Learning</span>
+              <span class="skill-pill">Computer Vision</span>
+              <div class="hidden-skills">
+                <span class="skill-pill">Data Generation</span>
+              </div>
+              <button class="expand-btn" onclick="toggleSkills(this)">
+                <span>+2</span>
+                <span class="icon">▼</span>
+              </button>
+            </div>
+          </div>
         </div>
         <div class="bullet"></div>
       </div>
 
       <div class="timeline-entry">
         <div class="content">
-          <h3>Bachelor's in Computer Science</h3>
-          <span class="date">2015 - 2019</span>
-          <p>Studied software engineering, algorithms, and systems programming. Graduated with honors and participated in various coding competitions and hackathons.</p>
+          <div class="company-header">
+            <div class="company-logo">
+              <img src="assets/nyu.png">
+            </div>
+            <div class="company-info">
+              <h4>NYU Abu Dhabi</h4>
+            </div>
+          </div>
+          <h3>Bachelor of Science, Computer Science & Applied Math</h3>
+          <span class="date">August 2017 - May 2021</span>
+          <p>• GPA: 3.94/4.00 </p>
+          <p>• Magna Cum Laude </p> 
+          <p>• President of Computer Science Society (HackAD)</p>
+          
+          <div class="skills-container">
+            <div class="skills-pills">
+              <span class="skill-pill">Machine Learning</span>
+              <span class="skill-pill">Probability & Statistics</span>
+              <span class="skill-pill">Computer Systems</span>
+              <span class="skill-pill">Database Management</span>
+            </div>
+          </div>
         </div>
         <div class="bullet"></div>
       </div>
@@ -455,12 +762,30 @@
     <div class="links-section">
       <h2>Let's Connect</h2>
       <div class="links">
-        <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
-        <a href="mailto:you@example.com">Email</a>
-        <a href="tel:+123456789">Phone</a>
+        <a href="https://github.com/aizazansari" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/aizazansari" target="_blank">LinkedIn</a>
+        <a href="mailto:aizazarifansari@gmail.com">Email</a>
       </div>
     </div>
   </div>
+
+  <script>
+    function toggleSkills(button) {
+      const skillsContainer = button.parentElement;
+      const hiddenSkills = skillsContainer.querySelector('.hidden-skills');
+      const icon = button.querySelector('.icon');
+      
+      if (hiddenSkills.classList.contains('show')) {
+        hiddenSkills.classList.remove('show');
+        button.classList.remove('expanded');
+        const skillCount = hiddenSkills.querySelectorAll('.skill-pill').length;
+        button.querySelector('span').textContent = `+${skillCount}`;
+      } else {
+        hiddenSkills.classList.add('show');
+        button.classList.add('expanded');
+        button.querySelector('span').textContent = 'Less';
+      }
+    }
+  </script>
 </body>
 </html>
