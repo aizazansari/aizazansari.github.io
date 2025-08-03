@@ -149,7 +149,7 @@
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
-      height: 300px;
+      height: 350px;
       opacity: 0;
       transform: translateY(50px);
       animation: slideInUp 0.8s ease-out forwards;
@@ -207,7 +207,7 @@
       padding: 1.5rem;
       position: relative;
       z-index: 2;
-      height: 100px;
+      height: 150px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -286,10 +286,7 @@
       font-size: 2rem;
       font-weight: 600;
       color: #ffffff;
-      background: linear-gradient(135deg, #ffffff 0%, #768B92 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-family: 'Inter', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
     }
 
     .close-btn {
@@ -383,7 +380,7 @@
       transform: translateY(0);
     }
 
-    /* Lightbox for individual photos */
+    /* Enhanced Lightbox with Navigation */
     .lightbox {
       display: none;
       position: fixed;
@@ -401,22 +398,115 @@
       display: flex;
     }
 
+    .lightbox-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 85%;
+      max-height: 85%;
       object-fit: contain;
       border-radius: 8px;
+      transition: opacity 0.3s ease;
     }
 
     .lightbox-close {
       position: absolute;
       top: 2rem;
       right: 2rem;
-      background: none;
+      background: rgba(0, 0, 0, 0.7);
       border: none;
       color: white;
       font-size: 2rem;
       cursor: pointer;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-close:hover {
+      background: rgba(118, 139, 146, 0.2);
+      transform: scale(1.1);
+    }
+
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      opacity: 0.8;
+    }
+
+    .lightbox-nav-btn:hover {
+      background: rgba(118, 139, 146, 0.2);
+      transform: translateY(-50%) scale(1.1);
+      opacity: 1;
+    }
+
+    .lightbox-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .lightbox-nav-btn:disabled:hover {
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .lightbox-prev {
+      left: 2rem;
+    }
+
+    .lightbox-next {
+      right: 2rem;
+    }
+
+    .lightbox-info {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+      max-width: 80%;
+    }
+
+    .lightbox-caption {
+      font-size: 1.1rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 500;
+    }
+
+    .lightbox-counter {
+      font-size: 0.9rem;
+      color: #a0a0a0;
+      margin: 0;
     }
 
     /* Mobile Responsive */
@@ -435,7 +525,7 @@
       }
 
       .country-card {
-        height: 250px;
+        height: 300px;
       }
 
       .country-image {
@@ -457,6 +547,47 @@
       .photo-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 1rem;
+      }
+
+      .lightbox img {
+        max-width: 95%;
+        max-height: 80%;
+      }
+
+      .lightbox-nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+
+      .lightbox-prev {
+        left: 1rem;
+      }
+
+      .lightbox-next {
+        right: 1rem;
+      }
+
+      .lightbox-close {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+
+      .lightbox-info {
+        bottom: 1rem;
+        padding: 0.8rem 1.5rem;
+        max-width: 90%;
+      }
+
+      .lightbox-caption {
+        font-size: 1rem;
+      }
+
+      .lightbox-counter {
+        font-size: 0.8rem;
       }
     }
 
@@ -489,57 +620,183 @@
 
   <div class="journey-container">
     <div class="country-grid">
-      <div class="country-card" data-country="japan">
-        <div class="photo-date">March 2024</div>
-        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&h=600&fit=crop" alt="Japan" class="country-image">
+      <div class="country-card" data-country="pakistan">
+        <div class="photo-date">Home</div>
+        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop" alt="Pakistan" class="country-image">
         <div class="country-info">
-          <h3 class="country-name">Japan</h3>
-          <p class="country-description">Cherry blossoms, neon lights, and timeless traditions captured in the land of the rising sun.</p>
+          <h3 class="country-name">🇵🇰 Pakistan</h3>
+          <p class="country-description">Home sweet home — where every street tells a story and memories are woven into the fabric of life.</p>
         </div>
       </div>
 
-      <div class="country-card" data-country="iceland">
-        <div class="photo-date">October 2023</div>
-        <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&h=600&fit=crop" alt="Iceland" class="country-image">
+      <div class="country-card" data-country="uae">
+        <div class="photo-date">Second Home</div>
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=600&fit=crop" alt="UAE" class="country-image">
         <div class="country-info">
-          <h3 class="country-name">Iceland</h3>
-          <p class="country-description">Fire and ice — dramatic landscapes where glaciers meet volcanic peaks under dancing auroras.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="morocco">
-        <div class="photo-date">September 2023</div>
-        <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&h=600&fit=crop" alt="Morocco" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">Morocco</h3>
-          <p class="country-description">Vibrant souks, endless dunes, and architectural wonders in the heart of North Africa.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="norway">
-        <div class="photo-date">June 2023</div>
-        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop" alt="Norway" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">Norway</h3>
-          <p class="country-description">Majestic fjords, midnight sun, and pristine wilderness in Scandinavia's crown jewel.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="peru">
-        <div class="photo-date">November 2022</div>
-        <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&h=600&fit=crop" alt="Peru" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">Peru</h3>
-          <p class="country-description">Ancient mysteries of Machu Picchu and the vibrant culture of the Andes mountains.</p>
+          <h3 class="country-name">🇦🇪 UAE</h3>
+          <p class="country-description">Second home among golden dunes and gleaming towers — where tradition meets tomorrow.</p>
         </div>
       </div>
 
       <div class="country-card" data-country="thailand">
-        <div class="photo-date">February 2022</div>
+        <div class="photo-date">February 2025</div>
         <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&h=600&fit=crop" alt="Thailand" class="country-image">
         <div class="country-info">
-          <h3 class="country-name">Thailand</h3>
+          <h3 class="country-name">🇹🇭 Thailand</h3>
           <p class="country-description">Golden temples, emerald waters, and warm smiles in the land of eternal summer.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="srilanka">
+        <div class="photo-date">February 2025</div>
+        <img src="https://images.unsplash.com/photo-1566552881560-0be862a7c445?w=800&h=600&fit=crop" alt="Sri Lanka" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇱🇰 Sri Lanka</h3>
+          <p class="country-description">Emerald tea gardens, ancient temples, and pristine beaches in the pearl of the Indian Ocean.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="azerbaijan">
+        <div class="photo-date">October 2024</div>
+        <img src="https://images.unsplash.com/photo-1580500055030-6b04b92e8779?w=800&h=600&fit=crop" alt="Azerbaijan" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇦🇿 Azerbaijan</h3>
+          <p class="country-description">Land of fire and Caspian shores — where ancient Zoroastrian flames still dance eternal.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="singapore">
+        <div class="photo-date">January 2024</div>
+        <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=600&fit=crop" alt="Singapore" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇸🇬 Singapore</h3>
+          <p class="country-description">Garden city where cultures blend seamlessly among futuristic skylines and tropical gardens.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="malaysia">
+        <div class="photo-date">January 2024</div>
+        <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=600&fit=crop" alt="Malaysia" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇲🇾 Malaysia</h3>
+          <p class="country-description">Tropical paradise of diverse cultures, from Petronas Towers to ancient rainforests.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="oman">
+        <div class="photo-date">September 2023</div>
+        <img src="https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=800&h=600&fit=crop" alt="Oman" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇴🇲 Oman</h3>
+          <p class="country-description">Mystical sultanate of dramatic landscapes, from vast deserts to turquoise coastlines.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="china">
+        <div class="photo-date">January 2020</div>
+        <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&h=600&fit=crop" alt="China" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇨🇳 China</h3>
+          <p class="country-description">Ancient civilization meets modern marvel — from the Great Wall to neon-lit megacities.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="usa">
+        <div class="photo-date">Sep - Dec 2019</div>
+        <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800&h=600&fit=crop" alt="USA" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇺🇸 USA</h3>
+          <p class="country-description">Land of endless horizons — from city skylines to natural wonders spanning a continent.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="italy">
+        <div class="photo-date">Jan - May 2019</div>
+        <img src="https://images.unsplash.com/photo-1520637836862-4d197d17c63a?w=800&h=600&fit=crop" alt="Italy" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇮🇹 Italy</h3>
+          <p class="country-description">Timeless beauty of Renaissance art, Roman ruins, and rolling Tuscan hills.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="france">
+        <div class="photo-date">March 2019</div>
+        <img src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=800&h=600&fit=crop" alt="France" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇫🇷 France</h3>
+          <p class="country-description">Elegance embodied — from Parisian boulevards to lavender fields of Provence.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="spain">
+        <div class="photo-date">March 2019</div>
+        <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&h=600&fit=crop" alt="Spain" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇪🇸 Spain</h3>
+          <p class="country-description">Passionate spirit of flamenco, Moorish architecture, and sun-drenched Mediterranean coasts.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="portugal">
+        <div class="photo-date">March 2019</div>
+        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&h=600&fit=crop" alt="Portugal" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇵🇹 Portugal</h3>
+          <p class="country-description">Atlantic charm of colorful tiles, dramatic cliffs, and soulful fado melodies.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="belgium">
+        <div class="photo-date">April 2019</div>
+        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop" alt="Belgium" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇧🇪 Belgium</h3>
+          <p class="country-description">Medieval fairytale come alive — cobblestone streets, Gothic spires, and world-famous chocolates.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="netherlands">
+        <div class="photo-date">April 2019</div>
+        <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=800&h=600&fit=crop" alt="Netherlands" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇳🇱 Netherlands</h3>
+          <p class="country-description">Land of windmills and tulips — canals weaving through vibrant cities and endless flower fields.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="germany">
+        <div class="photo-date">April 2019</div>
+        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=600&fit=crop" alt="Germany" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇩🇪 Germany</h3>
+          <p class="country-description">Where history meets innovation — from fairytale castles to cutting-edge urban landscapes.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="uk">
+        <div class="photo-date">June 2018</div>
+        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop" alt="UK" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇬🇧 United Kingdom</h3>
+          <p class="country-description">Royal heritage and countryside charm — from London's iconic landmarks to Scottish highlands.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="turkey">
+        <div class="photo-date">March 2018</div>
+        <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&h=600&fit=crop" alt="Turkey" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇹🇷 Turkey</h3>
+          <p class="country-description">Bridge between continents — Byzantine domes, Ottoman palaces, and Cappadocia's surreal landscapes.</p>
+        </div>
+      </div>
+
+      <div class="country-card" data-country="greece">
+        <div class="photo-date">January 2018</div>
+        <img src="https://images.unsplash.com/photo-1555993539-1732b0258077?w=800&h=600&fit=crop" alt="Greece" class="country-image">
+        <div class="country-info">
+          <h3 class="country-name">🇬🇷 Greece</h3>
+          <p class="country-description">Cradle of civilization — ancient ruins overlooking crystal-blue Aegean waters and whitewashed islands.</p>
         </div>
       </div>
     </div>
@@ -560,16 +817,24 @@
     </div>
   </div>
 
-  <!-- Lightbox for individual photos -->
+  <!-- Enhanced Lightbox with Navigation -->
   <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose">&times;</button>
-    <img id="lightboxImage" src="" alt="">
+    <div class="lightbox-container">
+      <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev">&#8249;</button>
+      <button class="lightbox-nav-btn lightbox-next" id="lightboxNext">&#8250;</button>
+      <img id="lightboxImage" src="" alt="">
+      <div class="lightbox-info">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+      </div>
+    </div>
   </div>
 
   <script>
     // Sample photo data - replace with your actual photos
     const photoData = {
-      japan: [
+      pakistan: [
         { src: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&h=600&fit=crop', caption: 'Tokyo skyline at sunset' },
         { src: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800&h=600&fit=crop', caption: 'Cherry blossoms in Kyoto' },
         { src: 'https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&h=600&fit=crop', caption: 'Traditional temple architecture' },
@@ -627,6 +892,14 @@
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    // Lightbox state
+    let currentPhotoIndex = 0;
+    let currentCountryPhotos = [];
 
     // Open modal when country card is clicked
     document.querySelectorAll('.country-card').forEach(card => {
@@ -639,7 +912,8 @@
 
     // Function to open modal and load photos
     function openModal(country, countryName) {
-      modalTitle.textContent = countryName;
+      modalTitle.innerText = countryName;
+      currentCountryPhotos = photoData[country] || [];
       loadPhotos(country);
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -660,7 +934,7 @@
         
         // Add click event to open lightbox
         photoItem.addEventListener('click', () => {
-          openLightbox(photo.src, photo.caption);
+          openLightbox(index);
         });
         
         photoGrid.appendChild(photoItem);
@@ -668,11 +942,45 @@
     }
 
     // Function to open lightbox
-    function openLightbox(src, caption) {
-      lightboxImage.src = src;
-      lightboxImage.alt = caption;
+    function openLightbox(photoIndex) {
+      currentPhotoIndex = photoIndex;
+      updateLightboxImage();
       lightbox.classList.add('active');
     }
+
+    // Function to update lightbox image and info
+    function updateLightboxImage() {
+      if (currentCountryPhotos.length === 0) return;
+      
+      const photo = currentCountryPhotos[currentPhotoIndex];
+      lightboxImage.src = photo.src;
+      lightboxImage.alt = photo.caption;
+      lightboxCaption.textContent = photo.caption;
+      lightboxCounter.textContent = `${currentPhotoIndex + 1} of ${currentCountryPhotos.length}`;
+      
+      // Update navigation button states
+      lightboxPrev.disabled = currentPhotoIndex === 0;
+      lightboxNext.disabled = currentPhotoIndex === currentCountryPhotos.length - 1;
+    }
+
+    // Navigation functions
+    function showPreviousPhoto() {
+      if (currentPhotoIndex > 0) {
+        currentPhotoIndex--;
+        updateLightboxImage();
+      }
+    }
+
+    function showNextPhoto() {
+      if (currentPhotoIndex < currentCountryPhotos.length - 1) {
+        currentPhotoIndex++;
+        updateLightboxImage();
+      }
+    }
+
+    // Event listeners for navigation
+    lightboxPrev.addEventListener('click', showPreviousPhoto);
+    lightboxNext.addEventListener('click', showNextPhoto);
 
     // Close modal
     closeModal.addEventListener('click', () => {
@@ -700,11 +1008,40 @@
       }
     });
 
-    // Escape key to close modals
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
+      if (lightbox.classList.contains('active')) {
+        switch(e.key) {
+          case 'Escape':
+            lightbox.classList.remove('active');
+            break;
+          case 'ArrowLeft':
+            e.preventDefault();
+            showPreviousPhoto();
+            break;
+          case 'ArrowRight':
+            e.preventDefault();
+            showNextPhoto();
+            break;
+        }
+      } else if (modal.classList.contains('active') && e.key === 'Escape') {
         modal.classList.remove('active');
-        lightbox.classList.remove('active');
         document.body.style.overflow = 'auto';
       }
     });
+
+    // Preload images for smoother navigation
+    function preloadImages(photos) {
+      photos.forEach(photo => {
+        const img = new Image();
+        img.src = photo.src;
+      });
+    }
+
+    // Preload all images when page loads
+    Object.values(photoData).forEach(countryPhotos => {
+      preloadImages(countryPhotos);
+    });
+  </script>
+</body>
+</html>
