@@ -12,8 +12,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <title>Aizaz Ansari</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Manrope&display=swap" rel="stylesheet">
+  <title>Aizaz Ansari - Software Engineer | Hobbyist Photographer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #0f0f0f;
@@ -118,6 +118,23 @@
       animation: fadeInUp 1.2s ease-out forwards;
     }
 
+    .role {
+      font-family: var(--font-body);
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-top: 1rem;
+      color: var(--accent-color);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.4s ease-out 0.2s forwards;
+      letter-spacing: 0.05em;
+    }
+
+    .divider {
+      color: rgba(118, 139, 146, 0.5);
+      margin: 0 12px;
+    }
+
     @keyframes fadeInUp {
       to {
         opacity: 1;
@@ -127,8 +144,8 @@
 
     .subtitle {
       font-size: 1.25rem;
-      margin-top: 1rem;
-      opacity: 0.85;
+      margin-top: 1.5rem;
+      opacity: 0;
       max-width: 500px;
       white-space: nowrap;
       overflow: hidden;
@@ -138,6 +155,8 @@
       display: inline-flex;
       align-items: center;
       gap: 2px;
+      transform: translateY(15px);
+      animation: fadeInUp 1.6s ease-out 0.4s forwards;
     }
 
     #cursor {
@@ -162,47 +181,50 @@
       -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 65%);
     }
 
-@media (max-width: 768px) {
-  header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 20px;
-  }
+    @media (max-width: 768px) {
+      header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 20px;
+      }
 
-  .nav-right {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
+      .nav-right {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
 
-  .title {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
+      .title {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
 
-  .subtitle {
-    font-size: 0.95rem;
-    white-space: normal;
-    text-align: left;
-    max-width: 100%;
-    margin-top: 12px;
-  }
+      .role {
+        font-size: 1rem;
+        margin-top: 0.8rem;
+      }
 
-  .container {
-    padding: 140px 20px 20px 20px; /* header height + spacing */
-  }
+      .subtitle {
+        font-size: 0.95rem;
+        white-space: normal;
+        text-align: left;
+        max-width: 100%;
+        margin-top: 12px;
+      }
 
-  #vanta-bg {
-    display: none;
-  }
-}
+      .container {
+        padding: 140px 20px 20px 20px;
+      }
 
-
+      #vanta-bg {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -221,6 +243,7 @@
   <!-- Main content -->
   <div class="container">
     <div class="title">AIZAZ ANSARI</div>
+    <div class="role">Software Engineer <span class="divider">|</span> Hobbyist Photographer</div>
     <div class="subtitle" id="typewriter">
       <span id="text"></span><span id="cursor">|</span>
     </div>
