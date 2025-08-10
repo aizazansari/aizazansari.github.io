@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJVMK07SL3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-JJVMK07SL3');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Photography - Aizaz Ansari</title>
@@ -80,7 +71,7 @@
 
     .hero-section {
       text-align: center;
-      padding: 6rem 2rem 4rem;
+      padding: 6rem 2rem 2rem;
       position: relative;
       overflow: hidden;
     }
@@ -136,260 +127,154 @@
       }
     }
 
-    .journey-container {
+    .filter-container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .country-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      padding: 2rem 2rem 0;
+      display: flex;
+      justify-content: center;
       gap: 2rem;
-      margin-bottom: 4rem;
+      flex-wrap: wrap;
     }
 
-    .country-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(118, 139, 146, 0.1);
-      border-radius: 16px;
-      padding: 0;
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 2px solid rgba(118, 139, 146, 0.15);
+      color: #e0e0e0;
+      padding: 1rem 2rem;
+      border-radius: 30px;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 1rem;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
       position: relative;
       overflow: hidden;
-      height: 350px;
-      opacity: 0;
-      transform: translateY(50px);
-      animation: slideInUp 0.8s ease-out forwards;
+      min-width: 120px;
+      text-transform: capitalize;
     }
 
-    .country-card:nth-child(1) { animation-delay: 0.1s; }
-    .country-card:nth-child(2) { animation-delay: 0.2s; }
-    .country-card:nth-child(3) { animation-delay: 0.3s; }
-    .country-card:nth-child(4) { animation-delay: 0.4s; }
-    .country-card:nth-child(5) { animation-delay: 0.5s; }
-    .country-card:nth-child(6) { animation-delay: 0.6s; }
-
-    @keyframes slideInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .country-card::before {
+    .filter-btn::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, rgba(118, 139, 146, 0.1) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(118, 139, 146, 0.08), transparent);
+      transition: left 0.6s ease;
     }
 
-    .country-card:hover::before {
-      opacity: 1;
+    .filter-btn:hover::before {
+      left: 100%;
     }
 
-    .country-card:hover {
-      transform: translateY(-8px) scale(1.02);
+    .filter-btn:hover {
       border-color: rgba(118, 139, 146, 0.3);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     }
 
-    .country-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 16px 16px 0 0;
-      transition: transform 0.4s ease;
-    }
-
-    .country-card:hover .country-image {
-      transform: scale(1.1);
-    }
-
-    .country-info {
-      padding: 1.5rem;
-      position: relative;
-      z-index: 2;
-      height: 150px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    .country-name {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 0 0 0.5rem 0;
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(118, 139, 146, 0.15), rgba(160, 191, 199, 0.08));
+      border-color: #768B92;
       color: #ffffff;
-    }
-
-    .country-description {
-      color: #a0a0a0;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-
-    .photo-date {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(0, 0, 0, 0.7);
-      color: #768B92;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      backdrop-filter: blur(10px);
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      z-index: 1000;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal.active {
-      display: flex;
-      opacity: 1;
-    }
-
-    .modal-content {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem;
-      background: rgba(15, 15, 15, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(118, 139, 146, 0.1);
-    }
-
-    .modal-title {
-      font-size: 2rem;
-      font-weight: 600;
-      color: #ffffff;
-      font-family: 'Inter', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      color: #768B92;
-      font-size: 2rem;
-      cursor: pointer;
-      padding: 0.5rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .close-btn:hover {
-      background: rgba(118, 139, 146, 0.1);
-      color: #a0bfc7;
-      transform: scale(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(118, 139, 146, 0.2);
     }
 
     .gallery-container {
-      flex: 1;
-      padding: 2rem;
-      overflow-y: auto;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
     }
 
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2.5rem;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .photo-grid.filtering {
+      opacity: 0.2;
     }
 
     .photo-item {
       position: relative;
       aspect-ratio: 4/3;
-      border-radius: 12px;
+      border-radius: 20px;
       overflow: hidden;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0;
-      transform: scale(0.8);
-      animation: photoFadeIn 0.5s ease-out forwards;
+      transform: translateY(40px) scale(0.95);
+      animation: photoFadeIn 0.8s ease-out forwards;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(118, 139, 146, 0.08);
+      backdrop-filter: blur(5px);
     }
 
     .photo-item:nth-child(1) { animation-delay: 0.1s; }
-    .photo-item:nth-child(2) { animation-delay: 0.15s; }
-    .photo-item:nth-child(3) { animation-delay: 0.2s; }
-    .photo-item:nth-child(4) { animation-delay: 0.25s; }
-    .photo-item:nth-child(5) { animation-delay: 0.3s; }
-    .photo-item:nth-child(6) { animation-delay: 0.35s; }
+    .photo-item:nth-child(2) { animation-delay: 0.2s; }
+    .photo-item:nth-child(3) { animation-delay: 0.3s; }
+    .photo-item:nth-child(4) { animation-delay: 0.4s; }
+    .photo-item:nth-child(5) { animation-delay: 0.5s; }
+    .photo-item:nth-child(6) { animation-delay: 0.6s; }
+    .photo-item:nth-child(7) { animation-delay: 0.7s; }
+    .photo-item:nth-child(8) { animation-delay: 0.8s; }
+    .photo-item:nth-child(9) { animation-delay: 0.9s; }
 
     @keyframes photoFadeIn {
       to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0) scale(1);
       }
     }
 
     .photo-item:hover {
-      transform: scale(1.05);
+      transform: translateY(-12px) scale(1.02);
+      border-color: rgba(118, 139, 146, 0.25);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(118, 139, 146, 0.1);
     }
 
     .photo-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
+      transition: transform 0.5s ease;
     }
 
     .photo-item:hover img {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
-    .photo-caption {
+    .photo-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
       color: white;
-      padding: 2rem 1rem 1rem;
-      font-size: 0.9rem;
-      opacity: 0;
+      padding: 2rem 1.5rem 1.5rem;
       transform: translateY(100%);
-      transition: all 0.3s ease;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2;
     }
 
-    .photo-item:hover .photo-caption {
-      opacity: 1;
+    .photo-item:hover .photo-overlay {
       transform: translateY(0);
     }
 
-    /* Enhanced Lightbox with Navigation */
+    .photo-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    /* Lightbox styles */
     .lightbox {
       display: none;
       position: fixed;
@@ -401,6 +286,7 @@
       z-index: 2000;
       justify-content: center;
       align-items: center;
+      backdrop-filter: blur(10px);
     }
 
     .lightbox.active {
@@ -420,7 +306,8 @@
       max-width: 85%;
       max-height: 85%;
       object-fit: contain;
-      border-radius: 8px;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
       transition: opacity 0.3s ease;
     }
 
@@ -428,50 +315,54 @@
       position: absolute;
       top: 2rem;
       right: 2rem;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       border: none;
       color: white;
       font-size: 2rem;
       cursor: pointer;
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .lightbox-close:hover {
-      background: rgba(118, 139, 146, 0.2);
+      background: rgba(118, 139, 146, 0.3);
       transform: scale(1.1);
+      border-color: rgba(118, 139, 146, 0.3);
     }
 
     .lightbox-nav-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       border: none;
       color: white;
-      font-size: 2rem;
+      font-size: 2.2rem;
       cursor: pointer;
-      width: 60px;
-      height: 60px;
+      width: 65px;
+      height: 65px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
       opacity: 0.8;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .lightbox-nav-btn:hover {
-      background: rgba(118, 139, 146, 0.2);
+      background: rgba(118, 139, 146, 0.3);
       transform: translateY(-50%) scale(1.1);
       opacity: 1;
+      border-color: rgba(118, 139, 146, 0.3);
     }
 
     .lightbox-nav-btn:disabled {
@@ -481,7 +372,8 @@
 
     .lightbox-nav-btn:disabled:hover {
       transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
+      border-color: rgba(255, 255, 255, 0.1);
     }
 
     .lightbox-prev {
@@ -497,65 +389,54 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       color: white;
-      padding: 1rem 2rem;
-      border-radius: 30px;
-      backdrop-filter: blur(10px);
+      padding: 1rem 1.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
       text-align: center;
-      max-width: 80%;
+      max-width: 70%;
+      min-width: 250px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .lightbox-caption {
+    .lightbox-title {
       font-size: 1.1rem;
       margin: 0 0 0.5rem 0;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .lightbox-counter {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #a0a0a0;
       margin: 0;
+      font-weight: 400;
     }
 
-    /* Mobile Responsive */
+    /* Mobile responsive */
     @media screen and (max-width: 768px) {
       .hero-section {
-        padding: 4rem 1.5rem 3rem;
+        padding: 4rem 1.5rem 2rem;
       }
 
-      .journey-container {
-        padding: 1rem;
+      .filter-container {
+        padding: 1.5rem 1rem 0;
+        gap: 1rem;
       }
 
-      .country-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .country-card {
-        height: 300px;
-      }
-
-      .country-image {
-        height: 150px;
-      }
-
-      .modal-header {
-        padding: 1rem;
-      }
-
-      .modal-title {
-        font-size: 1.5rem;
+      .filter-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 100px;
       }
 
       .gallery-container {
-        padding: 1rem;
+        padding: 2.5rem 1rem;
       }
 
       .photo-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
       }
 
       .lightbox img {
@@ -564,9 +445,9 @@
       }
 
       .lightbox-nav-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
       }
 
       .lightbox-prev {
@@ -580,18 +461,19 @@
       .lightbox-close {
         top: 1rem;
         right: 1rem;
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
         font-size: 1.5rem;
       }
 
       .lightbox-info {
         bottom: 1rem;
-        padding: 0.8rem 1.5rem;
-        max-width: 90%;
+        padding: 0.8rem 1.2rem;
+        max-width: 85%;
+        min-width: auto;
       }
 
-      .lightbox-caption {
+      .lightbox-title {
         font-size: 1rem;
       }
 
@@ -608,6 +490,29 @@
 
       .photo-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .filter-container {
+        gap: 0.8rem;
+      }
+
+      .filter-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+        min-width: 90px;
+      }
+
+      .lightbox-info {
+        padding: 0.7rem 1rem;
+      }
+
+      .photo-overlay {
+        padding: 1.5rem 1rem 1rem;
+      }
+
+      .photo-title {
+        font-size: 1rem;
       }
     }
   </style>
@@ -623,210 +528,24 @@
   </header>
 
   <div class="hero-section">
-    <h1 class="hero-title">A Visual Journey</h1>
-    <p class="hero-subtitle">Around the world, with my lens and wanderlust</p>
+    <h1 class="hero-title">Visual Stories</h1>
+    <p class="hero-subtitle">Capturing the beauty of architecture, nature, and humanity</p>
   </div>
 
-  <div class="journey-container">
-    <div class="country-grid">
-      <div class="country-card" data-country="pakistan">
-        <div class="photo-date">Home</div>
-        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop" alt="Pakistan" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇵🇰 Pakistan</h3>
-          <p class="country-description">Home sweet home — where every street tells a story and memories are woven into the fabric of life.</p>
-        </div>
-      </div>
+  <div class="filter-container">
+    <button class="filter-btn active" data-filter="featured">Featured</button>
+    <button class="filter-btn" data-filter="architecture">Architecture</button>
+    <button class="filter-btn" data-filter="nature">Nature</button>
+    <button class="filter-btn" data-filter="people">People</button>
+  </div>
 
-      <div class="country-card" data-country="uae">
-        <div class="photo-date">Second Home</div>
-        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=600&fit=crop" alt="UAE" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇦🇪 UAE</h3>
-          <p class="country-description">Second home among golden dunes and gleaming towers — where tradition meets tomorrow.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="thailand">
-        <div class="photo-date">February 2025</div>
-        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&h=600&fit=crop" alt="Thailand" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇹🇭 Thailand</h3>
-          <p class="country-description">Golden temples, emerald waters, and warm smiles in the land of eternal summer.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="srilanka">
-        <div class="photo-date">February 2025</div>
-        <img src="https://images.unsplash.com/photo-1566552881560-0be862a7c445?w=800&h=600&fit=crop" alt="Sri Lanka" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇱🇰 Sri Lanka</h3>
-          <p class="country-description">Emerald tea gardens, ancient temples, and pristine beaches in the pearl of the Indian Ocean.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="azerbaijan">
-        <div class="photo-date">October 2024</div>
-        <img src="https://images.unsplash.com/photo-1580500055030-6b04b92e8779?w=800&h=600&fit=crop" alt="Azerbaijan" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇦🇿 Azerbaijan</h3>
-          <p class="country-description">Land of fire and Caspian shores — where ancient Zoroastrian flames still dance eternal.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="singapore">
-        <div class="photo-date">January 2024</div>
-        <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=600&fit=crop" alt="Singapore" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇸🇬 Singapore</h3>
-          <p class="country-description">Garden city where cultures blend seamlessly among futuristic skylines and tropical gardens.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="malaysia">
-        <div class="photo-date">January 2024</div>
-        <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=600&fit=crop" alt="Malaysia" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇲🇾 Malaysia</h3>
-          <p class="country-description">Tropical paradise of diverse cultures, from Petronas Towers to ancient rainforests.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="oman">
-        <div class="photo-date">September 2023</div>
-        <img src="https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=800&h=600&fit=crop" alt="Oman" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇴🇲 Oman</h3>
-          <p class="country-description">Mystical sultanate of dramatic landscapes, from vast deserts to turquoise coastlines.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="china">
-        <div class="photo-date">January 2020</div>
-        <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&h=600&fit=crop" alt="China" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇨🇳 China</h3>
-          <p class="country-description">Ancient civilization meets modern marvel — from the Great Wall to neon-lit megacities.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="usa">
-        <div class="photo-date">Sep - Dec 2019</div>
-        <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800&h=600&fit=crop" alt="USA" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇺🇸 USA</h3>
-          <p class="country-description">Land of endless horizons — from city skylines to natural wonders spanning a continent.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="italy">
-        <div class="photo-date">Jan - May 2019</div>
-        <img src="https://images.unsplash.com/photo-1520637836862-4d197d17c63a?w=800&h=600&fit=crop" alt="Italy" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇮🇹 Italy</h3>
-          <p class="country-description">Timeless beauty of Renaissance art, Roman ruins, and rolling Tuscan hills.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="france">
-        <div class="photo-date">March 2019</div>
-        <img src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=800&h=600&fit=crop" alt="France" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇫🇷 France</h3>
-          <p class="country-description">Elegance embodied — from Parisian boulevards to lavender fields of Provence.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="spain">
-        <div class="photo-date">March 2019</div>
-        <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&h=600&fit=crop" alt="Spain" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇪🇸 Spain</h3>
-          <p class="country-description">Passionate spirit of flamenco, Moorish architecture, and sun-drenched Mediterranean coasts.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="portugal">
-        <div class="photo-date">March 2019</div>
-        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&h=600&fit=crop" alt="Portugal" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇵🇹 Portugal</h3>
-          <p class="country-description">Atlantic charm of colorful tiles, dramatic cliffs, and soulful fado melodies.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="belgium">
-        <div class="photo-date">April 2019</div>
-        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop" alt="Belgium" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇧🇪 Belgium</h3>
-          <p class="country-description">Medieval fairytale come alive — cobblestone streets, Gothic spires, and world-famous chocolates.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="netherlands">
-        <div class="photo-date">April 2019</div>
-        <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=800&h=600&fit=crop" alt="Netherlands" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇳🇱 Netherlands</h3>
-          <p class="country-description">Land of windmills and tulips — canals weaving through vibrant cities and endless flower fields.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="germany">
-        <div class="photo-date">April 2019</div>
-        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=600&fit=crop" alt="Germany" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇩🇪 Germany</h3>
-          <p class="country-description">Where history meets innovation — from fairytale castles to cutting-edge urban landscapes.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="uk">
-        <div class="photo-date">June 2018</div>
-        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop" alt="UK" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇬🇧 United Kingdom</h3>
-          <p class="country-description">Royal heritage and countryside charm — from London's iconic landmarks to Scottish highlands.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="turkey">
-        <div class="photo-date">March 2018</div>
-        <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&h=600&fit=crop" alt="Turkey" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇹🇷 Turkey</h3>
-          <p class="country-description">Bridge between continents — Byzantine domes, Ottoman palaces, and Cappadocia's surreal landscapes.</p>
-        </div>
-      </div>
-
-      <div class="country-card" data-country="greece">
-        <div class="photo-date">January 2018</div>
-        <img src="https://images.unsplash.com/photo-1555993539-1732b0258077?w=800&h=600&fit=crop" alt="Greece" class="country-image">
-        <div class="country-info">
-          <h3 class="country-name">🇬🇷 Greece</h3>
-          <p class="country-description">Cradle of civilization — ancient ruins overlooking crystal-blue Aegean waters and whitewashed islands.</p>
-        </div>
-      </div>
+  <div class="gallery-container">
+    <div class="photo-grid" id="photoGrid">
+      <!-- Photos will be loaded dynamically -->
     </div>
   </div>
 
-  <!-- Modal for photo gallery -->
-  <div class="modal" id="photoModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="modalTitle">Country</h2>
-        <button class="close-btn" id="closeModal">&times;</button>
-      </div>
-      <div class="gallery-container">
-        <div class="photo-grid" id="photoGrid">
-          <!-- Photos will be loaded dynamically -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Enhanced Lightbox with Navigation -->
+  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <div class="lightbox-container">
       <button class="lightbox-close" id="lightboxClose">&times;</button>
@@ -834,223 +553,300 @@
       <button class="lightbox-nav-btn lightbox-next" id="lightboxNext">&#8250;</button>
       <img id="lightboxImage" src="" alt="">
       <div class="lightbox-info">
-        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-title" id="lightboxTitle"></div>
         <div class="lightbox-counter" id="lightboxCounter"></div>
       </div>
     </div>
   </div>
 
   <script>
-    // Sample photo data - replace with your actual photos
-    const photoData = {
-      pakistan: [
-        { src: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&h=600&fit=crop', caption: 'Tokyo skyline at sunset' },
-        { src: 'https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800&h=600&fit=crop', caption: 'Cherry blossoms in Kyoto' },
-        { src: 'https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&h=600&fit=crop', caption: 'Traditional temple architecture' },
-        { src: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&h=600&fit=crop', caption: 'Neon-lit street in Shibuya' },
-        { src: 'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=800&h=600&fit=crop', caption: 'Mount Fuji reflection' },
-        { src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop', caption: 'Traditional Japanese garden' }
-      ],
-      iceland: [
-        { src: 'https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&h=600&fit=crop', caption: 'Northern lights over glacier' },
-        { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', caption: 'Dramatic waterfall cascade' },
-        { src: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=600&fit=crop', caption: 'Ice caves exploration' },
-        { src: 'https://images.unsplash.com/photo-1464822759844-d150baec4493?w=800&h=600&fit=crop', caption: 'Volcanic landscape vista' },
-        { src: 'https://images.unsplash.com/photo-1504829857797-ddff29c27e9b?w=800&h=600&fit=crop', caption: 'Geothermal hot springs' },
-        { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop', caption: 'Midnight sun reflection' }
-      ],
-      morocco: [
-        { src: 'https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&h=600&fit=crop', caption: 'Sahara dunes at golden hour' },
-        { src: 'https://images.unsplash.com/photo-1542907825-eb8ad8d39ab7?w=800&h=600&fit=crop', caption: 'Marrakech souk colors' },
-        { src: 'https://images.unsplash.com/photo-1508123235087-8e2d60714e14?w=800&h=600&fit=crop', caption: 'Atlas Mountains village' },
-        { src: 'https://images.unsplash.com/photo-1521813016986-3b9c3c4e5d60?w=800&h=600&fit=crop', caption: 'Traditional architecture details' },
-        { src: 'https://images.unsplash.com/photo-1517821362941-f424b1e92fe4?w=800&h=600&fit=crop', caption: 'Coastal fortress at sunset' },
-        { src: 'https://images.unsplash.com/photo-1515988708786-c48aca2ae4f6?w=800&h=600&fit=crop', caption: 'Berber camp under stars' }
-      ],
-      norway: [
-        { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop', caption: 'Lofoten Islands drama' },
-        { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', caption: 'Geiranger fjord view' },
-        { src: 'https://images.unsplash.com/photo-1530841344095-b2893194affe?w=800&h=600&fit=crop', caption: 'Northern lights reflection' },
-        { src: 'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?w=800&h=600&fit=crop', caption: 'Preikestolen cliff edge' },
-        { src: 'https://images.unsplash.com/photo-1533923156502-be31de1c2630?w=800&h=600&fit=crop', caption: 'Bergen colorful houses' },
-        { src: 'https://images.unsplash.com/photo-1510312305653-8ed496efaed2?w=800&h=600&fit=crop', caption: 'Midnight sun panorama' }
-      ],
-      peru: [
-        { src: 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&h=600&fit=crop', caption: 'Machu Picchu sunrise' },
-        { src: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&h=600&fit=crop', caption: 'Sacred Valley terraces' },
-        { src: 'https://images.unsplash.com/photo-1518082593570-ca5ea94671b9?w=800&h=600&fit=crop', caption: 'Cusco colonial architecture' },
-        { src: 'https://images.unsplash.com/photo-1604574779701-4c6e6faa6e4d?w=800&h=600&fit=crop', caption: 'Alpaca in the highlands' },
-        { src: 'https://images.unsplash.com/photo-1604574779701-4c6e6faa6e4d?w=800&h=600&fit=crop', caption: 'Lake Titicaca reflections' },
-        { src: 'https://images.unsplash.com/photo-1582902636070-56eca26dad4d?w=800&h=600&fit=crop', caption: 'Andean market colors' }
-      ],
-      thailand: [
-        { src: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&h=600&fit=crop', caption: 'Golden temple spires' },
-        { src: 'https://images.unsplash.com/photo-1534008897995-27a23e859048?w=800&h=600&fit=crop', caption: 'Floating market vendors' },
-        { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', caption: 'Phi Phi Islands paradise' },
-        { src: 'https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&h=600&fit=crop', caption: 'Bangkok skyline lights' },
-        { src: 'https://images.unsplash.com/photo-1596178060810-1d86a2b3cac8?w=800&h=600&fit=crop', caption: 'Elephant sanctuary moment' },
-        { src: 'https://images.unsplash.com/photo-1561889829-14ea20a5a7b7?w=800&h=600&fit=crop', caption: 'Traditional longtail boat' }
-      ]
-    };
+    // Photo data with multiple categories and sorting support
+    const photoData = [
+      {
+        src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=800&h=600&fit=crop',
+        title: 'Fairy Meadows',
+        categories: {
+          featured: 2,
+          nature: 1
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1562906112-c4ddeca6c8f2?w=800&h=600&fit=crop',
+        title: 'Mountain Guide',
+        categories: {
+          featured: 3,
+          people: 1,
+          nature: 5
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop',
+        title: 'Tower Bridge',
+        categories: {
+          featured: 4,
+          architecture: 1
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=800&h=600&fit=crop',
+        title: 'Lake District Reflections',
+        categories: {
+          featured: 5,
+          nature: 2
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&h=600&fit=crop',
+        title: 'Cappadocia Dawn',
+        categories: {
+          featured: 6,
+          nature: 3,
+          architecture: 2
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1555993539-1732b0258077?w=800&h=600&fit=crop',
+        title: 'Santorini Blues',
+        categories: {
+          featured: 7,
+          architecture: 4
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1571406252800-57bb0651d70d?w=800&h=600&fit=crop',
+        title: 'Acropolis Majesty',
+        categories: {
+          architecture: 5
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1571069501689-957c15d1711a?w=800&h=600&fit=crop',
+        title: 'Village Life',
+        categories: {
+          people: 2
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+        title: 'Scottish Highlands',
+        categories: {
+          nature: 4
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&h=600&fit=crop',
+        title: 'Hagia Sophia',
+        categories: {
+          architecture: 6
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1551524164-6cf8ac482174?w=800&h=600&fit=crop',
+        title: 'Spice Market Tales',
+        categories: {
+          people: 3
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop',
+        title: 'Meteora Monasteries',
+        categories: {
+          architecture: 7,
+          nature: 6
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=800&h=600&fit=crop',
+        title: 'Island Fisherman',
+        categories: {
+          people: 4,
+          nature: 7
+        }
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1520986606214-8b456906c813?w=800&h=600&fit=crop',
+        title: 'Westminster Abbey',
+        categories: {
+          architecture: 8
+        }
+      }
+    ];
 
     // DOM elements
-    const modal = document.getElementById('photoModal');
-    const modalTitle = document.getElementById('modalTitle');
+    const filterButtons = document.querySelectorAll('.filter-btn');
     const photoGrid = document.getElementById('photoGrid');
-    const closeModal = document.getElementById('closeModal');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxCounter = document.getElementById('lightboxCounter');
     const lightboxClose = document.getElementById('lightboxClose');
     const lightboxPrev = document.getElementById('lightboxPrev');
     const lightboxNext = document.getElementById('lightboxNext');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-    const lightboxCounter = document.getElementById('lightboxCounter');
 
-    // Lightbox state
+    // Current state
+    let currentFilter = 'featured';
+    let currentPhotos = [];
     let currentPhotoIndex = 0;
-    let currentCountryPhotos = [];
 
-    // Open modal when country card is clicked
-    document.querySelectorAll('.country-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const country = card.dataset.country;
-        const countryName = card.querySelector('.country-name').textContent;
-        openModal(country, countryName);
-      });
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      filterPhotos('featured');
+      setupEventListeners();
     });
 
-    // Function to open modal and load photos
-    function openModal(country, countryName) {
-      modalTitle.innerText = countryName;
-      currentCountryPhotos = photoData[country] || [];
-      loadPhotos(country);
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    // Set up event listeners
+    function setupEventListeners() {
+      // Filter buttons
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          setActiveFilter(btn);
+          filterPhotos(filter);
+        });
+      });
+
+      // Lightbox controls
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightboxPrev.addEventListener('click', showPreviousPhoto);
+      lightboxNext.addEventListener('click', showNextPhoto);
+
+      // Close lightbox when clicking outside
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', handleKeydown);
     }
 
-    // Function to load photos into the grid
-    function loadPhotos(country) {
-      const photos = photoData[country] || [];
+    // Set active filter button
+    function setActiveFilter(activeBtn) {
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      activeBtn.classList.add('active');
+    }
+
+    // Filter photos based on criteria
+    function filterPhotos(filter) {
+      currentFilter = filter;
+      photoGrid.classList.add('filtering');
+      
+      setTimeout(() => {
+        const filteredPhotos = photoData
+          .filter(photo => photo.categories.hasOwnProperty(filter))
+          .sort((a, b) => a.categories[filter] - b.categories[filter]);
+        
+        currentPhotos = filteredPhotos;
+        renderPhotos(filteredPhotos);
+        photoGrid.classList.remove('filtering');
+      }, 200);
+    }
+
+    // Render photos in the grid
+    function renderPhotos(photos) {
       photoGrid.innerHTML = '';
       
       photos.forEach((photo, index) => {
         const photoItem = document.createElement('div');
         photoItem.className = 'photo-item';
+        
         photoItem.innerHTML = `
-          <img src="${photo.src}" alt="${photo.caption}" loading="lazy">
-          <div class="photo-caption">${photo.caption}</div>
+          <img src="${photo.src}" alt="${photo.title}" loading="lazy">
+          <div class="photo-overlay">
+            <div class="photo-title">${photo.title}</div>
+          </div>
         `;
         
-        // Add click event to open lightbox
-        photoItem.addEventListener('click', () => {
-          openLightbox(index);
-        });
-        
+        photoItem.addEventListener('click', () => openLightbox(index));
         photoGrid.appendChild(photoItem);
       });
     }
 
-    // Function to open lightbox
+    // Open lightbox with specific photo
     function openLightbox(photoIndex) {
       currentPhotoIndex = photoIndex;
-      updateLightboxImage();
+      updateLightboxContent();
       lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
-    // Function to update lightbox image and info
-    function updateLightboxImage() {
-      if (currentCountryPhotos.length === 0) return;
+    // Close lightbox
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Update lightbox content
+    function updateLightboxContent() {
+      if (currentPhotos.length === 0) return;
       
-      const photo = currentCountryPhotos[currentPhotoIndex];
+      const photo = currentPhotos[currentPhotoIndex];
       lightboxImage.src = photo.src;
-      lightboxImage.alt = photo.caption;
-      lightboxCaption.textContent = photo.caption;
-      lightboxCounter.textContent = `${currentPhotoIndex + 1} of ${currentCountryPhotos.length}`;
+      lightboxImage.alt = photo.title;
+      lightboxTitle.textContent = photo.title;
       
-      // Update navigation button states
+      // Update counter
+      lightboxCounter.textContent = `${currentPhotoIndex + 1} of ${currentPhotos.length}`;
+      
+      // Update navigation buttons
       lightboxPrev.disabled = currentPhotoIndex === 0;
-      lightboxNext.disabled = currentPhotoIndex === currentCountryPhotos.length - 1;
+      lightboxNext.disabled = currentPhotoIndex === currentPhotos.length - 1;
     }
 
-    // Navigation functions
+    // Show previous photo
     function showPreviousPhoto() {
       if (currentPhotoIndex > 0) {
         currentPhotoIndex--;
-        updateLightboxImage();
+        updateLightboxContent();
       }
     }
 
+    // Show next photo
     function showNextPhoto() {
-      if (currentPhotoIndex < currentCountryPhotos.length - 1) {
+      if (currentPhotoIndex < currentPhotos.length - 1) {
         currentPhotoIndex++;
-        updateLightboxImage();
+        updateLightboxContent();
       }
     }
 
-    // Event listeners for navigation
-    lightboxPrev.addEventListener('click', showPreviousPhoto);
-    lightboxNext.addEventListener('click', showNextPhoto);
-
-    // Close modal
-    closeModal.addEventListener('click', () => {
-      modal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
-
-    // Close lightbox
-    lightboxClose.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-    });
-
-    // Close modal when clicking outside
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    // Handle keyboard navigation
+    function handleKeydown(e) {
+      if (!lightbox.classList.contains('active')) return;
+      
+      switch(e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          showPreviousPhoto();
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          showNextPhoto();
+          break;
       }
-    });
+    }
 
-    // Close lightbox when clicking outside
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('active');
-      }
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (lightbox.classList.contains('active')) {
-        switch(e.key) {
-          case 'Escape':
-            lightbox.classList.remove('active');
-            break;
-          case 'ArrowLeft':
-            e.preventDefault();
-            showPreviousPhoto();
-            break;
-          case 'ArrowRight':
-            e.preventDefault();
-            showNextPhoto();
-            break;
-        }
-      } else if (modal.classList.contains('active') && e.key === 'Escape') {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    });
-
-    // Preload images for smoother navigation
-    function preloadImages(photos) {
-      photos.forEach(photo => {
+    // Preload images for better performance
+    function preloadImages() {
+      photoData.forEach(photo => {
         const img = new Image();
         img.src = photo.src;
       });
     }
 
-    // Preload all images when page loads
-    Object.values(photoData).forEach(countryPhotos => {
-      preloadImages(countryPhotos);
-    });
+    // Start preloading images after initial load
+    setTimeout(preloadImages, 1000);
   </script>
 </body>
 </html>
