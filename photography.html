@@ -560,124 +560,408 @@
   </div>
 
   <script>
-    // Photo data with multiple categories and sorting support
     const photoData = [
       {
-        src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop',
+        src: 'photos/pisa.JPG',
         title: 'Badshahi Mosque',
         categories: {
           featured: 1,
-          architecture: 3
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=800&h=600&fit=crop',
-        title: 'Fairy Meadows',
+        src: 'photos/acropolis.jpg',
+        title: 'Badshahi Mosque',
         categories: {
-          featured: 2,
-          nature: 1
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1562906112-c4ddeca6c8f2?w=800&h=600&fit=crop',
-        title: 'Mountain Guide',
+        src: 'photos/acropolis_2.jpg',
+        title: 'Badshahi Mosque',
         categories: {
-          featured: 3,
-          people: 1,
-          nature: 5
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop',
-        title: 'Tower Bridge',
+        src: 'photos/ad_desert.jpg',
+        title: 'Badshahi Mosque',
         categories: {
-          featured: 4,
-          architecture: 1
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=800&h=600&fit=crop',
-        title: 'Lake District Reflections',
+        src: 'photos/amsterdam.JPG',
+        title: 'Badshahi Mosque',
         categories: {
-          featured: 5,
-          nature: 2
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&h=600&fit=crop',
-        title: 'Cappadocia Dawn',
+        src: 'photos/barcelona.JPG',
+        title: 'Badshahi Mosque',
         categories: {
-          featured: 6,
-          nature: 3,
-          architecture: 2
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1555993539-1732b0258077?w=800&h=600&fit=crop',
-        title: 'Santorini Blues',
+        src: 'photos/blue_mosque_from_hagia_sofia.jpg',
+        title: 'Badshahi Mosque',
         categories: {
-          featured: 7,
-          architecture: 4
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1571406252800-57bb0651d70d?w=800&h=600&fit=crop',
-        title: 'Acropolis Majesty',
+        src: 'photos/cinque_terre.JPG',
+        title: 'Badshahi Mosque',
         categories: {
-          architecture: 5
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1571069501689-957c15d1711a?w=800&h=600&fit=crop',
-        title: 'Village Life',
+        src: 'photos/pisa.JPG',
+        title: 'Badshahi Mosque',
         categories: {
-          people: 2
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
-        title: 'Scottish Highlands',
+        src: 'photos/cny_in_italy.JPG',
+        title: 'Badshahi Mosque',
         categories: {
-          nature: 4
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&h=600&fit=crop',
-        title: 'Hagia Sophia',
+        src: 'photos/deosai_plains.jpg',
+        title: 'Badshahi Mosque',
         categories: {
-          architecture: 6
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1551524164-6cf8ac482174?w=800&h=600&fit=crop',
-        title: 'Spice Market Tales',
+        src: 'photos/downtown_brussels.JPG',
+        title: 'Badshahi Mosque',
         categories: {
-          people: 3
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop',
-        title: 'Meteora Monasteries',
+        src: 'photos/windsor.JPG',
+        title: 'Badshahi Mosque',
         categories: {
-          architecture: 7,
-          nature: 6
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=800&h=600&fit=crop',
-        title: 'Island Fisherman',
+        src: 'photos/great_wall_of_china.jpg',
+        title: 'Badshahi Mosque',
         categories: {
-          people: 4,
-          nature: 7
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
       },
       {
-        src: 'https://images.unsplash.com/photo-1520986606214-8b456906c813?w=800&h=600&fit=crop',
-        title: 'Westminster Abbey',
+        src: 'photos/himalaya_karakoram_hindu_kush_meet.jpg',
+        title: 'Badshahi Mosque',
         categories: {
-          architecture: 8
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
         }
-      }
+      },
+      {
+        src: 'photos/hyde_park_london.JPG',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/istanbul_from_galata_tower.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/last sunset of 2015 at river indus.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/leicester_square_london.JPG',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/louvre_paris.JPG',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/milan.JPG',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/nafplio_from_above.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/nafplio_streets.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/nafplio_streets_2.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/notre_dame_paris.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/paris_church.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/porto_from_above.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/porto.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/road_to_deosai_plains.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/sadpara_lake_skardu.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/nafplio_streets.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/shangrila_lake_skardu.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/shigar_fort_skardu.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/siri_paya.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/streets_athens.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/streets_of_shanghai.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/sunset_in_istanbul.JPG',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/topkapi_palace_istanbul.jpg',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/venice_canal.JPG',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+      {
+        src: 'photos/versailles.JPG',
+        title: 'Badshahi Mosque',
+        categories: {
+          featured: 1,
+          architecture: 3,
+          nature: 1,
+          people: 1
+        }
+      },
+
     ];
 
     // DOM elements
