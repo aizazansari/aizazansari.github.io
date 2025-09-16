@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building Scalable Microservices with Node.js - Aizaz Ansari</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      color: #e0e0e0;
+      line-height: 1.7;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem 0;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(118, 139, 146, 0.1);
+    }
+
+    header nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    header nav a {
+      margin: 0 1.5rem;
+      color: white;
+      font-weight: 400;
+      font-size: 1rem;
+      position: relative;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    header nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #768B92, #a0bfc7);
+      transition: width 0.3s ease;
+    }
+
+    header nav a:hover::after,
+    header nav a.active::after {
+      width: 100%;
+    }
+
+    header nav a:hover {
+      color: #a0bfc7;
+      transform: translateY(-1px);
+    }
+
+    .back-to-blog {
+      max-width: 800px;
+      margin: 2rem auto 0;
+      padding: 0 2rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: #768B92;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .back-link:hover {
+      color: #a0bfc7;
+      transform: translateX(-3px);
+    }
+
+    .back-link::before {
+      content: '←';
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .article-header {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 2rem 0;
+      text-align: center;
+    }
+
+    .article-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .article-tag {
+      background: rgba(118, 139, 146, 0.2);
+      color: #a0bfc7;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(118, 139, 146, 0.1);
+      text-transform: capitalize;
+    }
+
+    .article-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin: 0 0 2rem 0;
+      background: linear-gradient(135deg, #ffffff 0%, #768B92 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      color: #a0a0a0;
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .article-image {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .article-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .article-content h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 3rem 0 1.5rem 0;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .article-content h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.3rem;
+      width: 4px;
+      height: 1.5rem;
+      background: linear-gradient(180deg, #768B92, #a0bfc7);
+      border-radius: 2px;
+    }
+
+    .article-content h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 2.5rem 0 1rem 0;
+    }
+
+    .article-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #d0d0d0;
+      margin: 1.5rem 0;
+    }
+
+    .article-content ul, .article-content ol {
+      padding-left: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .article-content li {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #d0d0d0;
+      margin: 0.8rem 0;
+    }
+
+    .article-content blockquote {
+      background: rgba(118, 139, 146, 0.1);
+      border-left: 4px solid #768B92;
+      margin: 2rem 0;
+      padding: 1.5rem 2rem;
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+      color: #b8c5c9;
+    }
+
+    .article-content code {
+      background: rgba(255, 255, 255, 0.1);
+      color: #a0bfc7;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.9em;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+
+    .article-content pre {
+      background: #1e1e1e;
+      border: 1px solid rgba(118, 139, 146, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .article-content pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      border-radius: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      margin: -1.5rem -1.5rem 1rem -1.5rem;
+      padding: 0.8rem 1.5rem;
+      border-bottom: 1px solid rgba(118, 139, 146, 0.2);
+      font-size: 0.85rem;
+      color: #a0a0a0;
+    }
+
+    .highlight-box {
+      background: linear-gradient(145deg, rgba(118, 139, 146, 0.1), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(118, 139, 146, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .highlight-box::before {
+      content: '💡';
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .highlight-box-content {
+      margin-left: 2.5rem;
+    }
+
+    .highlight-box h4 {
+      color: #a0bfc7;
+      margin: 0 0 1rem 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .article-footer {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(118, 139, 146, 0.2);
+    }
+
+    .article-author {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #768B92, #a0bfc7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .author-info h4 {
+      margin: 0 0 0.3rem 0;
+      color: #ffffff;
+      font-size: 1.1rem;
+    }
+
+    .author-info p {
+      margin: 0;
+      color: #a0a0a0;
+      font-size: 0.95rem;
+    }
+
+    .related-articles {
+      margin-top: 3rem;
+    }
+
+    .related-articles h3 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .related-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(118, 139, 146, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .related-card:hover {
+      border-color: rgba(118, 139, 146, 0.3);
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .related-card h4 {
+      color: #ffffff;
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .related-card p {
+      color: #a0a0a0;
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    /* Mobile responsive */
+    @media screen and (max-width: 768px) {
+      .back-to-blog, .article-header, .article-content, .article-footer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .article-title {
+        font-size: 2.5rem;
+      }
+
+      .article-meta {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .article-image img {
+        height: 250px;
+      }
+
+      .article-content h2 {
+        font-size: 1.5rem;
+      }
+
+      .article-content p, .article-content li {
+        font-size: 1rem;
+      }
+
+      .highlight-box {
+        padding: 1.5rem;
+      }
+
+      .highlight-box-content {
+        margin-left: 2rem;
+      }
+
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      header nav a {
+        margin: 0 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .article-content pre {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        border-radius: 0;
+      }
+
+      .code-header {
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+      }
+    }
+
+    /* Scroll progress indicator */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #768B92, #a0bfc7);
+      z-index: 101;
+      transition: width 0.1s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  
+  <header>
+    <nav>
+      <a href="./">Home</a>
+      <a href="about.html">About</a>
+      <a href="photography.html">Photography</a>
+      <a href="blog.html" class="active">Blog</a>
+    </nav>
+  </header>
+
+  <div class="back-to-blog">
+    <a href="../blog.html" class="back-link">Back to Blog</a>
+  </div>
+
+  <article>
+    <div class="article-header">
+      <div class="article-tags">
+        <span class="article-tag">engineering</span>
+        <span class="article-tag">tools</span>
+      </div>
+      
+      <h1 class="article-title">Building Scalable Microservices with Node.js</h1>
+      
+      <div class="article-meta">
+        <div class="meta-item">
+          <span>📅</span>
+          <span>March 15, 2024</span>
+        </div>
+        <div class="meta-item">
+          <span>⏱️</span>
+          <span>8 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-image">
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&h=400&fit=crop&auto=format" alt="Microservices Architecture Diagram" loading="lazy">
+    </div>
+
+    <div class="article-content">
+      <p>In today's rapidly evolving digital landscape, building scalable applications has become more crucial than ever. Microservices architecture has emerged as a powerful solution for creating robust, maintainable, and scalable systems. In this comprehensive guide, we'll explore how to build scalable microservices using Node.js, covering everything from basic concepts to advanced deployment strategies.</p>
+
+      <h2>What Are Microservices?</h2>
+      
+      <p>Microservices represent a architectural approach where applications are built as a suite of small, independent services that communicate over well-defined APIs. Unlike monolithic applications, where all components are tightly coupled, microservices promote loose coupling and high cohesion.</p>
+
+      <div class="highlight-box">
+        <div class="highlight-box-content">
+          <h4>Key Benefits of Microservices</h4>
+          <p>Microservices offer improved scalability, technology diversity, fault isolation, and enable faster development cycles through independent deployments.</p>
+        </div>
+      </div>
+
+      <h3>Core Principles</h3>
+      
+      <ul>
+        <li><strong>Single Responsibility:</strong> Each service should have one business capability</li>
+        <li><strong>Decentralized:</strong> Services manage their own data and business logic</li>
+        <li><strong>Fault Tolerant:</strong> Services should handle failures gracefully</li>
+        <li><strong>Technology Agnostic:</strong> Services can use different technologies</li>
+      </ul>
+
+      <h2>Setting Up Your Node.js Microservice</h2>
+
+      <p>Let's start by creating a basic microservice using Express.js. We'll build a user authentication service as our example.</p>
+
+      <pre><code class="language-javascript"><div class="code-header"><span>user-auth-service/server.js</span><span>JavaScript</span></div>const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const jwt = require('jsonwebtoken');
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+// Security middleware
+app.use(helmet());
+app.use(cors());
+app.use(express.json({ limit: '10mb' }));
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+app.use(limiter);
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'healthy', 
+    timestamp: new Date().toISOString(),
+    service: 'user-auth-service'
+  });
+});
+
+// Authentication routes
+app.post('/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    // Validate credentials (implement your logic)
+    const user = await validateUser(email, password);
+    
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    const token = jwt.sign(
+      { userId: user.id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
+    res.json({ token, user: { id: user.id, email: user.email } });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Auth service running on port ${PORT}`);
+});</code></pre>
+
+      <h2>Service Discovery and Communication</h2>
+
+      <p>One of the biggest challenges in microservices architecture is service discovery. Services need to find and communicate with each other dynamically. Here's how we can implement a simple service registry:</p>
+
+      <pre><code class="language-javascript"><div class="code-header"><span>service-registry.js</span><span>JavaScript</span></div>class ServiceRegistry {
+  constructor() {
+    this.services = new Map();
+  }
+
+  register(name, version, url) {
+    const key = `${name}:${version}`;
+    
+    if (!this.services.has(key)) {
+      this.services.set(key, []);
+    }
+    
+    const instances = this.services.get(key);
+    instances.push({
+      url,
+      timestamp: Date.now(),
+      health: 'unknown'
+    });
+
+    console.log(`Service ${name}:${version} registered at ${url}`);
+  }
+
+  unregister(name, version, url) {
+    const key = `${name}:${version}`;
+    const instances = this.services.get(key);
+    
+    if (instances) {
+      const index = instances.findIndex(instance => instance.url === url);
+      if (index !== -1) {
+        instances.splice(index, 1);
+        console.log(`Service ${name}:${version} unregistered from ${url}`);
+      }
+    }
+  }
+
+  get(name, version) {
+    const key = `${name}:${version}`;
+    const instances = this.services.get(key);
+    
+    if (!instances || instances.length === 0) {
+      throw new Error(`Service ${name}:${version} not found`);
+    }
+
+    // Simple round-robin load balancing
+    return instances[Math.floor(Math.random() * instances.length)];
+  }
+}
+
+module.exports = ServiceRegistry;</code></pre>
+
+      <h3>API Gateway Pattern</h3>
+
+      <p>An API Gateway acts as a single entry point for all client requests, routing them to appropriate microservices. This pattern provides several benefits including request routing, authentication, rate limiting, and response aggregation.</p>
+
+      <blockquote>
+        <p>"The API Gateway pattern is essential for managing the complexity of microservices from a client perspective. It provides a unified interface while allowing services to evolve independently."</p>
+      </blockquote>
+
+      <h2>Data Management Strategies</h2>
+
+      <p>In microservices architecture, each service should manage its own data. This principle, known as "database per service," ensures loose coupling but introduces challenges around data consistency and transactions.</p>
+
+      <h3>Event-Driven Architecture</h3>
+
+      <p>To maintain data consistency across services, we can use event-driven patterns. Here's an example using Node.js and Redis:</p>
+
+      <pre><code class="language-javascript"><div class="code-header"><span>event-bus.js</span><span>JavaScript</span></div>const redis = require('redis');
+const EventEmitter = require('events');
+
+class EventBus extends EventEmitter {
+  constructor(redisConfig = {}) {
+    super();
+    this.publisher = redis.createClient(redisConfig);
+    this.subscriber = redis.createClient(redisConfig);
+    
+    this.setupSubscriber();
+  }
+
+  async publish(event, data) {
+    const message = JSON.stringify({ event, data, timestamp: Date.now() });
+    await this.publisher.publish('microservices-events', message);
+    console.log(`Event published: ${event}`);
+  }
+
+  subscribe(event, handler) {
+    this.on(event, handler);
+  }
+
+  setupSubscriber() {
+    this.subscriber.subscribe('microservices-events');
+    
+    this.subscriber.on('message', (channel, message) => {
+      try {
+        const { event, data } = JSON.parse(message);
+        this.emit(event, data);
+      } catch (error) {
+        console.error('Error processing event:', error);
+      }
+    });
+  }
+}
+
+// Usage
+const eventBus = new EventBus();
+
+// In user service
+eventBus.publish('user.created', { userId: '123', email: 'user@example.com' });
+
+// In email service
+eventBus.subscribe('user.created', async (userData) => {
+  await sendWelcomeEmail(userData.email);
+});</code></pre>
+
+      <h2>Containerization with Docker</h2>
+
+      <p>Docker containers provide an excellent way to package and deploy microservices. Here's a production-ready Dockerfile for our Node.js service:</p>
+
+      <pre><code class="language-dockerfile"><div class="code-header"><span>Dockerfile</span><span>Docker</span></div># Use official Node.js runtime as base image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nodejs -u 1001
+
+# Copy source code
+COPY --chown=nodejs:nodejs . .
+
+# Switch to non-root user
+USER nodejs
+
+# Expose port
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD node healthcheck.js
+
+# Start the application
+CMD ["node", "server.js"]</code></pre>
+
+      <h2>Monitoring and Observability</h2>
+
+      <p>Proper monitoring is crucial for microservices. Implement logging, metrics, and distributed tracing to maintain visibility into your system's health and performance.</p>
+
+      <div class="highlight-box">
+        <div class="highlight-box-content">
+          <h4>Essential Monitoring Practices</h4>
+          <p>Implement structured logging, collect application metrics, use distributed tracing, and set up automated alerting to ensure system reliability.</p>
+        </div>
+      </div>
+
+      <h2>Best Practices and Common Pitfalls</h2>
+
+      <p>When building microservices with Node.js, keep these best practices in mind:</p>
+
+      <ul>
+        <li><strong>Start Simple:</strong> Begin with a monolith and extract services as needed</li>
+        <li><strong>Define Clear Boundaries:</strong> Use Domain-Driven Design principles</li>
+        <li><strong>Implement Circuit Breakers:</strong> Prevent cascade failures</li>
+        <li><strong>Use Async Communication:</strong> Prefer message queues over synchronous calls</li>
+        <li><strong>Automate Testing:</strong> Implement comprehensive testing strategies</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+
+      <p>Building scalable microservices with Node.js requires careful planning and adherence to proven patterns. By following the strategies outlined in this guide, you'll be well-equipped to create robust, maintainable, and scalable distributed systems.</p>
+
+      <p>Remember that microservices are not a silver bullet – they introduce complexity that must be managed through proper tooling, monitoring, and organizational practices. Start simple, measure everything, and evolve your architecture as your understanding and requirements grow.</p>
+    </div>
+  </article>
+
+  <div class="article-footer">
+    <div class="article-author">
+      <div class="author-avatar">AA</div>
+      <div class="author-info">
+        <h4>Aizaz Ansari</h4>
+        <p>Software Engineer & Technology Enthusiast</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize syntax highlighting
+    hljs.highlightAll();
+
+    // Scroll progress indicator
+    window.addEventListener('scroll', () => {
+      const scrollProgress = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('progressBar').style.width = Math.min(scrollProgress, 100) + '%';
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Related article click handlers
+    document.querySelectorAll('.related-card').forEach(card => {
+      card.addEventListener('click', () => {
+        // In a real implementation, navigate to the related article
+        console.log('Navigate to related article');
+      });
+    });
+  </script>
+</body>
+</html>

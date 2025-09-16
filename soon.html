@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon - Aizaz Ansari</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem 0;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(118, 139, 146, 0.1);
+    }
+
+    header nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    header nav a {
+      margin: 0 1.5rem;
+      color: white;
+      font-weight: 400;
+      font-size: 1rem;
+      position: relative;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    header nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #768B92, #a0bfc7);
+      transition: width 0.3s ease;
+    }
+
+    header nav a:hover::after {
+      width: 100%;
+    }
+
+    header nav a:hover {
+      color: #a0bfc7;
+      transform: translateY(-1px);
+    }
+
+    .main-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 100px);
+      position: relative;
+    }
+
+    .main-content::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 60%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(118, 139, 146, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-30px) scale(1.1); }
+    }
+
+    .container {
+      text-align: center;
+      z-index: 1;
+      max-width: 600px;
+      padding: 2rem;
+    }
+
+    .title {
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, #768B92 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: #a0a0a0;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.3s forwards;
+    }
+
+    .coming-soon {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: rgba(118, 139, 146, 0.1);
+      border: 1px solid rgba(118, 139, 146, 0.3);
+      border-radius: 50px;
+      color: #768B92;
+      font-weight: 500;
+      font-size: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.6s forwards;
+      transition: all 0.3s ease;
+    }
+
+    .coming-soon:hover {
+      background: rgba(118, 139, 146, 0.2);
+      border-color: rgba(118, 139, 146, 0.5);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(118, 139, 146, 0.3);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    @media (max-width: 768px) {
+      header nav a {
+        margin: 0 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .coming-soon {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="about.html">About</a>
+      <a href="photography.html">Photography</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <div class="container">
+      <h1 class="title">Coming Soon</h1>
+      <p class="subtitle">Something fun is in the works</p>
+      <!-- <div class="coming-soon">Stay tuned</div> -->
+    </div>
+    
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</body>
+</html>
