@@ -6,295 +6,970 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-JJVMK07SL3');
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Aizaz Ansari — Senior Software Engineer (AI / Distributed Systems) at TikTok, and hobbyist photographer." />
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <title>Aizaz Ansari - Software Engineer | Hobbyist Photographer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Aizaz Ansari — Software Engineer & Photographer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #0f0f0f;
-      --text-color: #ffffff;
-      --accent-color: #768B92;
-      --font-heading: 'Space Grotesk', sans-serif;
-      --font-body: 'Manrope', sans-serif;
+      --bg-0: #0a0a0a;
+      --bg-1: #111214;
+      --bg-2: #1a1c1f;
+      --surface: rgba(255, 255, 255, 0.025);
+      --surface-hover: rgba(255, 255, 255, 0.045);
+      --border: rgba(118, 139, 146, 0.14);
+      --border-strong: rgba(118, 139, 146, 0.30);
+      --text: #e8e8e8;
+      --text-dim: #a6acb0;
+      --muted: #7c8388;
+      --accent: #768B92;
+      --accent-light: #a0bfc7;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --nav-h: 68px;
+      --maxw: 1100px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-h);
     }
 
-    html, body {
-      height: 100%;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+    body {
       font-family: var(--font-body);
+      background: var(--bg-0);
+      color: var(--text);
       overflow-x: hidden;
-      overflow-y: auto;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      position: absolute;
-      top: 0;
-      width: 100%;
+    a { color: var(--accent-light); text-decoration: none; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ---------- Gradient text ---------- */
+    .grad {
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ---------- Navbar ---------- */
+    nav.topnav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 24px 60px;
-      z-index: 3;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
-
-    .nav-left a,
-    .nav-right a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 1.1rem;
+    nav.topnav.scrolled {
+      background: rgba(10, 10, 10, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+    .brand .dot { color: var(--accent); }
+    .nav-links { display: flex; gap: 0.4rem; }
+    .nav-links a {
+      color: var(--text-dim);
+      font-size: 0.95rem;
       font-weight: 500;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      padding: 8px 12px;
-      border-radius: 6px;
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
       position: relative;
-      overflow: hidden;
+      transition: color 0.25s ease, background 0.25s ease;
     }
-
-    .nav-left a::before,
-    .nav-right a::before {
+    .nav-links a:hover { color: var(--text); background: rgba(118, 139, 146, 0.08); }
+    .nav-links a.active { color: var(--accent-light); }
+    .nav-links a.active::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(118, 139, 146, 0.1), transparent);
-      transition: left 0.5s ease;
+      left: 0.9rem; right: 0.9rem; bottom: 0.25rem;
+      height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
     }
 
-    .nav-left a:hover::before,
-    .nav-right a:hover::before {
-      left: 100%;
+    /* ---------- Section scaffolding ---------- */
+    section { position: relative; }
+    .section-pad { padding: 6rem 0; }
+    .eyebrow {
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
     }
-
-    .nav-left a:hover,
-    .nav-right a:hover {
-      color: var(--accent-color);
-      background: rgba(118, 139, 146, 0.05);
-      transform: translateY(-1px);
-    }
-
-    .nav-right {
-      display: flex;
-      gap: 24px;
-    }
-
-    .container {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: 6%;
-    }
-
-    .title {
-      font-family: var(--font-heading);
-      font-size: 4rem;
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 2.9rem);
       font-weight: 600;
-      max-width: 700px;
-      line-height: 1.1;
-      background: linear-gradient(135deg, #ffffff 0%, #768B92 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.01em;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1.2s ease-out forwards;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .section-lead {
+      color: var(--text-dim);
+      max-width: 640px;
+      font-weight: 300;
+      font-size: 1.05rem;
     }
 
-    .role {
-      font-family: var(--font-body);
-      font-size: 1.4rem;
-      font-weight: 300;
+    /* ---------- Hero ---------- */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(1200px 600px at 75% 20%, rgba(118,139,146,0.10), transparent 60%),
+        linear-gradient(135deg, var(--bg-0) 0%, var(--bg-2) 100%);
+    }
+    #vanta-bg {
+      position: absolute; inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      mask-image: linear-gradient(to left, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 70%);
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 70%);
+    }
+    .hero-inner { position: relative; z-index: 2; width: 100%; }
+    .hero-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: clamp(2.6rem, 9vw, 5.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(28px);
+      animation: rise 1s ease-out forwards;
+    }
+    .hero-role {
+      font-size: clamp(1.05rem, 3vw, 1.45rem);
+      color: var(--accent-light);
+      font-weight: 400;
       margin-top: 1rem;
-      color: var(--accent-color);
+      letter-spacing: 0.02em;
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeInUp 1.4s ease-out 0.2s forwards;
-      letter-spacing: 0.05em;
+      animation: rise 1s ease-out 0.15s forwards;
     }
-
-    .divider {
-      color: rgba(118, 139, 146, 0.5);
-      margin: 0 12px;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .subtitle {
-      font-size: 1.25rem;
-      margin-top: 1.5rem;
+    .hero-role .sep { color: rgba(118,139,146,0.5); margin: 0 0.6rem; }
+    .hero-type {
+      margin-top: 1.4rem;
+      font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+      color: var(--text-dim);
+      min-height: 1.6em;
       opacity: 0;
-      max-width: 500px;
-      white-space: nowrap;
-      overflow: hidden;
-      color: var(--text-color);
-      font-family: var(--font-body);
-      font-weight: 400;
+      animation: rise 1s ease-out 0.3s forwards;
+    }
+    #cursor { color: var(--accent); font-weight: 600; animation: blink 1s step-start infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.9rem;
+      margin-top: 2.2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: rise 1s ease-out 0.45s forwards;
+    }
+    .hero-socials { display: flex; align-items: center; gap: 1.25rem; }
+    .icon-btn {
       display: inline-flex;
       align-items: center;
-      gap: 2px;
-      transform: translateY(15px);
-      animation: fadeInUp 1.6s ease-out 0.4s forwards;
+      justify-content: center;
     }
-
-    #cursor {
-      color: var(--text-color);
-      animation: blink 1s step-start infinite;
-      font-weight: 700;
+    .icon-btn svg {
+      width: 24px; height: 24px;
+      fill: rgba(255, 255, 255, 0.55);
+      transition: fill 0.25s ease, transform 0.25s ease;
     }
+    .icon-btn:hover svg { fill: #ffffff; transform: translateY(-2px); }
 
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-
-    #vanta-bg {
+    .scroll-hint {
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 65%);
-      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 65%);
+      bottom: 1.8rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0;
+      animation: rise 1s ease-out 0.8s forwards;
+    }
+    .scroll-hint .chev {
+      width: 18px; height: 18px;
+      border-right: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      transform: rotate(45deg);
+      animation: bob 1.8s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100% { transform: rotate(45deg) translate(0,0); } 50% { transform: rotate(45deg) translate(4px,4px); } }
+
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+    /* ---------- About ---------- */
+    #about { background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-0) 100%); }
+    .about-intro { margin-bottom: 3.5rem; }
+
+    .subhead {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin: 3.5rem 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--text);
+    }
+    .subhead::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
     }
 
+    /* Experience — single-column split rows */
+    .exp-list { position: relative; }
+    .exp-entry {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2.4rem;
+      padding: 2.2rem 0;
+      border-top: 1px solid var(--border);
+      transition: border-color 0.3s ease;
+    }
+    .exp-entry:first-child { border-top: none; padding-top: 0.4rem; }
+    .exp-entry:hover { border-color: var(--border-strong); }
+    .exp-when {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent-light);
+      padding-top: 0.15rem;
+    }
+    .exp-when .present {
+      display: block;
+      margin-top: 0.2rem;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+    .exp-main .c-head { margin-bottom: 1.1rem; }
+    .role + .role {
+      margin-top: 1.3rem;
+      padding-top: 1.3rem;
+      border-top: 1px dashed var(--border);
+    }
+    .role-head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.2rem 0.8rem;
+      margin-bottom: 0.55rem;
+    }
+    .role-title {
+      font-family: var(--font-head);
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .role-date {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+    .exp-main ul { list-style: none; }
+    .exp-main ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      color: var(--text-dim);
+      font-size: 0.93rem;
+      font-weight: 300;
+      margin-bottom: 0.45rem;
+      line-height: 1.6;
+    }
+    .exp-main ul li:last-child { margin-bottom: 0; }
+    .exp-main ul li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.6rem;
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      background: var(--surface-hover);
+      border-color: var(--border-strong);
+      box-shadow: 0 22px 44px rgba(0,0,0,0.35);
+    }
+
+    .c-head {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      width: 42px; height: 42px;
+      flex: 0 0 42px;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(118,139,146,0.12);
+      border: 1px solid var(--border);
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--accent-light);
+    }
+    .logo img { width: 100%; height: 100%; object-fit: cover; }
+    .c-meta h4 { font-size: 0.95rem; color: var(--accent-light); font-weight: 600; letter-spacing: 0.01em; }
+    .c-meta .loc { font-size: 0.8rem; color: var(--muted); }
+    .card h3 {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+    .card .date { display: block; color: var(--accent); font-size: 0.85rem; margin-bottom: 0.9rem; }
+    .card ul { list-style: none; }
+    .card ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      color: var(--text-dim);
+      font-size: 0.92rem;
+      font-weight: 300;
+      margin-bottom: 0.55rem;
+      line-height: 1.55;
+    }
+    .card ul li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--accent-light);
+      background: rgba(118,139,146,0.12);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.65rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* Education cards */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    .skill-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem;
+    }
+    .skill-block h5 {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+    }
+    .skill-block .tags { margin-top: 0; }
+    .skill-block .tag { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+
+    /* ---------- Photography ---------- */
+    #photography { background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-2) 100%); }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 2rem 0 2.5rem;
+    }
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 0.6rem 1.3rem;
+      border-radius: 26px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 500;
+      font-family: var(--font-body);
+      text-transform: capitalize;
+      transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+    }
+    .filter-btn:hover { transform: translateY(-2px); color: var(--text); border-color: var(--border-strong); }
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(118,139,146,0.22), rgba(160,191,199,0.10));
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.4rem;
+      transition: opacity 0.35s ease;
+    }
+    .photo-grid.filtering { opacity: 0.25; }
+    .photo-item {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+      animation: photoIn 0.6s ease-out forwards;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .photo-item:nth-child(1){animation-delay:.05s}.photo-item:nth-child(2){animation-delay:.1s}
+    .photo-item:nth-child(3){animation-delay:.15s}.photo-item:nth-child(4){animation-delay:.2s}
+    .photo-item:nth-child(5){animation-delay:.25s}.photo-item:nth-child(6){animation-delay:.3s}
+    .photo-item:nth-child(7){animation-delay:.35s}.photo-item:nth-child(8){animation-delay:.4s}
+    .photo-item:nth-child(9){animation-delay:.45s}
+    @keyframes photoIn { to { opacity: 1; transform: translateY(0) scale(1); } }
+    .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .photo-item:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-strong);
+      box-shadow: 0 26px 52px rgba(0,0,0,0.5);
+    }
+    .photo-item:hover img { transform: scale(1.06); }
+    .photo-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 1.6rem 1.1rem 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      color: #fff;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .photo-item:hover .photo-overlay { transform: translateY(0); }
+    .photo-title { font-size: 1rem; font-weight: 600; }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 88%; max-height: 84%; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
+    .lb-btn {
+      position: absolute;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.25s ease, transform 0.25s ease;
+      backdrop-filter: blur(12px);
+    }
+    .lb-btn:hover { background: rgba(118,139,146,0.35); }
+    .lb-close { top: 1.5rem; right: 1.5rem; width: 48px; height: 48px; font-size: 1.7rem; }
+    .lb-nav { top: 50%; transform: translateY(-50%); width: 58px; height: 58px; font-size: 2rem; }
+    .lb-nav:hover { transform: translateY(-50%) scale(1.08); }
+    .lb-prev { left: 1.5rem; }
+    .lb-next { right: 1.5rem; }
+    .lb-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .lb-info {
+      position: absolute;
+      bottom: 1.5rem; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.8rem 1.4rem;
+      border-radius: 18px;
+      text-align: center;
+      max-width: 80%;
+    }
+    .lb-title { font-weight: 600; font-size: 1rem; }
+    .lb-count { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--bg-0);
+      border-top: 1px solid var(--border);
+      padding: 3rem 0 2.5rem;
+      text-align: center;
+    }
+    footer .hero-socials { justify-content: center; margin-bottom: 1.4rem; }
+    footer .copy { color: var(--muted); font-size: 0.85rem; }
+    footer .copy a { color: var(--accent-light); }
+
+    /* ---------- Responsive ---------- */
     @media (max-width: 768px) {
-      header {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-        padding: 20px;
-      }
+      :root { --nav-h: 60px; }
+      .section-pad { padding: 4rem 0; }
+      #vanta-bg { display: none; }
+      .nav-links a { padding: 0.5rem 0.6rem; font-size: 0.9rem; }
+      .brand { font-size: 0.98rem; }
 
-      .nav-right {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
+      .exp-entry { grid-template-columns: 1fr; gap: 0.7rem; padding: 1.8rem 0; }
+      .exp-when { font-size: 0.85rem; }
+      .exp-when .present { display: inline; margin: 0 0 0 0.35rem; }
+      .exp-main .c-head { margin-top: 0.5rem; }
 
-      .title {
-        font-size: 2rem;
-        line-height: 1.2;
-      }
+      .edu-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .lightbox img { max-width: 94%; max-height: 78%; }
+      .lb-prev { left: 0.8rem; } .lb-next { right: 0.8rem; }
+      .lb-nav { width: 48px; height: 48px; font-size: 1.6rem; }
+      .lb-close { top: 1rem; right: 1rem; width: 42px; height: 42px; }
+    }
 
-      .role {
-        font-size: 1rem;
-        margin-top: 0.8rem;
-      }
+    @media (max-width: 420px) {
+      .nav-links a { padding: 0.5rem 0.45rem; font-size: 0.85rem; }
+      .brand { font-size: 0.9rem; }
+      .hero-actions { gap: 0.7rem; }
+    }
 
-      .subtitle {
-        font-size: 0.95rem;
-        white-space: normal;
-        text-align: left;
-        max-width: 100%;
-        margin-top: 12px;
-      }
-
-      .container {
-        padding: 140px 20px 20px 20px;
-      }
-
-      #vanta-bg {
-        display: none;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .hero-name, .hero-role, .hero-type, .hero-actions, .scroll-hint, .photo-item { opacity: 1 !important; transform: none !important; }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="nav-left">
-<!--       <a href="index.html">Home</a> -->
+  <!-- ===== Nav ===== -->
+  <nav class="topnav" id="topnav">
+    <a href="#home" class="brand">Aizaz Ansari<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#home" data-sec="home" class="active">Home</a>
+      <a href="#about" data-sec="about">About</a>
+      <a href="#photography" data-sec="photography">Photography</a>
     </div>
-    <div class="nav-right">
-      <a href="about.html">About Me</a>
-      <a href="photography.html">Photography</a>
-      <a href="blog.html">Blog</a>
-    </div>
-  </header>
+  </nav>
 
-  <!-- Main content -->
-  <div class="container">
-    <div class="title">AIZAZ ANSARI</div>
-    <div class="role">Software Engineer <span class="divider">|</span> Hobbyist Photographer</div>
-    <div class="subtitle" id="typewriter">
-      <span id="text"></span><span id="cursor">|</span>
+  <!-- ===== Hero ===== -->
+  <section id="home">
+    <div id="vanta-bg"></div>
+    <div class="wrap hero-inner">
+      <h1 class="hero-name grad">AIZAZ ANSARI</h1>
+      <p class="hero-role">Software Engineer <span class="sep">/</span> Hobbyist Photographer</p>
+      <p class="hero-type"><span id="typed"></span><span id="cursor">|</span></p>
+
+      <div class="hero-actions">
+        <div class="hero-socials">
+          <a class="icon-btn" href="https://github.com/aizazansari" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          </a>
+          <a class="icon-btn" href="https://linkedin.com/in/aizazansari" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+          </a>
+          <a class="icon-btn" href="mailto:aizazarifansari@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="scroll-hint" aria-label="Scroll to about">
+      <span>Scroll</span>
+      <span class="chev"></span>
+    </a>
+  </section>
+
+  <!-- ===== About / Career ===== -->
+  <section id="about" class="section-pad">
+    <div class="wrap">
+      <div class="about-intro">
+        <p class="eyebrow">About</p>
+        <h2 class="section-title grad">Career &amp; Background</h2>
+        <p class="section-lead">
+          I'm a Senior Software Engineer focused on Applied AI and distributed systems. At TikTok I build large-scale
+          agent platforms serving 100M+ requests/day; previously, as the founding engineer for namshi.com, I led the ground-up rewrite ($5M GMV). Outside of work, I'm a hobbyist photographer chasing light across cities and mountains.
+        </p>
+      </div>
+
+      <h3 class="subhead">Experience</h3>
+      <div class="exp-list">
+        <!-- TikTok -->
+        <div class="exp-entry">
+          <div class="exp-when">Mar 2025<span class="present">— Present</span></div>
+          <div class="exp-main">
+            <div class="c-head">
+              <div class="logo"><img src="assets/tiktok.jpg" alt="TikTok"></div>
+              <div class="c-meta"><h4>TikTok</h4><span class="loc">London, UK</span></div>
+            </div>
+            <div class="role">
+              <div class="role-head"><span class="role-title">Senior Software Engineer</span></div>
+              <ul>
+                <li>Building TikTok's AI agent platform — tool use, MCP and sub-agent orchestration at massive scale.</li>
+                <li>Making it easy for other teams to ship and evaluate their own agents.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Noon (grouped) -->
+        <div class="exp-entry">
+          <div class="exp-when">Aug 2021<span class="present">— Feb 2025</span></div>
+          <div class="exp-main">
+            <div class="c-head">
+              <div class="logo"><img src="assets/noon.jpeg" alt="Noon"></div>
+              <div class="c-meta"><h4>Noon</h4><span class="loc">Dubai, UAE</span></div>
+            </div>
+            <div class="role">
+              <div class="role-head">
+                <span class="role-title">Software Engineer 3</span>
+                <span class="role-date">Dec 2023 — Feb 2025</span>
+              </div>
+              <ul>
+                <li>Led 10+ engineers to rebuild the namshi marketplace — faster and handling 100k requests a minute.</li>
+                <li>Owned incident response and kept things running at 99.99% uptime.</li>
+              </ul>
+            </div>
+            <div class="role">
+              <div class="role-head">
+                <span class="role-title">Software Engineer 2</span>
+                <span class="role-date">Feb 2023 — Nov 2023</span>
+              </div>
+              <ul>
+                <li>Built a self-serve notification platform (SMS, email, push, WhatsApp) doing 30M sends a day.</li>
+              </ul>
+            </div>
+            <div class="role">
+              <div class="role-head">
+                <span class="role-title">Software Engineer</span>
+                <span class="role-date">Aug 2021 — Jan 2023</span>
+              </div>
+              <ul>
+                <li>Built the order-tracking portal and the backend for a loyalty program with 1M+ members.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lockheed -->
+        <div class="exp-entry">
+          <div class="exp-when">Sep 2020<span class="present">— Dec 2020</span></div>
+          <div class="exp-main">
+            <div class="c-head">
+              <div class="logo"><img src="assets/lm.jpeg" alt="Lockheed Martin"></div>
+              <div class="c-meta"><h4>Lockheed Martin</h4><span class="loc">Abu Dhabi, UAE</span></div>
+            </div>
+            <div class="role">
+              <div class="role-head"><span class="role-title">Software Engineer Intern</span></div>
+              <ul>
+                <li>Built a GAN tool to generate training data for aircraft inspection models.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subhead">Education</h3>
+      <div class="edu-grid">
+        <div class="card">
+          <div class="c-head">
+            <div class="logo"><img src="assets/oxford.png" alt="University of Oxford"></div>
+            <div class="c-meta"><h4>University of Oxford</h4><span class="loc">Kellogg College</span></div>
+          </div>
+          <h3>MSc, Software Engineering</h3>
+          <span class="date">Part-time</span>
+          <ul>
+            <li>Advanced study in software engineering alongside full-time work.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="c-head">
+            <div class="logo"><img src="assets/nyu.png" alt="NYU Abu Dhabi"></div>
+            <div class="c-meta"><h4>NYU Abu Dhabi</h4><span class="loc">Abu Dhabi, UAE</span></div>
+          </div>
+          <h3>BSc, Computer Science &amp; Applied Math</h3>
+          <span class="date">Aug 2017 — May 2021</span>
+          <ul>
+            <li>GPA 3.94 / 4.00 — Magna Cum Laude, University Honors Scholar.</li>
+            <li>Full-ride Merit Scholarship ($90k/year).</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="subhead">Skills</h3>
+      <div class="skills-grid">
+        <div class="skill-block">
+          <h5>Languages</h5>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Go</span><span class="tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h5>Frameworks</h5>
+          <div class="tags">
+            <span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Spring Boot</span><span class="tag">React</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h5>Infrastructure</h5>
+          <div class="tags">
+            <span class="tag">Google Cloud</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Redis</span><span class="tag">Pub/Sub</span><span class="tag">CI/CD</span><span class="tag">Observability</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h5>AI</h5>
+          <div class="tags">
+            <span class="tag">LLMs</span><span class="tag">Agents</span><span class="tag">MCP</span><span class="tag">Prompt Engineering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Photography ===== -->
+  <section id="photography" class="section-pad">
+    <div class="wrap">
+      <p class="eyebrow">Photography</p>
+      <h2 class="section-title grad">Visual Stories</h2>
+      <p class="section-lead">Capturing the beauty of architecture, nature, and the people in between.</p>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="featured">Featured</button>
+        <button class="filter-btn" data-filter="architecture">Architecture</button>
+        <button class="filter-btn" data-filter="nature">Nature</button>
+        <button class="filter-btn" data-filter="people">People</button>
+      </div>
+
+      <div class="photo-grid" id="photoGrid"></div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-btn lb-close" id="lbClose">&times;</button>
+    <button class="lb-btn lb-nav lb-prev" id="lbPrev">&#8249;</button>
+    <button class="lb-btn lb-nav lb-next" id="lbNext">&#8250;</button>
+    <img id="lbImage" src="" alt="">
+    <div class="lb-info">
+      <div class="lb-title" id="lbTitle"></div>
+      <div class="lb-count" id="lbCount"></div>
     </div>
   </div>
 
-  <!-- Background -->
-  <div id="vanta-bg"></div>
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="hero-socials">
+      <a class="icon-btn" href="https://github.com/aizazansari" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://linkedin.com/in/aizazansari" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+      </a>
+      <a class="icon-btn" href="mailto:aizazarifansari@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>
+      </a>
+    </div>
+    <p class="copy">© <span id="year"></span> Aizaz Ansari · <a href="mailto:aizazarifansari@gmail.com">aizazarifansari@gmail.com</a></p>
+  </footer>
 
-  <!-- Vanta.js + Three.js -->
+  <!-- Vanta background (desktop) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
   <script>
-    VANTA.NET({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      scale: 1.0,
-      scaleMobile: 1.0,
-      color: 0x768b92,
-      backgroundColor: 0x0f0f0f,
-      points: 12.0,
-      maxDistance: 25.0,
-      spacing: 18.0
-    });
-  </script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  <!-- Typewriter effect -->
-  <script>
-    const textEl = document.getElementById("text");
-    const fullText = "Sharing my thoughts and photos with the world!";
-    let index = 0;
-    let deleting = false;
-
-    function typeWriter() {
-      if (!deleting && index <= fullText.length) {
-        textEl.textContent = fullText.substring(0, index++);
-        setTimeout(typeWriter, 80);
-      } else if (!deleting && index > fullText.length) {
-        deleting = true;
-        setTimeout(typeWriter, 1500);
-      } else if (deleting && index >= 0) {
-        textEl.textContent = fullText.substring(0, index--);
-        setTimeout(typeWriter, 30);
-      } else {
-        deleting = false;
-        setTimeout(typeWriter, 500);
-      }
+    // Vanta only on larger screens
+    if (window.matchMedia('(min-width: 769px)').matches && window.VANTA) {
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true, touchControls: false, gyroControls: false,
+        scale: 1.0, scaleMobile: 1.0,
+        color: 0x768b92, backgroundColor: 0x0a0a0a,
+        points: 11.0, maxDistance: 24.0, spacing: 18.0
+      });
     }
 
-    typeWriter();
+    // Navbar background on scroll
+    const topnav = document.getElementById('topnav');
+    window.addEventListener('scroll', () => {
+      topnav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Active nav link via IntersectionObserver
+    const navMap = {};
+    document.querySelectorAll('.nav-links a').forEach(a => navMap[a.dataset.sec] = a);
+    const sections = document.querySelectorAll('section[id]');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          Object.values(navMap).forEach(a => a.classList.remove('active'));
+          if (navMap[e.target.id]) navMap[e.target.id].classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(s => obs.observe(s));
+
+    // Typewriter (cycling)
+    const phrases = [
+      "Building large-scale AI agent platforms at TikTok.",
+      "Sharing my thoughts and photos with the world."
+    ];
+    const typed = document.getElementById('typed');
+    let pi = 0, ci = 0, deleting = false;
+    function tick() {
+      const word = phrases[pi];
+      typed.textContent = word.substring(0, ci);
+      if (!deleting && ci < word.length) { ci++; setTimeout(tick, 55); }
+      else if (!deleting && ci === word.length) { deleting = true; setTimeout(tick, 2000); }
+      else if (deleting && ci > 0) { ci--; setTimeout(tick, 25); }
+      else { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 400); }
+    }
+    tick();
+  </script>
+
+  <!-- Photography gallery -->
+  <script>
+    const photoData = [
+      { src: 'photos/pisa.JPG', title: 'A rainy day in Pisa', categories: { featured: 7, architecture: 1, people: 1 } },
+      { src: 'photos/acropolis.jpg', title: 'Ancient Citadel of Acropolis', categories: { architecture: 1 } },
+      { src: 'photos/acropolis_2.jpg', title: 'Ancient Citadel of Acropolis', categories: { architecture: 1 } },
+      { src: 'photos/ad_desert.jpg', title: 'Moon from the deserts of Abu Dhabi', categories: { nature: 1 } },
+      { src: 'photos/amsterdam.JPG', title: 'Venice of the North: Amsterdam', categories: { architecture: 1 } },
+      { src: 'photos/barcelona.JPG', title: 'Cerdà Plan in Barcelona', categories: { featured: 9, architecture: 1 } },
+      { src: 'photos/blue_mosque_from_hagia_sofia.jpg', title: 'Blue Mosque from Hagia Sofia, Istanbul', categories: { featured: 4, architecture: 1 } },
+      { src: 'photos/cinque_terre.JPG', title: 'Manarola, Cinque Terre', categories: { featured: 11, architecture: 1, nature: 1 } },
+      { src: 'photos/cny_in_italy.JPG', title: 'Chinese New Year in Italy', categories: { people: 1 } },
+      { src: 'photos/deosai_plains.jpg', title: 'Deosai Plains, Skardu', categories: { featured: 10, nature: 1 } },
+      { src: 'photos/windsor.JPG', title: 'Windsor', categories: { architecture: 1 } },
+      { src: 'photos/great_wall_of_china.jpg', title: 'The Great Wall of China', categories: { architecture: 1, nature: 1 } },
+      { src: 'photos/himalaya_karakoram_hindu_kush_meet.jpg', title: 'Where Himalayan, Karakoram and Hindu Kush meet', categories: { nature: 1 } },
+      { src: 'photos/hyde_park_london.JPG', title: "London's Hyde Park", categories: { architecture: 1 } },
+      { src: 'photos/istanbul_from_galata_tower.jpg', title: 'Istanbul from Galata Tower', categories: { architecture: 1 } },
+      { src: 'photos/last sunset of 2015 at river indus.jpg', title: 'Sunset at River Indus', categories: { featured: 5, nature: 1 } },
+      { src: 'photos/leicester_square_london.JPG', title: 'Nightlife in London', categories: { featured: 12, architecture: 1, people: 1 } },
+      { src: 'photos/louvre_paris.JPG', title: 'Louvre: Home of Mona Lisa', categories: { architecture: 1 } },
+      { src: 'photos/milan.JPG', title: 'Porta Simpeone, Milan', categories: { architecture: 1 } },
+      { src: 'photos/nafplio_from_above.jpg', title: 'Nafplio from above', categories: { featured: 8, architecture: 1, nature: 1 } },
+      { src: 'photos/nafplio_streets.jpg', title: 'Streets of Nafplio', categories: { architecture: 1 } },
+      { src: 'photos/nafplio_streets_2.jpg', title: 'Streets of Nafplio', categories: { architecture: 1 } },
+      { src: 'photos/notre_dame_paris.jpg', title: 'Notre-Dame de Paris', categories: { architecture: 1 } },
+      { src: 'photos/paris_church.jpg', title: 'Notre-Dame de Paris', categories: { architecture: 1 } },
+      { src: 'photos/porto_from_above.jpg', title: 'Porto from Above', categories: { architecture: 1, nature: 1 } },
+      { src: 'photos/porto.jpg', title: 'Porto Downtown', categories: { architecture: 1 } },
+      { src: 'photos/road_to_deosai_plains.jpg', title: 'Road to Deosai Plains', categories: { nature: 1 } },
+      { src: 'photos/sadpara_lake_skardu.jpg', title: 'Sadpara Lake, Skardu', categories: { featured: 6, nature: 1 } },
+      { src: 'photos/shangrila_lake_skardu.jpg', title: 'Shangrila Lake, Skardu', categories: { featured: 1, nature: 1 } },
+      { src: 'photos/shigar_fort_skardu.jpg', title: 'Shigar Fort, Skardu', categories: { nature: 1 } },
+      { src: 'photos/siri_paya.jpg', title: 'Hiking trail at Siri Paya', categories: { nature: 1 } },
+      { src: 'photos/streets_athens.jpg', title: 'Streets of Athens', categories: { architecture: 1, people: 1 } },
+      { src: 'photos/streets_of_shanghai.jpg', title: 'Streets of Shanghai', categories: { featured: 2, architecture: 1, people: 1 } },
+      { src: 'photos/sunset_in_istanbul.JPG', title: 'Sunset in Istanbul', categories: { featured: 3, architecture: 1, nature: 1 } },
+      { src: 'photos/topkapi_palace_istanbul.jpg', title: 'Topkapi Palace, Istanbul', categories: { architecture: 1 } },
+      { src: 'photos/venice_canal.JPG', title: 'Canals of Venice', categories: { architecture: 1 } },
+      { src: 'photos/versailles.JPG', title: 'Versailles', categories: { architecture: 1 } }
+    ];
+
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const photoGrid = document.getElementById('photoGrid');
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbCount = document.getElementById('lbCount');
+    const lbClose = document.getElementById('lbClose');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+
+    let currentPhotos = [], currentIndex = 0;
+
+    function setActive(btn) { filterButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
+
+    function filterPhotos(filter) {
+      photoGrid.classList.add('filtering');
+      setTimeout(() => {
+        currentPhotos = photoData
+          .filter(p => p.categories.hasOwnProperty(filter))
+          .sort((a, b) => a.categories[filter] - b.categories[filter]);
+        renderPhotos(currentPhotos);
+        photoGrid.classList.remove('filtering');
+      }, 180);
+    }
+
+    function renderPhotos(photos) {
+      photoGrid.innerHTML = '';
+      photos.forEach((photo, i) => {
+        const item = document.createElement('div');
+        item.className = 'photo-item';
+        item.innerHTML = `
+          <img src="${photo.src}" alt="${photo.title}" loading="lazy">
+          <div class="photo-overlay"><div class="photo-title">${photo.title}</div></div>`;
+        item.addEventListener('click', () => openLightbox(i));
+        photoGrid.appendChild(item);
+      });
+    }
+
+    function openLightbox(i) { currentIndex = i; updateLightbox(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    function updateLightbox() {
+      if (!currentPhotos.length) return;
+      const p = currentPhotos[currentIndex];
+      lbImage.src = p.src; lbImage.alt = p.title; lbTitle.textContent = p.title;
+      lbCount.textContent = `${currentIndex + 1} of ${currentPhotos.length}`;
+      lbPrev.disabled = currentIndex === 0;
+      lbNext.disabled = currentIndex === currentPhotos.length - 1;
+    }
+    function prev() { if (currentIndex > 0) { currentIndex--; updateLightbox(); } }
+    function next() { if (currentIndex < currentPhotos.length - 1) { currentIndex++; updateLightbox(); } }
+
+    filterButtons.forEach(btn => btn.addEventListener('click', () => { setActive(btn); filterPhotos(btn.dataset.filter); }));
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', prev);
+    lbNext.addEventListener('click', next);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    });
+
+    filterPhotos('featured');
+    setTimeout(() => photoData.forEach(p => { const im = new Image(); im.src = p.src; }), 1200);
   </script>
 </body>
 </html>
