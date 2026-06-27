@@ -1106,13 +1106,17 @@
       }, 180);
     }
 
+    // Path helpers — grid uses small thumbnails, lightbox uses larger versions
+    const thumbSrc = (src) => src.replace('photos/', 'photos/thumb/');
+    const largeSrc = (src) => src.replace('photos/', 'photos/large/');
+
     function renderPhotos(photos) {
       photoGrid.innerHTML = '';
       photos.forEach((photo, i) => {
         const item = document.createElement('div');
         item.className = 'photo-item';
         item.innerHTML = `
-          <img src="${photo.src}" alt="${photo.title}" loading="lazy">
+          <img src="${thumbSrc(photo.src)}" alt="${photo.title}" loading="lazy" decoding="async">
           <div class="photo-overlay"><div class="photo-title">${photo.title}</div></div>`;
         item.addEventListener('click', () => openLightbox(i));
         photoGrid.appendChild(item);
@@ -1124,10 +1128,14 @@
     function updateLightbox() {
       if (!currentPhotos.length) return;
       const p = currentPhotos[currentIndex];
-      lbImage.src = p.src; lbImage.alt = p.title; lbTitle.textContent = p.title;
+      lbImage.src = largeSrc(p.src); lbImage.alt = p.title; lbTitle.textContent = p.title;
       lbCount.textContent = `${currentIndex + 1} of ${currentPhotos.length}`;
       lbPrev.disabled = currentIndex === 0;
       lbNext.disabled = currentIndex === currentPhotos.length - 1;
+      // Preload only the neighbours so prev/next feels instant
+      [currentIndex - 1, currentIndex + 1].forEach(j => {
+        if (j >= 0 && j < currentPhotos.length) { const im = new Image(); im.src = largeSrc(currentPhotos[j].src); }
+      });
     }
     function prev() { if (currentIndex > 0) { currentIndex--; updateLightbox(); } }
     function next() { if (currentIndex < currentPhotos.length - 1) { currentIndex++; updateLightbox(); } }
@@ -1145,7 +1153,6 @@
     });
 
     filterPhotos('featured');
-    setTimeout(() => photoData.forEach(p => { const im = new Image(); im.src = p.src; }), 1200);
   </script>
 </body>
 </html>
