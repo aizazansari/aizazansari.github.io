@@ -223,8 +223,9 @@
 
     .scroll-hint {
       position: absolute;
-      bottom: 1.8rem; left: 50%;
-      transform: translateX(-50%);
+      bottom: 1.8rem; left: 0; right: 0;
+      margin-inline: auto;
+      width: max-content;
       z-index: 2;
       color: var(--muted);
       font-size: 0.75rem;
@@ -627,7 +628,6 @@
     @media (max-width: 768px) {
       :root { --nav-h: 60px; }
       .section-pad { padding: 4rem 0; }
-      #vanta-bg { display: none; }
       .nav-links a { padding: 0.5rem 0.6rem; font-size: 0.9rem; }
       .brand { font-size: 0.98rem; }
 
@@ -915,14 +915,17 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Vanta only on larger screens
-    if (window.matchMedia('(min-width: 769px)').matches && window.VANTA) {
+    // Animated network background (lighter on small screens)
+    if (window.VANTA) {
+      const small = window.matchMedia('(max-width: 768px)').matches;
       VANTA.NET({
         el: "#vanta-bg",
         mouseControls: true, touchControls: false, gyroControls: false,
         scale: 1.0, scaleMobile: 1.0,
         color: 0x768b92, backgroundColor: 0x0a0a0a,
-        points: 11.0, maxDistance: 24.0, spacing: 18.0
+        points: small ? 8.0 : 11.0,
+        maxDistance: small ? 20.0 : 24.0,
+        spacing: small ? 16.0 : 18.0
       });
     }
 
