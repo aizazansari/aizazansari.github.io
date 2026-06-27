@@ -11,8 +11,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Aizaz Ansari — Senior Software Engineer (AI / Distributed Systems) at TikTok, and hobbyist photographer." />
+  <link rel="canonical" href="https://aizazansari.com/">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <title>Aizaz Ansari — Software Engineer & Photographer</title>
+
+  <!-- Social share preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aizazansari.com/">
+  <meta property="og:title" content="Aizaz Ansari — Software Engineer & Photographer">
+  <meta property="og:description" content="Senior Software Engineer working on applied AI and distributed systems at TikTok. Hobbyist photographer chasing light across cities and mountains.">
+  <meta property="og:image" content="https://aizazansari.com/photos/large/shangrila_lake_skardu.jpg">
+  <meta property="og:image:alt" content="Shangrila Lake, Skardu">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aizaz Ansari — Software Engineer & Photographer">
+  <meta name="twitter:description" content="Senior Software Engineer working on applied AI and distributed systems at TikTok. Hobbyist photographer.">
+  <meta name="twitter:image" content="https://aizazansari.com/photos/large/shangrila_lake_skardu.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Aizaz Ansari",
+    "url": "https://aizazansari.com/",
+    "image": "https://aizazansari.com/photos/large/shangrila_lake_skardu.jpg",
+    "jobTitle": "Senior Software Engineer",
+    "worksFor": { "@type": "Organization", "name": "TikTok" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "University of Oxford" },
+      { "@type": "CollegeOrUniversity", "name": "New York University Abu Dhabi" }
+    ],
+    "email": "mailto:aizazarifansari@gmail.com",
+    "sameAs": [
+      "https://github.com/aizazansari",
+      "https://linkedin.com/in/aizazansari"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script>
@@ -69,6 +104,15 @@
     }
 
     a { color: var(--accent-light); text-decoration: none; }
+
+    /* Keyboard focus — visible ring only for keyboard users */
+    :focus-visible {
+      outline: 2px solid var(--accent-light);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .photo-item:focus-visible { outline-offset: -2px; }
+    :focus:not(:focus-visible) { outline: none; }
 
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
 
@@ -1300,10 +1344,16 @@
       photos.forEach((photo, i) => {
         const item = document.createElement('div');
         item.className = 'photo-item';
+        item.setAttribute('role', 'button');
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('aria-label', 'View photo: ' + photo.title);
         item.innerHTML = `
           <img src="${thumbSrc(photo.src)}" alt="${photo.title}" loading="lazy" decoding="async">
           <div class="photo-overlay"><div class="photo-title">${photo.title}</div></div>`;
         item.addEventListener('click', () => openLightbox(i));
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
+        });
         photoGrid.appendChild(item);
       });
     }
