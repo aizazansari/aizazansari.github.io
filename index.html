@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Theme: "amber" or "slate" -->
+<html lang="en" data-theme="amber">
 <head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJVMK07SL3"></script>
   <script>
@@ -10,21 +11,21 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Aizaz Ansari — Senior Software Engineer (AI / Distributed Systems) at TikTok, and hobbyist photographer." />
+  <meta name="description" content="Aizaz Ansari — Senior Software Engineer (AI / Distributed Systems) at TikTok, hobbyist photographer and lifelong foodie." />
   <link rel="canonical" href="https://aizazansari.com/">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <title>Aizaz Ansari — Software Engineer & Photographer</title>
+  <title>Aizaz Ansari — Software Engineer, Photographer & Foodie</title>
 
   <!-- Social share preview -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aizazansari.com/">
-  <meta property="og:title" content="Aizaz Ansari — Software Engineer & Photographer">
-  <meta property="og:description" content="Senior Software Engineer working on applied AI and distributed systems at TikTok. Hobbyist photographer chasing light across cities and mountains.">
+  <meta property="og:title" content="Aizaz Ansari — Software Engineer, Photographer & Foodie">
+  <meta property="og:description" content="Senior Software Engineer working on applied AI and distributed systems at TikTok. Hobbyist photographer chasing light across cities and mountains, and a foodie mapping the best meals along the way.">
   <meta property="og:image" content="https://aizazansari.com/photos/large/shangrila_lake_skardu.jpg">
   <meta property="og:image:alt" content="Shangrila Lake, Skardu">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Aizaz Ansari — Software Engineer & Photographer">
-  <meta name="twitter:description" content="Senior Software Engineer working on applied AI and distributed systems at TikTok. Hobbyist photographer.">
+  <meta name="twitter:title" content="Aizaz Ansari — Software Engineer, Photographer & Foodie">
+  <meta name="twitter:description" content="Senior Software Engineer working on applied AI and distributed systems at TikTok. Hobbyist photographer and foodie.">
   <meta name="twitter:image" content="https://aizazansari.com/photos/large/shangrila_lake_skardu.jpg">
 
   <!-- Structured data -->
@@ -38,8 +39,34 @@
     "jobTitle": "Senior Software Engineer",
     "worksFor": { "@type": "Organization", "name": "TikTok" },
     "alumniOf": [
-      // { "@type": "CollegeOrUniversity", "name": "University of Oxford" },
       { "@type": "CollegeOrUniversity", "name": "New York University Abu Dhabi" }
+    ],
+    "knowsAbout": [
+      "Python",
+      "Java",
+      "JavaScript",
+      "TypeScript",
+      "Go",
+      "SQL",
+      "Large Language Models",
+      "AI Agents",
+      "Model Context Protocol",
+      "Prompt Engineering",
+      "FastAPI",
+      "Flask",
+      "Spring Boot",
+      "React",
+      "Google Cloud",
+      "Docker",
+      "Kubernetes",
+      "Redis",
+      "Pub/Sub",
+      "CI/CD",
+      "Observability",
+      "Distributed Systems",
+      "Applied AI",
+      "Backend Engineering",
+      "System Design"
     ],
     "email": "mailto:aizazarifansari@gmail.com",
     "sameAs": [
@@ -68,19 +95,38 @@
     })();
   </script>
   <style>
-    :root {
-      --bg-0: #0a0a0a;
+    /* ===========================================================
+       THEME SWITCH — set data-theme on <html> to "amber" or "slate".
+       That one word drives every colour on the page: the CSS below,
+       the Vanta hero, and the food map dots (the JS reads these vars).
+       =========================================================== */
+    [data-theme="amber"] {
+      --accent-rgb: 232 163 61;
+      --accent-light-rgb: 245 206 139;
+      --map-dot-rgb: 138 128 118;   /* unvisited land on the food map */
+      --bg-1: #131211;
+      --bg-2: #1c1917;
+      --text-dim: #b0a89f;
+      --muted: #8a8078;
+    }
+    [data-theme="slate"] {
+      --accent-rgb: 118 139 146;
+      --accent-light-rgb: 160 191 199;
+      --map-dot-rgb: 118 139 146;
       --bg-1: #111214;
       --bg-2: #1a1c1f;
-      --surface: rgba(255, 255, 255, 0.025);
-      --surface-hover: rgba(255, 255, 255, 0.045);
-      --border: rgba(118, 139, 146, 0.14);
-      --border-strong: rgba(118, 139, 146, 0.30);
-      --text: #e8e8e8;
       --text-dim: #a6acb0;
       --muted: #7c8388;
-      --accent: #768B92;
-      --accent-light: #a0bfc7;
+    }
+
+    :root {
+      --bg-0: #0a0a0a;
+      --surface: rgba(255, 255, 255, 0.025);
+      --border: rgb(var(--accent-rgb) / 0.14);
+      --border-strong: rgb(var(--accent-rgb) / 0.30);
+      --text: #e8e8e8;
+      --accent: rgb(var(--accent-rgb));
+      --accent-light: rgb(var(--accent-light-rgb));
       --font-head: 'Space Grotesk', sans-serif;
       --font-body: 'Inter', sans-serif;
       --nav-h: 68px;
@@ -152,7 +198,18 @@
       color: var(--text);
     }
     .brand .dot { color: var(--accent); }
-    .nav-links { display: flex; gap: 0.4rem; }
+    /* Brand holds its line; the links scroll rather than wrap if they ever run out of room */
+    .brand { white-space: nowrap; flex-shrink: 0; }
+    .nav-links {
+      display: flex;
+      gap: 0.4rem;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { flex-shrink: 0; }
     .nav-links a {
       color: var(--text-dim);
       font-size: 0.95rem;
@@ -162,7 +219,7 @@
       position: relative;
       transition: color 0.25s ease, background 0.25s ease;
     }
-    .nav-links a:hover { color: var(--text); background: rgba(118, 139, 146, 0.08); }
+    .nav-links a:hover { color: var(--text); background: rgb(var(--accent-rgb) / 0.08); }
     .nav-links a.active { color: var(--accent-light); }
     .nav-links a.active::after {
       content: '';
@@ -204,7 +261,7 @@
       align-items: center;
       overflow: hidden;
       background:
-        radial-gradient(1200px 600px at 75% 20%, rgba(118,139,146,0.10), transparent 60%),
+        radial-gradient(1200px 600px at 75% 20%, rgb(var(--accent-rgb) / 0.10), transparent 60%),
         linear-gradient(135deg, var(--bg-0) 0%, var(--bg-2) 100%);
     }
     #vanta-bg {
@@ -238,7 +295,7 @@
     }
     .hero-role {
       font-size: clamp(1.05rem, 3vw, 1.45rem);
-      color: var(--accent-light);
+      color: var(--text-dim);
       font-weight: 400;
       margin-top: 1rem;
       letter-spacing: 0.02em;
@@ -246,7 +303,7 @@
       transform: translateY(20px);
       animation: rise 1s ease-out 0.15s forwards;
     }
-    .hero-role .sep { color: rgba(118,139,146,0.5); margin: 0 0.6rem; }
+    .hero-role .sep { color: rgb(var(--accent-rgb) / 0.5); margin: 0 0.6rem; }
     .hero-type {
       margin-top: 1.4rem;
       font-size: clamp(0.95rem, 2.4vw, 1.15rem);
@@ -332,7 +389,6 @@
     }
 
     /* Experience — single-column split rows */
-    .exp-list { position: relative; }
     .exp-entry {
       display: grid;
       grid-template-columns: 180px 1fr;
@@ -347,7 +403,7 @@
       font-family: var(--font-head);
       font-size: 0.95rem;
       font-weight: 500;
-      color: var(--accent-light);
+      color: var(--text-dim);
       padding-top: 0.15rem;
     }
     .exp-when .present {
@@ -395,19 +451,6 @@
     .exp-main ul li:last-child { margin-bottom: 0; }
     .exp-main ul li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.6rem;
-      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      background: var(--surface-hover);
-      border-color: var(--border-strong);
-      box-shadow: 0 22px 44px rgba(0,0,0,0.35);
-    }
 
     .c-head {
       display: flex;
@@ -423,86 +466,38 @@
       border-radius: 10px;
       overflow: hidden;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(118,139,146,0.12);
+      background: rgb(var(--accent-rgb) / 0.12);
       border: 1px solid var(--border);
       font-family: var(--font-head);
       font-weight: 600;
       font-size: 0.95rem;
-      color: var(--accent-light);
+      color: var(--text-dim);
     }
     .logo img { width: 100%; height: 100%; object-fit: cover; }
-    .c-meta h4 { font-size: 0.95rem; color: var(--accent-light); font-weight: 600; letter-spacing: 0.01em; }
+    .c-meta h4 { font-size: 0.95rem; color: #fff; font-weight: 600; letter-spacing: 0.01em; }
     .c-meta .loc { font-size: 0.8rem; color: var(--muted); }
-    .card h3 {
-      font-family: var(--font-head);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 0.25rem;
-    }
-    .card .date { display: block; color: var(--accent); font-size: 0.85rem; margin-bottom: 0.9rem; }
-    .card ul { list-style: none; }
-    .card ul li {
-      position: relative;
-      padding-left: 1.1rem;
-      color: var(--text-dim);
-      font-size: 0.92rem;
-      font-weight: 300;
-      margin-bottom: 0.55rem;
-      line-height: 1.55;
-    }
-    .card ul li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
-    /* Education cards */
-    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
 
-    /* Skills — stack readout */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2.4rem 2rem;
-    }
-    .skill-col .cat {
+    /* Skills as pills in the intro — a toolkit, not a resume section */
+    .skill-pills {
       display: flex;
-      align-items: baseline;
-      gap: 0.55rem;
-      font-family: var(--font-head);
-      font-size: 0.74rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text);
-      padding-bottom: 0.85rem;
-      margin-bottom: 0.9rem;
-      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
     }
-    .skill-col .cat .num {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0;
-      color: var(--accent);
-    }
-    .skill-col ul { list-style: none; }
-    .skill-col li {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      font-size: 0.96rem;
+    .skill-pill {
+      font-size: 0.82rem;
       color: var(--text-dim);
-      padding: 0.42rem 0;
-      cursor: default;
-      transition: color 0.2s ease, transform 0.2s ease;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.32rem 0.85rem;
+      transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
     }
-    .skill-col li::before {
-      content: '';
-      flex: 0 0 6px;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.45;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+    .skill-pill:hover {
+      color: var(--text);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
     }
-    .skill-col li:hover { color: var(--text); transform: translateX(4px); }
-    .skill-col li:hover::before { opacity: 1; transform: scale(1.35); }
 
     /* ---------- Photography ---------- */
     #photography { background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-2) 100%); }
@@ -527,7 +522,7 @@
     }
     .filter-btn:hover { transform: translateY(-2px); color: var(--text); border-color: var(--border-strong); }
     .filter-btn.active {
-      background: linear-gradient(135deg, rgba(118,139,146,0.22), rgba(160,191,199,0.10));
+      background: linear-gradient(135deg, rgb(var(--accent-rgb) / 0.22), rgb(var(--accent-light-rgb) / 0.10));
       border-color: var(--accent);
       color: #fff;
     }
@@ -600,7 +595,7 @@
       transition: background 0.25s ease, transform 0.25s ease;
       backdrop-filter: blur(12px);
     }
-    .lb-btn:hover { background: rgba(118,139,146,0.35); }
+    .lb-btn:hover { background: rgb(var(--accent-rgb) / 0.35); }
     .lb-close { top: 1.5rem; right: 1.5rem; width: 48px; height: 48px; font-size: 1.7rem; }
     .lb-nav { top: 50%; transform: translateY(-50%); width: 58px; height: 58px; font-size: 2rem; }
     .lb-nav:hover { transform: translateY(-50%) scale(1.08); }
@@ -621,6 +616,192 @@
     .lb-title { font-weight: 600; font-size: 1rem; }
     .lb-count { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
 
+    /* ---------- Food ---------- */
+    /* Warm accent so Food reads as its own chapter next to the slate of Photography */
+    #food {
+      --food: var(--accent);
+      --food-light: var(--accent-light);
+      background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-0) 100%);
+    }
+    #food .eyebrow { color: var(--food); }
+    .grad-food {
+      background: linear-gradient(135deg, #ffffff 0%, var(--food) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* The card stretches to the map's height. The map keeps align-self:start so its
+       aspect-ratio is never overridden, and .fshot contributes 0 intrinsic height,
+       which leaves the map as the thing that sets the row. */
+    .fatlas {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 1.6rem;
+      align-items: stretch;
+      margin-top: 2.5rem;
+    }
+    .fatlas > * { min-width: 0; }
+    .fmap-scroll { align-self: start; }
+
+    .fstage {
+      position: relative;
+      aspect-ratio: 200 / 96;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: radial-gradient(120% 130% at 50% 0%, rgb(var(--accent-rgb) / 0.07), transparent 65%), var(--bg-1);
+    }
+    .fstage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .fpins { position: absolute; inset: 0; }
+
+    .fpin {
+      position: absolute;
+      width: 28px; height: 28px;
+      margin: -14px 0 0 -14px;
+      padding: 0; border: 0; background: none;
+      cursor: pointer;
+      display: grid; place-items: center;
+    }
+    .fpin i {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--food);
+      box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.18), 0 0 14px 3px rgb(var(--accent-rgb) / 0.5);
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .fpin::after {
+      content: '';
+      position: absolute;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      border: 1.5px solid var(--food);
+      opacity: 0;
+      animation: fripple 2.6s ease-out infinite;
+    }
+    .fpin:nth-child(3n)::after { animation-delay: 0.9s; }
+    .fpin:nth-child(3n+1)::after { animation-delay: 1.8s; }
+    @keyframes fripple { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 0; transform: scale(3.6); } }
+    .fpin:hover i, .fpin.sel i {
+      transform: scale(1.65);
+      box-shadow: 0 0 0 4px rgb(var(--accent-rgb) / 0.25), 0 0 22px 6px rgb(var(--accent-rgb) / 0.7);
+    }
+    .fpin.sel i { background: #fff; }
+    .fcnt {
+      position: absolute;
+      top: 0; right: 0;
+      font-style: normal;
+      font-family: var(--font-head);
+      font-size: 0.58rem; font-weight: 700; line-height: 1;
+      color: #0a0a0a;
+      background: var(--food-light);
+      border-radius: 20px;
+      padding: 0.13rem 0.27rem;
+      pointer-events: none;
+    }
+
+    .ftip {
+      position: absolute;
+      z-index: 20;
+      pointer-events: none;
+      transform: translate(-50%, -138%);
+      background: rgba(16,17,19,0.96);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 0.5rem 0.8rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.6);
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      color: #fff;
+    }
+    .ftip.show { opacity: 1; }
+
+    /* The wrapper stretches to the row; the card fills it absolutely so its own
+       content can never push the row taller than the map. */
+    .fdetail-wrap { position: relative; }
+    .fdetail {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .fshot {
+      position: relative;
+      width: 100%;
+      flex: 1 1 0;
+      /* the photo keeps a floor; a busy card scrolls its text instead of squashing it */
+      min-height: 142px;
+      background:
+        radial-gradient(120% 90% at 30% 20%, rgb(var(--accent-rgb) / 0.26), transparent 60%),
+        radial-gradient(110% 100% at 80% 90%, rgba(194,98,44,0.30), transparent 62%),
+        linear-gradient(150deg, #221a12, #15171a);
+      overflow: hidden;
+    }
+    .fshot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* body takes its natural height; the photo absorbs the slack and only the
+       busiest cards shrink the text enough to scroll */
+    .fbody { padding: 1rem 1.15rem 1.05rem; flex: 0 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; }
+    .fbody::-webkit-scrollbar { display: none; }
+    .fwhere { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--food); margin-bottom: 0.3rem; }
+    .fplacename { font-family: var(--font-head); font-size: 1.2rem; font-weight: 600; color: #fff; line-height: 1.25; }
+    .fdishes { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.7rem; }
+    .fdish {
+      font-size: 0.75rem;
+      color: var(--food-light);
+      background: rgb(var(--accent-rgb) / 0.09);
+      border: 1px solid rgb(var(--accent-rgb) / 0.22);
+      border-radius: 20px;
+      padding: 0.18rem 0.6rem;
+    }
+    /* step between places in the same city, overlaid so it costs no body height */
+    .fcount {
+      position: absolute;
+      top: 0.6rem; right: 0.6rem;
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      pointer-events: none;
+    }
+    .fnav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px; height: 32px;
+      padding: 0;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #fff;
+      font-size: 1.2rem;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .fnav-btn:hover { background: rgb(var(--accent-rgb) / 0.8); border-color: var(--food); }
+    .fprev { left: 0.55rem; }
+    .fnext { right: 0.55rem; }
+
+    .fempty { padding: 3.5rem 1.5rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
     /* ---------- Flair ---------- */
     /* Scroll progress bar */
     .scroll-prog {
@@ -638,7 +819,7 @@
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      background: radial-gradient(360px circle at var(--hx, 70%) var(--hy, 35%), rgba(118, 139, 146, 0.16), transparent 62%);
+      background: radial-gradient(360px circle at var(--hx, 70%) var(--hy, 35%), rgb(var(--accent-rgb) / 0.16), transparent 62%);
       opacity: 0;
       transition: opacity 0.6s ease;
     }
@@ -654,23 +835,23 @@
     .reveal.in { opacity: 1; transform: none; }
 
     /* Card cursor spotlight */
-    .card { position: relative; overflow: hidden; }
-    .card > * { position: relative; z-index: 1; }
-    .card::after {
+    .exp-entry { position: relative; overflow: hidden; }
+    .exp-entry > * { position: relative; z-index: 1; }
+    .exp-entry::after {
       content: '';
       position: absolute;
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(160, 191, 199, 0.12), transparent 65%);
+      background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent-light-rgb) / 0.12), transparent 65%);
       opacity: 0;
       transition: opacity 0.35s ease;
     }
-    .card:hover::after { opacity: 1; }
+    .exp-entry:hover::after { opacity: 1; }
 
     @media (hover: none) {
       .hero-glow { display: none; }
-      .card::after { display: none; }
+      .exp-entry::after { display: none; }
     }
 
     /* ---------- Footer ---------- */
@@ -685,7 +866,7 @@
     footer .copy a { color: var(--accent-light); }
 
     /* Low-carbon toggle (in nav) */
-    .nav-right { display: flex; align-items: center; gap: 0.9rem; }
+    .nav-right { display: flex; align-items: center; gap: 0.9rem; min-width: 0; }
     .lc-toggle {
       display: inline-flex;
       align-items: center;
@@ -699,7 +880,7 @@
       color: var(--muted);
       transition: color 0.2s ease, background 0.2s ease;
     }
-    .lc-toggle:hover { color: var(--text-dim); background: rgba(118, 139, 146, 0.08); }
+    .lc-toggle:hover { color: var(--text-dim); background: rgb(var(--accent-rgb) / 0.08); }
     .lc-leaf {
       width: 17px; height: 17px;
       fill: currentColor;
@@ -748,7 +929,7 @@
     .low-carbon #vanta-bg,
     .low-carbon .hero-glow,
     .low-carbon .scroll-prog { display: none; }
-    .low-carbon .card::after { display: none; }
+    .low-carbon .exp-entry::after { display: none; }
     .low-carbon *, .low-carbon *::before, .low-carbon *::after {
       animation: none !important;
       transition: none !important;
@@ -756,39 +937,71 @@
     .low-carbon .hero-name, .low-carbon .hero-role, .low-carbon .hero-type,
     .low-carbon .hero-actions, .low-carbon .scroll-hint, .low-carbon .photo-item,
     .low-carbon .reveal { opacity: 1 !important; transform: none !important; }
+    /* animation:none would freeze the ripple mid-keyframe as a permanent ring */
+    .low-carbon .fpin::after { display: none; }
 
     /* ---------- Responsive ---------- */
+    /* Side-by-side only while the map is tall enough to give the card room.
+       Narrower than this the map shrinks, and a height-matched card would clip
+       its own text — so stack and let the card size to its content. */
+    @media (max-width: 1100px) {
+      .fatlas { grid-template-columns: minmax(0, 1fr); }
+      .fdetail { position: static; }
+      .fshot { flex: 0 0 auto; aspect-ratio: 4 / 3; min-height: 0; }
+      .fbody { overflow: visible; }
+    }
+
     @media (max-width: 768px) {
       :root { --nav-h: 60px; }
+      /* the typed phrase wraps to two lines down here; reserve both so it
+         can't push the hero around mid-type (CLS) */
+      .hero-type { min-height: 3.2em; }
       .section-pad { padding: 4rem 0; }
-      .nav-links a { padding: 0.5rem 0.6rem; font-size: 0.9rem; }
-      .brand { font-size: 0.98rem; }
+      .nav-links a { padding: 0.5rem 0.5rem; font-size: 0.88rem; }
+      .nav-links { gap: 0.2rem; }
+      .brand { font-size: 0.95rem; }
 
       .exp-entry { grid-template-columns: 1fr; gap: 0.7rem; padding: 1.8rem 0; }
       .exp-when { font-size: 0.85rem; }
       .exp-when .present { display: inline; margin: 0 0 0 0.35rem; }
       .exp-main .c-head { margin-top: 0.5rem; }
 
-      .edu-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.5rem; }
       .photo-grid { grid-template-columns: 1fr; }
+
+
       .lightbox img { max-width: 94%; max-height: 78%; }
       .lb-prev { left: 0.8rem; } .lb-next { right: 0.8rem; }
       .lb-nav { width: 48px; height: 48px; font-size: 1.6rem; }
       .lb-close { top: 1rem; right: 1rem; width: 42px; height: 42px; }
     }
 
+    /* Never squash the dot grid — keep its ratio and let the map scroll sideways, full-bleed */
+    @media (max-width: 640px) {
+      .fmap-scroll {
+        overflow-x: auto;
+        margin: 0 -1.5rem;
+        padding: 0 1.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .fmap-scroll::-webkit-scrollbar { display: none; }
+      .fstage { min-width: 660px; }
+    }
+
     @media (max-width: 420px) {
-      .nav-links a { padding: 0.5rem 0.45rem; font-size: 0.85rem; }
-      .brand { font-size: 0.9rem; }
+      nav.topnav { padding: 0 0.7rem; }
+      .nav-links a { padding: 0.5rem 0.3rem; font-size: 0.8rem; }
+      .nav-links { gap: 0.1rem; }
+      .nav-right { gap: 0.5rem; }
+      .brand { font-size: 0.85rem; }
       .hero-actions { gap: 0.7rem; }
-      .skills-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .hero-name, .hero-role, .hero-type, .hero-actions, .scroll-hint, .photo-item, .reveal { opacity: 1 !important; transform: none !important; }
+      .fpin::after { display: none; }
     }
   </style>
 </head>
@@ -803,6 +1016,7 @@
         <a href="#home" data-sec="home" class="active">Home</a>
         <a href="#about" data-sec="about">About</a>
         <a href="#photography" data-sec="photography">Photography</a>
+        <a href="#food" data-sec="food">Food</a>
       </div>
       <button class="lc-toggle" id="lcToggle" role="switch" aria-checked="false" title="Low-carbon mode" aria-label="Low-carbon mode">
         <svg class="lc-leaf" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
@@ -816,7 +1030,7 @@
     <div class="hero-glow" id="heroGlow"></div>
     <div class="wrap hero-inner">
       <h1 class="hero-name"><span class="hi">Hi, I'm</span><span class="name grad">Aizaz.</span></h1>
-      <p class="hero-role">Software Engineer <span class="sep">/</span> Hobbyist Photographer</p>
+      <p class="hero-role">Software Engineer <span class="sep">/</span> Photographer <span class="sep">/</span> Foodie</p>
       <p class="hero-type"><span id="typed"></span><span id="cursor">|</span></p>
 
       <div class="hero-actions">
@@ -848,8 +1062,20 @@
         <p class="section-lead">
           I'm a Senior Software Engineer focused on applied AI and distributed systems. At TikTok
           I build complex, large-scale agentic platforms that serve over 100M requests a day. Before that I was the founding
-          engineer at namshi.com, scaling it to $5M/day in GMV. Outside work, I'm a hobbyist photographer, chasing the best landscapes and architectures.
+          engineer at namshi.com, scaling it to $5M/day in GMV. Outside work, I'm a hobbyist photographer chasing the best landscapes and architectures, and a relentless foodie hunting down the best meal in every city I land in.
         </p>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">LLMs</span>
+          <span class="skill-pill">Agents</span>
+          <span class="skill-pill">MCP</span>
+          <span class="skill-pill">Google Cloud</span>
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">Kubernetes</span>
+          <span class="skill-pill">Redis</span>
+        </div>
       </div>
 
       <h3 class="subhead">Experience</h3>
@@ -859,7 +1085,7 @@
           <div class="exp-when">Mar 2025<span class="present">— Present</span></div>
           <div class="exp-main">
             <div class="c-head">
-              <div class="logo"><img src="assets/tiktok.jpg" alt="TikTok"></div>
+              <div class="logo"><img src="assets/tiktok.jpg" alt="TikTok" loading="lazy" decoding="async"></div>
               <div class="c-meta"><h4>TikTok</h4><span class="loc">London, UK</span></div>
             </div>
             <div class="role">
@@ -877,7 +1103,7 @@
           <div class="exp-when">Aug 2021<span class="present">— Feb 2025</span></div>
           <div class="exp-main">
             <div class="c-head">
-              <div class="logo"><img src="assets/noon.jpeg" alt="Noon"></div>
+              <div class="logo"><img src="assets/noon.jpeg" alt="Noon" loading="lazy" decoding="async"></div>
               <div class="c-meta"><h4>Noon</h4><span class="loc">Dubai, UAE</span></div>
             </div>
             <div class="role">
@@ -915,7 +1141,7 @@
           <div class="exp-when">Sep 2020<span class="present">— Dec 2020</span></div>
           <div class="exp-main">
             <div class="c-head">
-              <div class="logo"><img src="assets/lm.jpeg" alt="Lockheed Martin"></div>
+              <div class="logo"><img src="assets/lm.jpeg" alt="Lockheed Martin" loading="lazy" decoding="async"></div>
               <div class="c-meta"><h4>Lockheed Martin</h4><span class="loc">Abu Dhabi, UAE</span></div>
             </div>
             <div class="role">
@@ -929,76 +1155,40 @@
       </div>
 
       <h3 class="subhead">Education</h3>
-      <div class="edu-grid">
-<!--         <div class="card">
-          <div class="c-head">
-            <div class="logo"><img src="assets/oxford.png" alt="University of Oxford"></div>
-            <div class="c-meta"><h4>University of Oxford</h4><span class="loc">Kellogg College</span></div>
+      <div class="exp-list">
+<!--         <div class="exp-entry">
+          <div class="exp-when">2026</div>
+          <div class="exp-main">
+            <div class="c-head">
+              <div class="logo"><img src="assets/oxford.png" alt="University of Oxford" loading="lazy" decoding="async"></div>
+              <div class="c-meta"><h4>University of Oxford</h4><span class="loc">Kellogg College</span></div>
+            </div>
+            <div class="role">
+              <div class="role-head"><span class="role-title">MSc, Software Engineering</span></div>
+              <ul>
+                <li>Advanced study in software engineering alongside full-time work.</li>
+              </ul>
+            </div>
           </div>
-          <h3>MSc, Software Engineering</h3>
-          <span class="date">2026</span>
-          <ul>
-            <li>Advanced study in software engineering alongside full-time work.</li>
-          </ul>
         </div> -->
-        <div class="card">
-          <div class="c-head">
-            <div class="logo"><img src="assets/nyu.png" alt="NYU Abu Dhabi"></div>
-            <div class="c-meta"><h4>NYU Abu Dhabi</h4><span class="loc">Abu Dhabi, UAE</span></div>
+        <div class="exp-entry">
+          <div class="exp-when">Aug 2017<span class="present">&mdash; May 2021</span></div>
+          <div class="exp-main">
+            <div class="c-head">
+              <div class="logo"><img src="assets/nyu.png" alt="NYU Abu Dhabi" loading="lazy" decoding="async"></div>
+              <div class="c-meta"><h4>NYU Abu Dhabi</h4><span class="loc">Abu Dhabi, UAE</span></div>
+            </div>
+            <div class="role">
+              <div class="role-head"><span class="role-title">BSc, Computer Science &amp; Applied Math</span></div>
+              <ul>
+                <li>GPA 3.94 / 4.00 &mdash; Magna Cum Laude, University Honors Scholar.</li>
+                <li>Full-ride Merit Scholarship ($90k/year).</li>
+              </ul>
+            </div>
           </div>
-          <h3>BSc, Computer Science &amp; Applied Math</h3>
-          <span class="date">Aug 2017 — May 2021</span>
-          <ul>
-            <li>GPA 3.94 / 4.00 — Magna Cum Laude, University Honors Scholar.</li>
-            <li>Full-ride Merit Scholarship ($90k/year).</li>
-          </ul>
         </div>
       </div>
 
-      <h3 class="subhead">Skills</h3>
-      <div class="skills-grid">
-        <div class="skill-col">
-          <div class="cat"><span class="num">01</span> Languages</div>
-          <ul>
-            <li>Python</li>
-            <li>Java</li>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
-            <li>Go</li>
-            <li>SQL</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <div class="cat"><span class="num">02</span> AI</div>
-          <ul>
-            <li>LLMs</li>
-            <li>Agents</li>
-            <li>MCP</li>
-            <li>Prompt Engineering</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <div class="cat"><span class="num">03</span> Frameworks</div>
-          <ul>
-            <li>FastAPI</li>
-            <li>Flask</li>
-            <li>Spring Boot</li>
-            <li>React</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <div class="cat"><span class="num">04</span> Infrastructure</div>
-          <ul>
-            <li>Google Cloud</li>
-            <li>Docker</li>
-            <li>Kubernetes</li>
-            <li>Redis</li>
-            <li>Pub/Sub</li>
-            <li>CI/CD</li>
-            <li>Observability</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1021,16 +1211,38 @@
   </section>
 
   <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="lb-btn lb-close" id="lbClose">&times;</button>
-    <button class="lb-btn lb-nav lb-prev" id="lbPrev">&#8249;</button>
-    <button class="lb-btn lb-nav lb-next" id="lbNext">&#8250;</button>
-    <img id="lbImage" src="" alt="">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close photo">&times;</button>
+    <button class="lb-btn lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button>
+    <button class="lb-btn lb-nav lb-next" id="lbNext" aria-label="Next photo">&#8250;</button>
+    <img id="lbImage" alt="">
     <div class="lb-info">
       <div class="lb-title" id="lbTitle"></div>
       <div class="lb-count" id="lbCount"></div>
     </div>
   </div>
+
+  <!-- ===== Food ===== -->
+  <section id="food" class="section-pad">
+    <div class="wrap">
+      <p class="eyebrow">Food</p>
+      <h2 class="section-title grad-food">Flavor Trails</h2>
+      <p class="section-lead">Restaurants I’d go back to, and what I’d order.</p>
+
+      <div class="fatlas">
+        <div class="fmap-scroll">
+          <div class="fstage" id="fStage">
+            <canvas id="fCanvas" aria-hidden="true"></canvas>
+            <div class="fpins" id="fPins"></div>
+            <div class="ftip" id="fTip" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="fdetail-wrap">
+          <aside class="fdetail" id="fDetail" aria-live="polite"></aside>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== Footer ===== -->
   <footer>
@@ -1055,10 +1267,15 @@
     let lcOn = lowCarbonAtLoad;
 
     const FONT_HREF = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap';
+    // Single source of truth for JS-drawn colour: whatever data-theme resolved to
+    const themeRgb = (name) => getComputedStyle(document.documentElement)
+      .getPropertyValue(name).trim().split(/[\s,]+/).map(Number);
+    const themeHex = (name) => { const [r, g, b] = themeRgb(name); return (r << 16) | (g << 8) | b; };
+
     const SRC_THREE = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js';
-    const SRC_VANTA = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js';
+    const SRC_VANTA = 'https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js';
     // Approx compressed sizes of what low-carbon skips (used for the savings toast when timing data is cross-origin-blocked)
-    const HEAVY_EST = { three: 155000, vanta: 22000, fonts: 95000 };
+    const HEAVY_EST = { three: 123628, vanta: 4544, fonts: 71637 };   // measured, not guessed
 
     let fontsInjected = !lowCarbonAtLoad;   // head script injects fonts only when not low-carbon
     let vantaInstance = null;
@@ -1084,7 +1301,7 @@
         el: "#vanta-bg",
         mouseControls: true, touchControls: false, gyroControls: false,
         scale: 1.0, scaleMobile: 1.0,
-        color: 0x768b92, backgroundColor: 0x0a0a0a,
+        color: themeHex('--accent-rgb'), backgroundColor: 0x0a0a0a,
         points: small ? 8.0 : 11.0,
         maxDistance: small ? 20.0 : 24.0,
         spacing: small ? 16.0 : 18.0
@@ -1163,28 +1380,31 @@
     // Typewriter (cycling)
     const phrases = [
       "Building large-scale AI agent platforms at TikTok.",
-      "Sharing my thoughts and photos with the world."
+      "Sharing my photos and food recs from around the world."
     ];
     const typed = document.getElementById('typed');
     const cursorEl = document.getElementById('cursor');
-    let pi = 0, ci = 0, deleting = false, typing = false;
+    let pi = 0, ci = 0, deleting = false, typing = false, tickTimer = null;
     function tick() {
       if (!typing) return;
       const word = phrases[pi];
       typed.textContent = word.substring(0, ci);
-      if (!deleting && ci < word.length) { ci++; setTimeout(tick, 55); }
-      else if (!deleting && ci === word.length) { deleting = true; setTimeout(tick, 2000); }
-      else if (deleting && ci > 0) { ci--; setTimeout(tick, 25); }
-      else { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 400); }
+      if (!deleting && ci < word.length) { ci++; tickTimer = setTimeout(tick, 55); }
+      else if (!deleting && ci === word.length) { deleting = true; tickTimer = setTimeout(tick, 2000); }
+      else if (deleting && ci > 0) { ci--; tickTimer = setTimeout(tick, 25); }
+      else { deleting = false; pi = (pi + 1) % phrases.length; tickTimer = setTimeout(tick, 400); }
     }
     function startTypewriter() {
       if (typing) return;
       typing = true;
+      ci = 0; pi = 0; deleting = false;   // restart cleanly rather than mid-phrase
       if (cursorEl) cursorEl.style.display = '';
       tick();
     }
     function stopTypewriter() {
       typing = false;
+      clearTimeout(tickTimer);            // otherwise the orphan chain resumes on restart
+      tickTimer = null;
       typed.textContent = phrases[0];
       if (cursorEl) cursorEl.style.display = 'none';
     }
@@ -1228,7 +1448,7 @@
 
     // Card cursor spotlight
     if (window.matchMedia('(hover: hover)').matches) {
-      document.querySelectorAll('.card').forEach((card) => {
+      document.querySelectorAll('.exp-entry').forEach((card) => {
         card.addEventListener('mousemove', (e) => {
           if (lcOn) return;
           const r = card.getBoundingClientRect();
@@ -1241,11 +1461,9 @@
     // Scroll reveal (staggered) — scroll-based so nothing can get stuck hidden
     if (!reduceMotion) {
       const reveals = [];
-      document.querySelectorAll('#about .about-intro, #about .subhead, #photography .eyebrow, #photography .section-title, #photography .section-lead, #photography .filter-bar')
+      document.querySelectorAll('#about .about-intro, #about .skill-pills, #about .subhead, #photography .eyebrow, #photography .section-title, #photography .section-lead, #photography .filter-bar, #food .eyebrow, #food .section-title, #food .section-lead')
         .forEach((el) => reveals.push([el, 0]));
       document.querySelectorAll('.exp-entry').forEach((el, i) => reveals.push([el, i * 80]));
-      document.querySelectorAll('.edu-grid > .card').forEach((el, i) => reveals.push([el, i * 110]));
-      document.querySelectorAll('.skill-col').forEach((el, i) => reveals.push([el, i * 90]));
       reveals.forEach(([el, delay]) => {
         el.classList.add('reveal');
         el.style.transitionDelay = delay + 'ms';
@@ -1358,15 +1576,31 @@
       });
     }
 
-    function openLightbox(i) { currentIndex = i; updateLightbox(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    let lbReturnTo = null;   // the tile that opened it, so Esc lands back where you were
+    function openLightbox(i) {
+      lbReturnTo = document.activeElement;
+      currentIndex = i; updateLightbox();
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      if (lbReturnTo && document.body.contains(lbReturnTo)) lbReturnTo.focus();
+      lbReturnTo = null;
+    }
+    // Tab cycles the three controls instead of walking the page behind the overlay
+    function lbFocusables() { return [lbClose, lbPrev, lbNext].filter((b) => !b.disabled); }
     function updateLightbox() {
       if (!currentPhotos.length) return;
       const p = currentPhotos[currentIndex];
       lbImage.src = largeSrc(p.src); lbImage.alt = p.title; lbTitle.textContent = p.title;
       lbCount.textContent = `${currentIndex + 1} of ${currentPhotos.length}`;
+      const active = document.activeElement;
       lbPrev.disabled = currentIndex === 0;
       lbNext.disabled = currentIndex === currentPhotos.length - 1;
+      if (active && active.disabled) (active === lbPrev ? lbNext : lbPrev).focus();
       // Preload only the neighbours so prev/next feels instant
       [currentIndex - 1, currentIndex + 1].forEach(j => {
         if (j >= 0 && j < currentPhotos.length) { const im = new Image(); im.src = largeSrc(currentPhotos[j].src); }
@@ -1382,12 +1616,402 @@
     lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
     document.addEventListener('keydown', e => {
       if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Tab') {
+        const f = lbFocusables();
+        if (!f.length) { e.preventDefault(); return; }
+        const i = f.indexOf(document.activeElement);
+        const nextI = e.shiftKey ? (i <= 0 ? f.length - 1 : i - 1) : (i === -1 || i === f.length - 1 ? 0 : i + 1);
+        e.preventDefault(); f[nextI].focus();
+        return;
+      }
       if (e.key === 'Escape') closeLightbox();
       else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
     });
 
     filterPhotos('featured');
+  </script>
+
+  <!-- Food map -->
+  <script>
+    /* ===========================================================
+       Favourite eateries. One entry per place.
+
+         city, country   shown above the name
+         lat, lon        decimal degrees (right-click in Google Maps
+                         and copy the pair). Places in the same city
+                         share one pin, so only the first one's
+                         coordinates are used for the map.
+         place           the restaurant / stall / cart
+         dishes: []      what to order there
+         img             optional: 'photos/food/your-photo.jpg'
+       =========================================================== */
+    const foodData = [
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Salt, Kite Beach',
+        dishes: ['Beef Burger', 'Lotus Soft Serve'],
+        img: 'photos/food/salt-kite-beach.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Nablus',
+        dishes: ['Kunafa'],
+        img: 'photos/food/nablus.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Seven Hotpot',
+        dishes: ['Hotpot'],
+        img: 'photos/food/seven-hotpot.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Chongqing Noodle House',
+        dishes: ['Noodles', 'Dumplings'],
+        img: 'photos/food/chongqing-noodle.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Off the Hook',
+        dishes: ['Seafood Boil'],
+        img: 'photos/food/off-the-hook.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Mimi Kakushi',
+        dishes: ['Spicy Tuna Maki Roll', 'Rock Shrimp Popcorn', 'Wagyu Gyoza', 'Marinated Octopus Kushi'],
+        img: 'photos/food/mimi-kakushi.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Bkry',
+        dishes: ['Pecan Salted Caramel Croissant'],
+        img: 'photos/food/bkry.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: '88 Hong Kong',
+        dishes: ['Korean Fried Chicken'],
+        img: 'photos/food/88-hong-kong.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Big T BBQ',
+        dishes: ['Brisket', 'Sausages'],
+        img: 'photos/food/big-t-bbq.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Hashmi\'s BBQ',
+        dishes: ['Chooza Chicken', 'Poussin Chicken', 'BBQ Prawns'],
+        img: 'photos/food/hashmis-bbq.jpg' },
+      { city: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708,
+        place: 'Al Ustad Special Kabab',
+        dishes: ['Kebab with Rice'],
+        img: 'photos/food/al-ustad.jpg' },
+      { city: 'Abu Dhabi', country: 'UAE', lat: 24.4539, lon: 54.3773,
+        place: 'Hankook',
+        dishes: ['Yangnyeom Chicken', 'Beef Bulgogi'],
+        img: 'photos/food/hankook.jpg' },
+      { city: 'Abu Dhabi', country: 'UAE', lat: 24.4539, lon: 54.3773,
+        place: 'Ritaj',
+        dishes: ['Chicken 65 Biryani'],
+        img: 'photos/food/ritaj.jpg' },
+      { city: 'Amsterdam', country: 'Netherlands', lat: 52.3676, lon: 4.9041,
+        place: 'De Carrousel Pannenkoeken',
+        dishes: ['Mini Pancakes'],
+        img: 'photos/food/de-carrousel.jpg' },
+      { city: 'Amsterdam', country: 'Netherlands', lat: 52.3676, lon: 4.9041,
+        place: 'Van Wonderen Stroopwafels',
+        dishes: ['Stroopwafels'],
+        img: 'photos/food/van-wonderen.jpg' },
+      { city: 'Baku', country: 'Azerbaijan', lat: 40.4093, lon: 49.8671,
+        place: 'Kurban Said',
+        dishes: ['Mixed Grill BBQ', 'Dolma', 'Eggplant Roll', 'Pulao'],
+        img: 'photos/food/kurban-said.jpg' },
+      { city: 'Bangkok', country: 'Thailand', lat: 13.7563, lon: 100.5018,
+        place: 'Faiz Kai Nom Sod',
+        dishes: ['Tom Yum Shrimp Fried Rice', 'Minced Chicken with Holy Basil'],
+        img: 'photos/food/faiz-kai-nom-sod.jpg' },
+      { city: 'Barcelona', country: 'Spain', lat: 41.3874, lon: 2.1686,
+        place: 'Wild Beef',
+        dishes: ['Big Beef Burger'],
+        img: 'photos/food/wild-beef.jpg' },
+      { city: 'Berlin', country: 'Germany', lat: 52.52, lon: 13.405,
+        place: 'Fatih Servet Döner',
+        dishes: ['Döner'],
+        img: 'photos/food/fatih-servet.jpg' },
+      { city: 'Boston', country: 'USA', lat: 42.3601, lon: -71.0589,
+        place: 'South Street Diner',
+        dishes: ['Lobster Benedict'],
+        img: 'photos/food/south-street.jpg' },
+      { city: 'Brussels', country: 'Belgium', lat: 50.8476, lon: 4.3572,
+        place: 'Neuhaus',
+        dishes: ['Soufflé'],
+        img: 'photos/food/neuhaus.jpg' },
+      { city: 'Colombo', country: 'Sri Lanka', lat: 6.9271, lon: 79.8612,
+        place: 'Pilawoos',
+        dishes: ['Masala Chicken Kottu'],
+        img: 'photos/food/pilawoos.jpg' },
+      { city: 'Florence', country: 'Italy', lat: 43.7696, lon: 11.2558,
+        place: 'Grom',
+        dishes: ['Hot Chocolate'],
+        img: 'photos/food/grom.jpg' },
+      { city: 'Florence', country: 'Italy', lat: 43.7696, lon: 11.2558,
+        place: 'Mister Pizza',
+        dishes: ['Toscana Pizza', 'Calabrese Pizza'],
+        img: 'photos/food/mister-pizza.jpg' },
+      { city: 'Florence', country: 'Italy', lat: 43.7696, lon: 11.2558,
+        place: 'Pizzeria Totò atto II',
+        dishes: ['Pesto Pizza', 'Margherita con Funghi'],
+        img: 'photos/food/toto-atto-ii.jpg' },
+      { city: 'Florence', country: 'Italy', lat: 43.7696, lon: 11.2558,
+        place: 'Gelateria dei Neri',
+        dishes: ['Gelato'],
+        img: 'photos/food/gelateria-dei-neri.jpg' },
+      { city: 'Florence', country: 'Italy', lat: 43.7696, lon: 11.2558,
+        place: 'La Strega Nocciola',
+        dishes: ['Hazelnut Gelato'],
+        img: 'photos/food/la-strega-nocciola.jpg' },
+      { city: 'Islamabad', country: 'Pakistan', lat: 33.6844, lon: 73.0479,
+        place: 'Sugar Rush',
+        dishes: ['Honey Caramel Crunch Ice Cream'],
+        img: 'photos/food/sugar-rush.jpg' },
+      { city: 'Islamabad', country: 'Pakistan', lat: 33.6844, lon: 73.0479,
+        place: 'Kabul Restaurant',
+        dishes: ['Kabuli Pulao', 'Tikka'],
+        img: 'photos/food/kabul-restaurant.jpg' },
+      { city: 'Istanbul', country: 'Türkiye', lat: 41.0082, lon: 28.9784,
+        place: 'Pasha Turkish Restaurant',
+        dishes: ['Kebab', 'Mixed BBQ'],
+        img: 'photos/food/pasha.jpg' },
+      { city: 'Koh Samui', country: 'Thailand', lat: 9.512, lon: 100.0136,
+        place: 'Cafe 69',
+        dishes: ['Pad Thai with Soft Shell Crab', 'Beef Cheek with Holy Basil', 'Duck Red Curry Dumpling'],
+        img: 'photos/food/cafe-69.jpg' },
+      { city: 'Kuala Lumpur', country: 'Malaysia', lat: 3.139, lon: 101.6869,
+        place: 'Richeese Factory',
+        dishes: ['Firefly Chicken', 'Mashed Potatoes', 'Mango Iced Tea'],
+        img: 'photos/food/richeese-factory.jpg' },
+      { city: 'Kuala Lumpur', country: 'Malaysia', lat: 3.139, lon: 101.6869,
+        place: 'Merchant\'s Lane',
+        dishes: ['Onde Onde Sponge Cake', 'Ramly Burger Wonton', 'Hongkie Beef Stew'],
+        img: 'photos/food/merchants-lane.jpg' },
+      { city: 'Lahore', country: 'Pakistan', lat: 31.5204, lon: 74.3587,
+        place: 'Sheefa Karahi Tikka',
+        dishes: ['Desi Murgh Karahi', 'Mutton Keema', 'Taka Tak'],
+        img: 'photos/food/sheefa-karahi.jpg' },
+      { city: 'Lahore', country: 'Pakistan', lat: 31.5204, lon: 74.3587,
+        place: 'Dahlia Nursery and Cafe',
+        dishes: ['Tres Leches Cake', 'Lotus French Toast', 'Ricotta Pesto Pizza'],
+        img: 'photos/food/dahlia-nursery.jpg' },
+      { city: 'Lahore', country: 'Pakistan', lat: 31.5204, lon: 74.3587,
+        place: 'Karachi Silver Spoon',
+        dishes: ['Malai Roll', 'Bihari Roll'],
+        img: 'photos/food/karachi-silver.jpg' },
+      { city: 'Lahore', country: 'Pakistan', lat: 31.5204, lon: 74.3587,
+        place: 'Muhammadi Nihari',
+        dishes: ['Nihari'],
+        img: 'photos/food/muhammadi-nihari.jpg' },
+      { city: 'Lahore', country: 'Pakistan', lat: 31.5204, lon: 74.3587,
+        place: 'Johnny & Jugnu',
+        dishes: ['Chicken Fillet Burger', 'Atomic Chipotle Wrap'],
+        img: 'photos/food/johnny-jugnu.jpg' },
+      { city: 'Lahore', country: 'Pakistan', lat: 31.5204, lon: 74.3587,
+        place: 'Grato',
+        dishes: ['Jalebi'],
+        img: 'photos/food/grato.jpg' },
+      { city: 'London', country: 'UK', lat: 51.5074, lon: -0.1278,
+        place: 'Blondie\'s Kitchen',
+        dishes: ['Cookie Dough & Ice Cream Sandwich'],
+        img: 'photos/food/blondies-kitchen.jpg' },
+      { city: 'Naples', country: 'Italy', lat: 40.8518, lon: 14.2681,
+        place: 'Ciao Pizza',
+        dishes: ['Pesto Pizza'],
+        img: 'photos/food/ciao-pizza.jpg' },
+      { city: 'New York City', country: 'USA', lat: 40.7128, lon: -74.006,
+        place: 'Bagel Belly',
+        dishes: ['Rainbow Bagel', 'Jalapeño Cream Cheese', 'Egg'],
+        img: 'photos/food/bagel-belly.jpg' },
+      { city: 'New York City', country: 'USA', lat: 40.7128, lon: -74.006,
+        place: 'Vanessa\'s Dumplings',
+        dishes: ['Shrimp Dumplings with Spicy Sauce', 'Dumpling Noodle Soup'],
+        img: 'photos/food/vanessas-dumplings.jpg' },
+      { city: 'New York City', country: 'USA', lat: 40.7128, lon: -74.006,
+        place: 'Dengji 2',
+        dishes: ['Braised Fish Rice Noodle'],
+        img: 'photos/food/dengji-2.jpg' },
+      { city: 'New York City', country: 'USA', lat: 40.7128, lon: -74.006,
+        place: 'Artichoke Pizza',
+        dishes: ['Artichoke Pizza'],
+        img: 'photos/food/artichoke-pizza.jpg' },
+      { city: 'New York City', country: 'USA', lat: 40.7128, lon: -74.006,
+        place: 'Insomnia Cookies',
+        dishes: ['Double Chocolate Chunk Cookie'],
+        img: 'photos/food/insomnia-cookies.jpg' },
+      { city: 'New York City', country: 'USA', lat: 40.7128, lon: -74.006,
+        place: 'Astor Halal Cart',
+        dishes: ['Chicken Over Rice'],
+        img: 'photos/food/astor-halal-cart.jpg' },
+      { city: 'Paris', country: 'France', lat: 48.8566, lon: 2.3522,
+        place: 'Pierre Hermé',
+        dishes: ['Ispahan Rose Macaron'],
+        img: 'photos/food/pierre-herme.jpg' },
+      { city: 'Porto', country: 'Portugal', lat: 41.1579, lon: -8.6291,
+        place: 'Porto Escondido',
+        dishes: ['Fish Cutlet'],
+        img: 'photos/food/porto-escondido.jpg' },
+      { city: 'Rome', country: 'Italy', lat: 41.9028, lon: 12.4964,
+        place: 'Sora Margherita',
+        dishes: ['Fettuccine Cacio e Pepe', 'Fried Artichokes'],
+        img: 'photos/food/sora-margherita.jpg' },
+      { city: 'Rome', country: 'Italy', lat: 41.9028, lon: 12.4964,
+        place: 'Serafini alla Pace',
+        dishes: ['Lasagna'],
+        img: 'photos/food/serafini-alla-pace.jpg' },
+      { city: 'Shanghai', country: 'China', lat: 31.2304, lon: 121.4737,
+        place: 'Paradise Dynasty',
+        dishes: ['Dandan Noodles', 'Sweet and Sour Fish', 'Seafood Soup'],
+        img: 'photos/food/paradise-dynasty.jpg' },
+    ];
+
+    /* Land as a 200x96 dot grid, baked offline from Natural Earth 110m and packed
+       one bit per cell. 3.2 KB of base64 instead of a map library and a tile server. */
+    const F_GRID = { cols: 200, rows: 96, latMax: 79, latMin: -57 };
+    const F_LAND_B64 = 'AAAAAAZ3/8/////AAD8AAAAAAH4AAAAAAAAAAAAGfv/f////wAA/gAAAAAAeAAAAAAAAAAAABg8fn////8AAH8AAAAAAGAAAAAAAAAAAAHYDH4/////AAByAAAAAAAYAAAAAAAAAAADwAz+P////wAAMAAAAQAAPAAAAAAAAAAAA+x//h////4AAAAAAAeAAH+AAAAAAAAAAAN/cwAf///+AAAAAAAfAAf/wAPAAAAAAAAA/3/8AH///gAAAAAAfAAf/8AD+AAAAAAAAH4//AB///4AAAAAAHAAP/+AA/wAAAAAAAcwBPgAP///AAAAAADgAH//AAAAAAAAAAAHwT9OAD///gAAAAAAwAH///MAwAAAAAAAD+N//wAf//wAAAAAAcAD////wMAAAAAAAA//fv8AH//8AAAAAAGA8////8HwAAAAAAAP/zz/gB///AAAAAADgP/////B/AADADAABv8+/+Af//wAAADAAcH///////4ABAD+AAD/jv/wH//8AAAB4ADB////////4AAB//D+f94/+B///AAAD/gAGf///////+j4B///////ufgP//AAAB/+AB///////////wf////3H7n4D//gAAA//zP///////////+D///////5/g//AAAAP/+/////////////4///////+H8P/gBAAH///////////////////////+D/D/wPwAB//f////////////7n///////z/gfwB+AA/f/////////////8QP//////v/wH8AfAAf//////////////+DP//////zg8B+AAAAP7//////////////wD//////4f2APgAAAH9//////////////8A//////8A/AD4AAAD/f/////////////wAf/f////AH2AMAAAA/7////////////n4AA/A////wD9gAAAAAH8f//////////+zgAADwD///+Af8AAAADhvP//////////4B4AABoAP///4H/AAAAA4Pn//////////8A+AABwAD////z/4AAAAODx//////////8APAAAwAA///////gAAAHw////////////0DwAAAAAL////v/4AAAD+/////////////A4AAAAAAf/////+AAAA3v////////////wMAAAAAAP//////gAAAB/////////////8AAAAAAAB//////eAAAAP/////////////gAAAAAAAP/////HgAAAH/////////////wAAAAAAAB/////+IAAAAf////////////kAAAAAAAAf/////AAAAAH//7/////////zAAAAAAAAH////5AAAAAf//8D////////54AAAAAAAB////+AAAAAH8+//////////4YAAAAAAAAf////AAAAAB+M//////////8GAAAAAAAAH////gAAAAA/Ad/////////XBgAAAAAAAA////wAAAAAHv2J////////8x4AAAAAAAAP///8AAAAAA/8Bj///////+N8AAAAAAAAA///+AAAAAAf/wAf///////w8AAAAAAAAAH//+AAAAAAP//f////////8IAAAAAAAAAB///gAAAAAD////////////AAAAAAAAAAAP/gMAAAAAD////////////wAAAAAAAAAAB/wDwAAAAB////7/v/////4AAAAAAAAAAAL8AoAAAAAf//////h/////AAAAAAAIAAAAfDfAAAAAP//////8P///8QAAAAAABAAAAH5w+AAAAD////+/+A/5/8AAAAAAAAAAAAA/8P8AAAAf////3/AP4P6BAAAAAAAAAAAAD/wAAAAAP////9/AD8D/gwAAAAAAAAAAAAB8AAAAAD//////AAeAP4GAAAAAAAAAAAAAHBwAAAA/////+YAHgD+BwAAAAAAAAAAAAA//4AAAD/////+AA4AzBMAAAAAAAAAAAAAH//AAAA//////AADAMADgAAAAAAAAAAAAAH/+AAAD/////gAAgFwMQAAAAAAAAAAAAAD//wAAAAB///4AAAB8PAAAAAAAAAAAAAAB//+AAAAAf//4AAAAPP3wAAAAAAAAAAAAAf//4AAAAH//8AAAABz/ngAAAAAAAAAAAAH///wAAAB//+AAAAAOez/wgAAAAAAAAAAD////gAAAP//AAAAABgOD/4AAAAAAAAAAAf///4AAAB//wAAAAAPgAv4wAAAAAAAAAAD///+AAAAf/8AAAAAAN+A2DAAAAAAAAAAA////AAAAH//gAAAAAAAHEQAAAAAAAAAAAH///gAAAB//4wAAAAAALzAAAAAAAAAAAAA///4AAAA//+cAAAAAAH84AIAAAAAAAAAAD//+AAAAP//PAAAAAAD//AADAAAAAAAAAAf//AAAAB//DwAAAAAD//4AAAAAAAAAAAAH//wAAAAf/w4AAAAAH//+AYAAAAAAAAAAD//4AAAAD/8OAAAAAB///wAAAAAAAAAAAA//wAAAAA/+DAAAAAAf//+AAAAAAAAAAAAP/4AAAAAP/gAAAAAAH///wAAAAAAAAAAAD/+AAAAAB/wAAAAAAB///8AAAAAAAAAAAA//AAAAAAf4AAAAAAAP//+AAAAAAAAAAAAP/gAAAAAD8AAAAAAAD+P/gAAAAAAAAAAAD/4AAAAAA8AAAAAAAA8B/wAIAAAAAAAAAB/4AAAAAAAAAAAAAAAAAH8ADAAAAAAAAAAf8AAAAAAAAAAAAAAAAAA+AAcAAAAAAAAAH8AAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAB/AAAAAAAAAAAAAAAAAAA4AHAAAAAAAAAA/gAAAAAAAAAAAAAAAAAAOADgAAAAAAAAAPwAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAD4AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA8MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+    (function () {
+      const stage = document.getElementById('fStage');
+      if (!stage || !foodData.length) return;
+
+      const cv = document.getElementById('fCanvas');
+      const ctx = cv.getContext('2d');
+      const pinsEl = document.getElementById('fPins');
+      const tipEl = document.getElementById('fTip');
+      const detEl = document.getElementById('fDetail');
+
+      // unpack the bit-per-cell grid
+      const bin = atob(F_LAND_B64);
+      const land = new Uint8Array(F_GRID.cols * F_GRID.rows);
+      for (let i = 0; i < land.length; i++) {
+        land[i] = (bin.charCodeAt(i >> 3) >> (7 - (i & 7))) & 1;
+      }
+
+      // same mercator the grid was baked with, so pins land on the right dots
+      const mercY = (lat) => Math.log(Math.tan(Math.PI / 4 + Math.max(-85, Math.min(85, lat)) * Math.PI / 360));
+      const yTop = mercY(F_GRID.latMax), yBot = mercY(F_GRID.latMin);
+      const projU = (lon) => (lon + 180) / 360;
+      const projV = (lat) => (mercY(lat) - yTop) / (yBot - yTop);
+
+      const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+      // Places in a city are metres apart at world scale — one pin each,
+      // the rest reachable from the arrows on the card.
+      const cities = [];
+      const byKey = new Map();
+      foodData.forEach((s) => {
+        const key = s.city + '|' + s.country;
+        if (!byKey.has(key)) {
+          const c = { city: s.city, country: s.country, lat: s.lat, lon: s.lon, spots: [] };
+          byKey.set(key, c);
+          cities.push(c);
+        }
+        byKey.get(key).spots.push(s);
+      });
+
+      const pinNodes = cities.map((c, i) => {
+        const b = document.createElement('button');
+        b.className = 'fpin';
+        b.style.left = (projU(c.lon) * 100) + '%';
+        b.style.top = (projV(c.lat) * 100) + '%';
+        b.setAttribute('aria-label', c.city + ', ' + c.country);
+        b.innerHTML = '<i></i>' + (c.spots.length > 1 ? '<em class="fcnt">' + c.spots.length + '</em>' : '');
+        const show = () => {
+          tipEl.textContent = c.city;
+          tipEl.style.left = b.style.left;
+          tipEl.style.top = b.style.top;
+          tipEl.classList.add('show');
+        };
+        const hide = () => tipEl.classList.remove('show');
+        b.addEventListener('mouseenter', show);
+        b.addEventListener('focus', show);
+        b.addEventListener('mouseleave', hide);
+        b.addEventListener('blur', hide);
+        b.addEventListener('click', () => select(i, 0));
+        pinsEl.appendChild(b);
+        return b;
+      });
+
+      function select(i, si, refocus) {
+        pinNodes.forEach((n, j) => n.classList.toggle('sel', j === i));
+        if (i === null) {
+          detEl.innerHTML = '<div class="fempty">Pick a pin to see where I ate.</div>';
+          return;
+        }
+        const c = cities[i], s = c.spots[si];
+        const shot = s.img
+          ? '<div class="fshot"><img src="' + esc(s.img) + '" alt="' + esc(s.dishes[0] || s.place) + '" loading="lazy" decoding="async"></div>'
+          : '<div class="fshot"></div>';
+        const dishes = '<div class="fdishes">' +
+          s.dishes.map((d) => '<span class="fdish">' + esc(d) + '</span>').join('') + '</div>';
+        // several places in one city: step through them, wrapping at both ends
+        const many = c.spots.length > 1;
+        const nav = many
+          ? '<span class="fcount">' + (si + 1) + ' / ' + c.spots.length + '</span>' +
+            '<button class="fnav-btn fprev" aria-label="Previous place in ' + esc(c.city) + '">\u2039</button>' +
+            '<button class="fnav-btn fnext" aria-label="Next place in ' + esc(c.city) + '">\u203a</button>'
+          : '';
+        detEl.innerHTML = shot.replace('</div>', nav + '</div>') + '<div class="fbody">' +
+          '<div class="fwhere">' + esc(c.city) + ' \u00b7 ' + esc(c.country) + '</div>' +
+          '<div class="fplacename">' + esc(s.place) + '</div>' +
+          dishes + '</div>';
+        if (many) {
+          const n = c.spots.length;
+          detEl.querySelector('.fprev').addEventListener('click', () => select(i, (si - 1 + n) % n, '.fprev'));
+          detEl.querySelector('.fnext').addEventListener('click', () => select(i, (si + 1) % n, '.fnext'));
+          // the card is rebuilt from scratch, so put focus back on the arrow that was pressed
+          if (refocus) { const b = detEl.querySelector(refocus); if (b) b.focus(); }
+        }
+      }
+
+      // Dots warm toward amber near the cities, so the map reads as
+      // "where I've been" before anyone hovers anything.
+      const heat = new Float32Array(F_GRID.cols * F_GRID.rows);
+      (function buildHeat() {
+        const R = 5.5;
+        cities.forEach((c) => {
+          const sc = projU(c.lon) * F_GRID.cols, sr = projV(c.lat) * F_GRID.rows;
+          for (let r = Math.max(0, Math.floor(sr - R)); r < Math.min(F_GRID.rows, sr + R); r++) {
+            for (let col = Math.max(0, Math.floor(sc - R)); col < Math.min(F_GRID.cols, sc + R); col++) {
+              const d = Math.hypot(col + 0.5 - sc, r + 0.5 - sr);
+              if (d >= R) continue;
+              const t = Math.pow(1 - d / R, 1.8);
+              const k = r * F_GRID.cols + col;
+              if (t > heat[k]) heat[k] = t;
+            }
+          }
+        });
+      })();
+
+      const DOT = themeRgb('--map-dot-rgb');
+      const HOT = themeRgb('--accent-light-rgb');
+
+      function draw() {
+        const w = stage.clientWidth, h = stage.clientHeight;
+        if (!w || !h) return;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        cv.width = w * dpr; cv.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        const cw = w / F_GRID.cols, ch = h / F_GRID.rows, rad = Math.min(cw, ch) * 0.32;
+        for (let r = 0; r < F_GRID.rows; r++) {
+          for (let c = 0; c < F_GRID.cols; c++) {
+            if (!land[r * F_GRID.cols + c]) continue;
+            const t = heat[r * F_GRID.cols + c];
+            ctx.beginPath();
+            ctx.arc((c + 0.5) * cw, (r + 0.5) * ch, rad * (1 + t * 0.35), 0, 6.2832);
+            // unvisited land sits at the theme's dot colour; heat ramps it to the accent
+            ctx.fillStyle = t > 0.02
+              ? 'rgba(' + ((DOT[0] + (HOT[0] - DOT[0]) * t) | 0) + ',' +
+                          ((DOT[1] + (HOT[1] - DOT[1]) * t) | 0) + ',' +
+                          ((DOT[2] + (HOT[2] - DOT[2]) * t) | 0) + ',' + (0.24 + t * 0.44) + ')'
+              : 'rgba(' + DOT.join(',') + ',0.24)';
+            ctx.fill();
+          }
+        }
+      }
+
+      if (window.ResizeObserver) {
+        new ResizeObserver(draw).observe(stage);
+      } else {
+        window.addEventListener('resize', draw);
+      }
+
+      select(null);
+      draw();
+    })();
   </script>
 </body>
 </html>
