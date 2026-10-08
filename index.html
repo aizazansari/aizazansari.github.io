@@ -647,6 +647,44 @@
       background: radial-gradient(120% 130% at 50% 0%, rgb(var(--accent-rgb) / 0.07), transparent 65%), var(--bg-1);
     }
     .fstage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    /* one finger still scrolls the page until the map is zoomed; then it pans */
+    .fstage { touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+    .fstage.zoomed { touch-action: none; cursor: grab; }
+    .fstage.panning { cursor: grabbing; }
+    .fzoom {
+      position: absolute;
+      right: 10px; bottom: 10px;
+      z-index: 15;
+      display: flex;
+      gap: 4px;
+    }
+    .fzoom button {
+      width: 28px; height: 28px;
+      padding: 0;
+      display: grid; place-items: center;
+      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      background: rgba(16, 17, 19, 0.85);
+      color: var(--text-dim);
+      font: 600 1rem/1 var(--font-head);
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    }
+    .fzoom button:hover:not(:disabled) { color: #fff; border-color: var(--food); }
+    .fzoom button:disabled { opacity: 0.35; cursor: default; }
+    .fzoom svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .fhint {
+      position: absolute;
+      left: 12px; bottom: 12px;
+      z-index: 15;
+      pointer-events: none;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      transition: opacity 0.4s ease;
+    }
+    .fhint.gone { opacity: 0; }
+    @media (hover: hover) { .fhint { display: none; } }
     .fpins { position: absolute; inset: 0; }
 
     .fpin {
@@ -970,19 +1008,6 @@
       .lb-close { top: 1rem; right: 1rem; width: 42px; height: 42px; }
     }
 
-    /* Never squash the dot grid — keep its ratio and let the map scroll sideways, full-bleed */
-    @media (max-width: 640px) {
-      .fmap-scroll {
-        overflow-x: auto;
-        margin: 0 -1.5rem;
-        padding: 0 1.5rem;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .fmap-scroll::-webkit-scrollbar { display: none; }
-      .fstage { min-width: 660px; }
-    }
-
     @media (max-width: 420px) {
       nav.topnav { padding: 0 0.7rem; }
       .nav-links a { padding: 0.5rem 0.3rem; font-size: 0.8rem; }
@@ -1230,6 +1255,12 @@
             <canvas id="fCanvas" aria-hidden="true"></canvas>
             <div class="fpins" id="fPins"></div>
             <div class="ftip" id="fTip" aria-hidden="true"></div>
+            <div class="fzoom">
+              <button type="button" id="fZoomOut" aria-label="Zoom out">&minus;</button>
+              <button type="button" id="fZoomIn" aria-label="Zoom in">+</button>
+              <button type="button" id="fZoomReset" aria-label="Reset map zoom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button>
+            </div>
+            <div class="fhint" id="fHint" aria-hidden="true">Pinch to zoom</div>
           </div>
         </div>
         <div class="fdetail-wrap">
@@ -1865,6 +1896,7 @@
       const ctx = cv.getContext('2d');
       const pinsEl = document.getElementById('fPins');
       const tipEl = document.getElementById('fTip');
+      let tipFor = -1;
       const detEl = document.getElementById('fDetail');
 
       // unpack the bit-per-cell grid
@@ -1899,17 +1931,16 @@
       const pinNodes = cities.map((c, i) => {
         const b = document.createElement('button');
         b.className = 'fpin';
-        b.style.left = (projU(c.lon) * 100) + '%';
-        b.style.top = (projV(c.lat) * 100) + '%';
+        c.u = projU(c.lon); c.v = projV(c.lat);
         b.setAttribute('aria-label', c.city + ', ' + c.country);
         b.innerHTML = '<i></i>' + (c.spots.length > 1 ? '<em class="fcnt">' + c.spots.length + '</em>' : '');
         const show = () => {
           tipEl.textContent = c.city;
-          tipEl.style.left = b.style.left;
-          tipEl.style.top = b.style.top;
+          tipFor = i;
+          placeTip();
           tipEl.classList.add('show');
         };
-        const hide = () => tipEl.classList.remove('show');
+        const hide = () => { tipFor = -1; tipEl.classList.remove('show'); };
         b.addEventListener('mouseenter', show);
         b.addEventListener('focus', show);
         b.addEventListener('mouseleave', hide);
@@ -1973,20 +2004,49 @@
       const DOT = themeRgb('--map-dot-rgb');
       const HOT = themeRgb('--accent-light-rgb');
 
-      function draw() {
+      // Zoom & pan. A point at map fraction (u, v) sits at ((u*k + ox) * w, (v*k + oy) * h).
+      const view = { k: 1, ox: 0, oy: 0 };
+      const KMAX = 8;
+      const btnIn = document.getElementById('fZoomIn');
+      const btnOut = document.getElementById('fZoomOut');
+      const btnReset = document.getElementById('fZoomReset');
+      const hintEl = document.getElementById('fHint');
+      const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function clampView() {
+        view.k = Math.min(KMAX, Math.max(1, view.k));
+        view.ox = Math.min(0, Math.max(1 - view.k, view.ox));
+        view.oy = Math.min(0, Math.max(1 - view.k, view.oy));
+      }
+      // the view that keeps the map point under (px, py) in place at scale k
+      function viewAt(k, px, py) {
         const w = stage.clientWidth, h = stage.clientHeight;
-        if (!w || !h) return;
+        const u = (px / w - view.ox) / view.k, v = (py / h - view.oy) / view.k;
+        k = Math.min(KMAX, Math.max(1, k));
+        return { k, ox: px / w - u * k, oy: py / h - v * k };
+      }
+
+      let cvW = 0, cvH = 0, cvDpr = 0;
+      function drawDots(w, h) {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        cv.width = w * dpr; cv.height = h * dpr;
+        if (w !== cvW || h !== cvH || dpr !== cvDpr) {
+          cv.width = w * dpr; cv.height = h * dpr;
+          cvW = w; cvH = h; cvDpr = dpr;
+        }
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.clearRect(0, 0, w, h);
-        const cw = w / F_GRID.cols, ch = h / F_GRID.rows, rad = Math.min(cw, ch) * 0.32;
-        for (let r = 0; r < F_GRID.rows; r++) {
-          for (let c = 0; c < F_GRID.cols; c++) {
+        const k = view.k, x0 = view.ox * w, y0 = view.oy * h;
+        const cw = w * k / F_GRID.cols, ch = h * k / F_GRID.rows;
+        // dots grow slower than the map, so zooming in opens the grid up instead of blobbing it
+        const rad = Math.max(0.6, Math.min(cw, ch) * 0.32 / Math.sqrt(k));
+        const c0 = Math.max(0, Math.floor(-x0 / cw)), c1 = Math.min(F_GRID.cols, Math.ceil((w - x0) / cw));
+        const r0 = Math.max(0, Math.floor(-y0 / ch)), r1 = Math.min(F_GRID.rows, Math.ceil((h - y0) / ch));
+        for (let r = r0; r < r1; r++) {
+          for (let c = c0; c < c1; c++) {
             if (!land[r * F_GRID.cols + c]) continue;
             const t = heat[r * F_GRID.cols + c];
             ctx.beginPath();
-            ctx.arc((c + 0.5) * cw, (r + 0.5) * ch, rad * (1 + t * 0.35), 0, 6.2832);
+            ctx.arc(x0 + (c + 0.5) * cw, y0 + (r + 0.5) * ch, rad * (1 + t * 0.35), 0, 6.2832);
             // unvisited land sits at the theme's dot colour; heat ramps it to the accent
             ctx.fillStyle = t > 0.02
               ? 'rgba(' + ((DOT[0] + (HOT[0] - DOT[0]) * t) | 0) + ',' +
@@ -1998,14 +2058,137 @@
         }
       }
 
+      function placeTip() {
+        if (tipFor < 0) return;
+        tipEl.style.left = pinNodes[tipFor].style.left;
+        tipEl.style.top = pinNodes[tipFor].style.top;
+      }
+
+      function render() {
+        const w = stage.clientWidth, h = stage.clientHeight;
+        if (!w || !h) return;
+        clampView();
+        drawDots(w, h);
+        cities.forEach((c, i) => {
+          pinNodes[i].style.left = ((c.u * view.k + view.ox) * w).toFixed(1) + 'px';
+          pinNodes[i].style.top = ((c.v * view.k + view.oy) * h).toFixed(1) + 'px';
+        });
+        placeTip();
+        const zoomed = view.k > 1.001;
+        stage.classList.toggle('zoomed', zoomed);
+        if (zoomed) hintEl.classList.add('gone');
+        btnOut.disabled = btnReset.disabled = !zoomed;
+        btnIn.disabled = view.k >= KMAX - 0.001;
+      }
+
+      let raf = 0;
+      const schedule = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; render(); }); };
+
+      let anim = 0;
+      function animateTo(to) {
+        cancelAnimationFrame(anim);
+        if (calm) { Object.assign(view, to); render(); return; }
+        const from = { ...view }, t0 = performance.now();
+        const step = (now) => {
+          const t = Math.min(1, (now - t0) / 220), e = 1 - Math.pow(1 - t, 3);
+          view.k = from.k + (to.k - from.k) * e;
+          view.ox = from.ox + (to.ox - from.ox) * e;
+          view.oy = from.oy + (to.oy - from.oy) * e;
+          render();
+          if (t < 1) anim = requestAnimationFrame(step);
+        };
+        anim = requestAnimationFrame(step);
+      }
+      const centre = () => [stage.clientWidth / 2, stage.clientHeight / 2];
+      btnIn.addEventListener('click', () => animateTo(viewAt(view.k * 1.8, ...centre())));
+      btnOut.addEventListener('click', () => animateTo(viewAt(view.k / 1.8, ...centre())));
+      btnReset.addEventListener('click', () => animateTo({ k: 1, ox: 0, oy: 0 }));
+
+      // Gestures: two fingers pinch (and pan), one finger or the mouse pans once zoomed in.
+      const pt = (e) => { const r = stage.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+      let g = null, dragged = false;
+      function startGesture(points) {
+        cancelAnimationFrame(anim);
+        const w = stage.clientWidth, h = stage.clientHeight;
+        if (points.length >= 2) {
+          const [a, b] = points, mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+          dragged = true;
+          g = { pinch: true, d0: Math.hypot(a.x - b.x, a.y - b.y) || 1, k0: view.k,
+                u: (mx / w - view.ox) / view.k, v: (my / h - view.oy) / view.k };
+        } else if (points.length === 1 && view.k > 1.001) {
+          g = { pinch: false, x0: points[0].x, y0: points[0].y, ox0: view.ox, oy0: view.oy };
+        } else {
+          g = null;
+        }
+      }
+      function moveGesture(points) {
+        const w = stage.clientWidth, h = stage.clientHeight;
+        if (g.pinch && points.length >= 2) {
+          const [a, b] = points, mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+          view.k = Math.min(KMAX, Math.max(1, g.k0 * Math.hypot(a.x - b.x, a.y - b.y) / g.d0));
+          view.ox = mx / w - g.u * view.k;
+          view.oy = my / h - g.v * view.k;
+        } else if (!g.pinch) {
+          const dx = points[0].x - g.x0, dy = points[0].y - g.y0;
+          if (Math.abs(dx) + Math.abs(dy) > 4) dragged = true;
+          view.ox = g.ox0 + dx / w;
+          view.oy = g.oy0 + dy / h;
+        }
+        schedule();
+      }
+
+      const touchPts = (e) => Array.from(e.touches, pt);
+      stage.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) dragged = false;
+        startGesture(touchPts(e));
+      }, { passive: true });
+      stage.addEventListener('touchmove', (e) => {
+        if (!g) return;
+        if (e.cancelable) e.preventDefault();
+        moveGesture(touchPts(e));
+      }, { passive: false });
+      const touchEnd = (e) => startGesture(touchPts(e));
+      stage.addEventListener('touchend', touchEnd);
+      stage.addEventListener('touchcancel', touchEnd);
+
+      stage.addEventListener('pointerdown', (e) => {
+        if (e.pointerType !== 'mouse' || e.button !== 0) return;
+        dragged = false;
+        startGesture([pt(e)]);
+        if (!g) return;
+        const move = (ev) => { moveGesture([pt(ev)]); if (dragged) stage.classList.add('panning'); };
+        const up = () => {
+          g = null;
+          stage.classList.remove('panning');
+          window.removeEventListener('pointermove', move);
+          window.removeEventListener('pointerup', up);
+        };
+        window.addEventListener('pointermove', move);
+        window.addEventListener('pointerup', up);
+      });
+      // trackpad pinch arrives as ctrl+wheel; a plain wheel keeps scrolling the page
+      stage.addEventListener('wheel', (e) => {
+        if (!e.ctrlKey) return;
+        e.preventDefault();
+        cancelAnimationFrame(anim);
+        const p = pt(e), d = Math.max(-50, Math.min(50, e.deltaY));
+        Object.assign(view, viewAt(view.k * Math.exp(-d * 0.012), p.x, p.y));
+        schedule();
+      }, { passive: false });
+      // a drag or pinch that ends over a pin shouldn't also select it
+      stage.addEventListener('click', (e) => {
+        if (dragged && !e.target.closest('.fzoom')) { e.stopPropagation(); e.preventDefault(); }
+        dragged = false;
+      }, true);
+
       if (window.ResizeObserver) {
-        new ResizeObserver(draw).observe(stage);
+        new ResizeObserver(render).observe(stage);
       } else {
-        window.addEventListener('resize', draw);
+        window.addEventListener('resize', render);
       }
 
       select(null);
-      draw();
+      render();
     })();
   </script>
 </body>
