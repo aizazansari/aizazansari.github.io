@@ -93,12 +93,10 @@
       if (low) {
         document.documentElement.classList.add('low-carbon');
       } else {
-        // Only download web fonts when not in low-carbon mode, and only the active theme's
+        // Only download web fonts when not in low-carbon mode
         var l = document.createElement('link');
         l.rel = 'stylesheet';
-        l.href = dark
-          ? 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap'
-          : 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap';
+        l.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap';
         document.head.appendChild(l);
       }
     })();
@@ -140,14 +138,14 @@
       --pop-rgb: 16 17 19;            /* tooltips, toasts, map buttons */
       --accent: rgb(var(--accent-rgb));
       --accent-light: rgb(var(--accent-light-rgb));
-      --font-head: 'Space Grotesk', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --font-display: 'Space Grotesk', sans-serif;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-head: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
       --nav-h: 68px;
       --maxw: 1100px;
     }
 
-    /* Light theme (the default): warm paper, terracotta, Cormorant Garamond + DM Sans.
+    /* Light theme (the default): warm paper and terracotta.
        The class sits on <html>; the head script removes it for visitors who chose dark. */
     html.light {
       --bg-0: #f5efe4;
@@ -167,9 +165,6 @@
       --surface: rgb(255 255 255 / 0.55);
       --border: rgb(43 36 29 / 0.11);
       --border-strong: rgb(43 36 29 / 0.22);
-      --font-display: 'Cormorant Garamond', Georgia, serif;
-      --font-head: 'DM Sans', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
       color-scheme: light;
     }
 
@@ -290,7 +285,7 @@
     .section-lead {
       color: var(--text-dim);
       max-width: 640px;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 1.05rem;
     }
 
@@ -480,7 +475,7 @@
       padding-left: 1.1rem;
       color: var(--text-dim);
       font-size: 0.86rem;
-      font-weight: 300;
+      font-weight: 400;
       margin-bottom: 0.2rem;
       line-height: 1.55;
     }
@@ -1019,7 +1014,6 @@
     html.light ::selection { background: rgb(var(--accent-rgb) / 0.25); }
     html.light nav.topnav { background: rgb(var(--bg-rgb) / 0.72); }
     html.light nav.topnav.scrolled { background: rgb(var(--bg-rgb) / 0.92); }
-    html.light .section-lead, html.light .exp-main ul li { font-weight: 400; }
     html.light .hero-role .sep { color: rgb(var(--accent-rgb) / 0.85); }
     html.light .ftip { box-shadow: 0 10px 28px rgb(var(--ink-rgb) / 0.14); }
     html.light .photo-item:hover { box-shadow: 0 18px 40px rgb(var(--ink-rgb) / 0.18); }
@@ -1029,15 +1023,17 @@
         radial-gradient(110% 100% at 80% 90%, rgb(var(--accent-light-rgb) / 0.18), transparent 62%),
         linear-gradient(150deg, var(--bg-2), var(--bg-1));
     }
-    /* Cormorant runs small and shines in italic, so size it up (not for low-carbon's system font) */
-    html.light:not(.low-carbon) .section-title { font-weight: 600; font-size: clamp(2.3rem, 5.6vw, 3.3rem); letter-spacing: -0.01em; }
-    html.light:not(.low-carbon) .hero-name .name { font-weight: 600; font-style: italic; font-size: clamp(3.2rem, 11vw, 6.8rem); }
-    html.light:not(.low-carbon) .hero-name .hi { font-family: var(--font-display); font-style: italic; }
-    html.light:not(.low-carbon) .subhead { font-weight: 600; font-size: 1.4rem; }
-    html.light:not(.low-carbon) .brand { font-size: 1.3rem; font-weight: 700; }
-    html.light:not(.low-carbon) .fplacename { font-size: 1.45rem; }
-    @media (max-width: 768px) { html.light:not(.low-carbon) .brand { font-size: 1.15rem; } }
-    @media (max-width: 420px) { html.light:not(.low-carbon) .brand { font-size: 0.98rem; } }
+
+    /* ---------- Display type ---------- */
+    /* Cormorant runs small, so size it up (not for low-carbon's system font) */
+    html:not(.low-carbon) .section-title { font-weight: 600; font-size: clamp(2.3rem, 5.6vw, 3.3rem); letter-spacing: -0.01em; }
+    html:not(.low-carbon) .hero-name .name { font-weight: 600; font-size: clamp(3.2rem, 11vw, 6.8rem); }
+    html:not(.low-carbon) .hero-name .hi { font-family: var(--font-display); font-style: italic; }
+    html:not(.low-carbon) .subhead { font-weight: 600; font-size: 1.4rem; }
+    html:not(.low-carbon) .brand { font-size: 1.3rem; font-weight: 700; }
+    html:not(.low-carbon) .fplacename { font-size: 1.45rem; }
+    @media (max-width: 768px) { html:not(.low-carbon) .brand { font-size: 1.15rem; } }
+    @media (max-width: 420px) { html:not(.low-carbon) .brand { font-size: 0.98rem; } }
 
     /* ---------- Responsive ---------- */
     /* Side-by-side only while the map is tall enough to give the card room.
@@ -1383,11 +1379,7 @@
     const lowCarbonAtLoad = document.documentElement.classList.contains('low-carbon');
     let lcOn = lowCarbonAtLoad;
 
-    // Each theme pulls only its own fonts (same URLs as the head script)
-    const FONT_HREFS = {
-      dark: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap',
-      light: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap'
-    };
+    const FONT_HREF = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap';
     const currentTheme = () => document.documentElement.classList.contains('light') ? 'light' : 'dark';
     // Single source of truth for JS-drawn colour: whatever data-theme resolved to
     const themeRgb = (name) => getComputedStyle(document.documentElement)
@@ -1397,9 +1389,9 @@
     const SRC_THREE = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js';
     const SRC_VANTA = 'https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js';
     // Approx compressed sizes of what low-carbon skips (used for the savings toast when timing data is cross-origin-blocked)
-    const HEAVY_EST = { three: 123628, vanta: 4544, fonts: 71637 };   // measured, not guessed
+    const HEAVY_EST = { three: 123628, vanta: 4544, fonts: 100000 };   // measured, not guessed
 
-    const fontsInjected = new Set(lowCarbonAtLoad ? [] : [currentTheme()]);   // head script injects the active theme's fonts unless low-carbon
+    let fontsInjected = !lowCarbonAtLoad;   // head script injects fonts only when not low-carbon
     let vantaInstance = null;
 
     function loadScript(src) {
@@ -1410,12 +1402,11 @@
       });
     }
     function ensureFonts() {
-      const t = currentTheme();
-      if (fontsInjected.has(t)) return;
+      if (fontsInjected) return;
       const l = document.createElement('link');
-      l.rel = 'stylesheet'; l.href = FONT_HREFS[t];
+      l.rel = 'stylesheet'; l.href = FONT_HREF;
       document.head.appendChild(l);
-      fontsInjected.add(t);
+      fontsInjected = true;
     }
     function initVanta() {
       if (vantaInstance || !window.VANTA) return;
@@ -1489,11 +1480,8 @@
       document.documentElement.classList.toggle('light', t === 'light');
       try { localStorage.setItem('theme', t); } catch (e) {}
       labelThemeToggle();
-      if (!lcOn) {
-        ensureFonts();
-        // Vanta bakes its colours in at init, so rebuild it in the new palette
-        if (vantaInstance) { destroyVanta(); startVanta(); }
-      }
+      // Vanta bakes its colours in at init, so rebuild it in the new palette
+      if (!lcOn && vantaInstance) { destroyVanta(); startVanta(); }
       document.dispatchEvent(new Event('themechange'));
     }
     labelThemeToggle();
