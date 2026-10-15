@@ -29,7 +29,6 @@ Each is reused under the license noted; follow the link for full terms.
 - **Blondie's Kitchen** (`blondies-kitchen.jpg`) — File:IceCreamSandwich.jpg by Renee Comet (photographer), Public domain. https://commons.wikimedia.org/wiki/File:IceCreamSandwich.jpg
 - **Ciao Pizza** (`ciao-pizza.jpg`) — File:Pesto pizza (3145524285).jpg by Karen and Brad Emerson, CC BY 2.0. https://commons.wikimedia.org/wiki/File:Pesto_pizza_(3145524285).jpg
 - **Bagel Belly** (`bagel-belly.jpg`) — File:NCI cream cheese bagel.jpg by Renee Comet, Public domain. https://commons.wikimedia.org/wiki/File:NCI_cream_cheese_bagel.jpg
-- **Vanessa's Dumplings** (`vanessas-dumplings.jpg`) — File:Har Gow at Canal Luna restaurant, InterContinental Guangzhou Exhibition Center (20180923125523).jpg by N509FZ, CC BY-SA 4.0. https://commons.wikimedia.org/wiki/File:Har_Gow_at_Canal_Luna_restaurant,_InterContinental_Guangzhou_Exhibition_Center_(20180923125523).jpg
 - **Dengji 2** (`dengji-2.jpg`) — File:Fish balls and Fish rolls with Fish Meats rice noodle soup in Hong Kong.jpg by Peachyeung316, CC BY-SA 4.0. https://commons.wikimedia.org/wiki/File:Fish_balls_and_Fish_rolls_with_Fish_Meats_rice_noodle_soup_in_Hong_Kong.jpg
 - **Artichoke Pizza** (`artichoke-pizza.jpg`) — File:L&B Spumoni Gardens pizza (41436).jpg by Rhododendrites, CC BY-SA 4.0. https://commons.wikimedia.org/wiki/File:L%26B_Spumoni_Gardens_pizza_(41436).jpg
 - **Insomnia Cookies** (`insomnia-cookies.jpg`) — File:6cookies.JPG by Jonathunder, GFDL 1.2. https://commons.wikimedia.org/wiki/File:6cookies.JPG
