@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Theme: "amber" or "slate" -->
-<html lang="en" data-theme="amber">
+<html lang="en" data-theme="amber" class="light">
 <head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJVMK07SL3"></script>
   <script>
@@ -83,15 +83,22 @@
     // Low-carbon mode: apply the saved preference before paint.
     // Off by default — nothing is stored until the user toggles it.
     (function () {
-      var low = false;
-      try { low = localStorage.getItem('lowCarbon') === '1'; } catch (e) {}
+      var low = false, dark = false;
+      try {
+        low = localStorage.getItem('lowCarbon') === '1';
+        dark = localStorage.getItem('theme') === 'dark';
+      } catch (e) {}
+      // Light is the default; dark only for visitors who picked it
+      if (dark) document.documentElement.classList.remove('light');
       if (low) {
         document.documentElement.classList.add('low-carbon');
       } else {
-        // Only download web fonts when not in low-carbon mode
+        // Only download web fonts when not in low-carbon mode, and only the active theme's
         var l = document.createElement('link');
         l.rel = 'stylesheet';
-        l.href = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap';
+        l.href = dark
+          ? 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap'
+          : 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap';
         document.head.appendChild(l);
       }
     })();
@@ -127,12 +134,43 @@
       --border: rgb(var(--accent-rgb) / 0.14);
       --border-strong: rgb(var(--accent-rgb) / 0.30);
       --text: #e8e8e8;
+      --heading: #fff;
+      --icon: rgba(255, 255, 255, 0.55);
+      --bg-rgb: 10 10 10;
+      --pop-rgb: 16 17 19;            /* tooltips, toasts, map buttons */
       --accent: rgb(var(--accent-rgb));
       --accent-light: rgb(var(--accent-light-rgb));
       --font-head: 'Space Grotesk', sans-serif;
       --font-body: 'Inter', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
       --nav-h: 68px;
       --maxw: 1100px;
+    }
+
+    /* Light theme (the default): warm paper, terracotta, Cormorant Garamond + DM Sans.
+       The class sits on <html>; the head script removes it for visitors who chose dark. */
+    html.light {
+      --bg-0: #f5efe4;
+      --bg-1: #efe7d9;
+      --bg-2: #ebe1d0;
+      --bg-rgb: 245 239 228;
+      --pop-rgb: 245 239 228;
+      --ink-rgb: 43 36 29;
+      --text: #2b241d;
+      --text-dim: #5f5447;
+      --muted: #8b7e6f;
+      --heading: #2b241d;
+      --icon: rgb(43 36 29 / 0.5);
+      --accent-rgb: 190 106 66;
+      --accent-light-rgb: 160 78 44;
+      --map-dot-rgb: 112 96 80;
+      --surface: rgb(255 255 255 / 0.55);
+      --border: rgb(43 36 29 / 0.11);
+      --border-strong: rgb(43 36 29 / 0.22);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-head: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      color-scheme: light;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -166,7 +204,7 @@
 
     /* ---------- Gradient text ---------- */
     .grad {
-      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+      background: linear-gradient(135deg, var(--heading) 0%, var(--accent) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -182,18 +220,18 @@
       justify-content: space-between;
       padding: 0 1.5rem;
       z-index: 100;
-      background: rgba(10, 10, 10, 0.55);
+      background: rgb(var(--bg-rgb) / 0.55);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid transparent;
       transition: background 0.3s ease, border-color 0.3s ease;
     }
     nav.topnav.scrolled {
-      background: rgba(10, 10, 10, 0.82);
+      background: rgb(var(--bg-rgb) / 0.82);
       border-bottom: 1px solid var(--border);
     }
     .brand {
-      font-family: var(--font-head);
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: 1.05rem;
       letter-spacing: 0.02em;
@@ -243,7 +281,7 @@
       margin-bottom: 0.75rem;
     }
     .section-title {
-      font-family: var(--font-head);
+      font-family: var(--font-display);
       font-size: clamp(2rem, 5vw, 2.9rem);
       font-weight: 600;
       letter-spacing: -0.02em;
@@ -275,7 +313,7 @@
     }
     .hero-inner { position: relative; z-index: 2; width: 100%; }
     .hero-name {
-      font-family: var(--font-head);
+      font-family: var(--font-display);
       font-weight: 700;
       line-height: 1.02;
       letter-spacing: -0.02em;
@@ -335,10 +373,10 @@
     }
     .icon-btn svg {
       width: 24px; height: 24px;
-      fill: rgba(255, 255, 255, 0.55);
+      fill: var(--icon);
       transition: fill 0.25s ease, transform 0.25s ease;
     }
-    .icon-btn:hover svg { fill: #ffffff; transform: translateY(-2px); }
+    .icon-btn:hover svg { fill: var(--heading); transform: translateY(-2px); }
 
     .scroll-hint {
       position: absolute;
@@ -373,7 +411,7 @@
     .about-intro { margin-bottom: 2rem; }
 
     .subhead {
-      font-family: var(--font-head);
+      font-family: var(--font-display);
       font-size: 1.05rem;
       font-weight: 600;
       letter-spacing: 0.01em;
@@ -468,7 +506,7 @@
     }
     .logo img { width: 100%; height: 100%; object-fit: cover; }
     .c-meta { display: flex; align-items: baseline; gap: 0.55rem; }
-    .c-meta h4 { font-size: 1rem; color: #fff; font-weight: 600; letter-spacing: 0.01em; }
+    .c-meta h4 { font-size: 1rem; color: var(--heading); font-weight: 600; letter-spacing: 0.01em; }
     .c-meta .loc { font-size: 0.78rem; color: var(--muted); }
 
     /* Skills as pills in the intro — a toolkit, not a resume section */
@@ -518,7 +556,7 @@
     .filter-btn.active {
       background: linear-gradient(135deg, rgb(var(--accent-rgb) / 0.22), rgb(var(--accent-light-rgb) / 0.10));
       border-color: var(--accent);
-      color: #fff;
+      color: var(--heading);
     }
 
     .photo-grid {
@@ -619,7 +657,7 @@
     }
     #food .eyebrow { color: var(--food); }
     .grad-food {
-      background: linear-gradient(135deg, #ffffff 0%, var(--food) 100%);
+      background: linear-gradient(135deg, var(--heading) 0%, var(--food) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -664,13 +702,13 @@
       display: grid; place-items: center;
       border-radius: 8px;
       border: 1px solid var(--border-strong);
-      background: rgba(16, 17, 19, 0.85);
+      background: rgb(var(--pop-rgb) / 0.88);
       color: var(--text-dim);
       font: 600 1rem/1 var(--font-head);
       cursor: pointer;
       transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
     }
-    .fzoom button:hover:not(:disabled) { color: #fff; border-color: var(--food); }
+    .fzoom button:hover:not(:disabled) { color: var(--heading); border-color: var(--food); }
     .fzoom button:disabled { opacity: 0.35; cursor: default; }
     .fzoom svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .fhint {
@@ -718,7 +756,7 @@
       transform: scale(1.65);
       box-shadow: 0 0 0 4px rgb(var(--accent-rgb) / 0.25), 0 0 22px 6px rgb(var(--accent-rgb) / 0.7);
     }
-    .fpin.sel i { background: #fff; }
+    .fpin.sel i { background: var(--heading); }
     .fcnt {
       position: absolute;
       top: 0; right: 0;
@@ -737,7 +775,7 @@
       z-index: 20;
       pointer-events: none;
       transform: translate(-50%, -138%);
-      background: rgba(16,17,19,0.96);
+      background: rgb(var(--pop-rgb) / 0.96);
       border: 1px solid var(--border-strong);
       border-radius: 12px;
       padding: 0.5rem 0.8rem;
@@ -747,7 +785,7 @@
       box-shadow: 0 14px 34px rgba(0,0,0,0.6);
       font-family: var(--font-head);
       font-size: 0.85rem;
-      color: #fff;
+      color: var(--heading);
     }
     .ftip.show { opacity: 1; }
 
@@ -782,7 +820,7 @@
     .fbody { padding: 1rem 1.15rem 1.05rem; flex: 0 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; }
     .fbody::-webkit-scrollbar { display: none; }
     .fwhere { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--food); margin-bottom: 0.3rem; }
-    .fplacename { font-family: var(--font-head); font-size: 1.2rem; font-weight: 600; color: #fff; line-height: 1.25; }
+    .fplacename { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--heading); line-height: 1.25; }
     .fdishes { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.7rem; }
     .fdish {
       font-size: 0.75rem;
@@ -899,7 +937,7 @@
 
     /* Low-carbon toggle (in nav) */
     .nav-right { display: flex; align-items: center; gap: 0.9rem; min-width: 0; }
-    .lc-toggle {
+    .lc-toggle, .theme-toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -912,7 +950,7 @@
       color: var(--muted);
       transition: color 0.2s ease, background 0.2s ease;
     }
-    .lc-toggle:hover { color: var(--text-dim); background: rgb(var(--accent-rgb) / 0.08); }
+    .lc-toggle:hover, .theme-toggle:hover { color: var(--text-dim); background: rgb(var(--accent-rgb) / 0.08); }
     .lc-leaf {
       width: 17px; height: 17px;
       fill: currentColor;
@@ -929,6 +967,10 @@
       transform: translate(11px, -9px);
     }
     .lc-toggle { position: relative; }
+    .theme-toggle svg { width: 17px; height: 17px; }
+    .theme-toggle .ic-sun { display: none; }
+    html:not(.light) .theme-toggle .ic-sun { display: block; }
+    html:not(.light) .theme-toggle .ic-moon { display: none; }
 
     /* Savings toast */
     .lc-toast {
@@ -936,7 +978,7 @@
       left: 50%; bottom: 1.6rem;
       transform: translate(-50%, 1rem);
       z-index: 300;
-      background: rgba(20, 22, 24, 0.92);
+      background: rgb(var(--pop-rgb) / 0.94);
       border: 1px solid var(--border-strong);
       color: var(--text);
       font-size: 0.86rem;
@@ -954,7 +996,8 @@
     .lc-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
     /* Low-carbon mode: drop the heavy stuff */
-    .low-carbon {
+    html.low-carbon {
+      --font-display: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       --font-head: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
@@ -971,6 +1014,30 @@
     .low-carbon .reveal { opacity: 1 !important; transform: none !important; }
     /* animation:none would freeze the ripple mid-keyframe as a permanent ring */
     .low-carbon .fpin::after { display: none; }
+
+    /* ---------- Light theme extras ---------- */
+    html.light ::selection { background: rgb(var(--accent-rgb) / 0.25); }
+    html.light nav.topnav { background: rgb(var(--bg-rgb) / 0.72); }
+    html.light nav.topnav.scrolled { background: rgb(var(--bg-rgb) / 0.92); }
+    html.light .section-lead, html.light .exp-main ul li { font-weight: 400; }
+    html.light .hero-role .sep { color: rgb(var(--accent-rgb) / 0.85); }
+    html.light .ftip { box-shadow: 0 10px 28px rgb(var(--ink-rgb) / 0.14); }
+    html.light .photo-item:hover { box-shadow: 0 18px 40px rgb(var(--ink-rgb) / 0.18); }
+    html.light .fshot {
+      background:
+        radial-gradient(120% 90% at 30% 20%, rgb(var(--accent-rgb) / 0.22), transparent 60%),
+        radial-gradient(110% 100% at 80% 90%, rgb(var(--accent-light-rgb) / 0.18), transparent 62%),
+        linear-gradient(150deg, var(--bg-2), var(--bg-1));
+    }
+    /* Cormorant runs small and shines in italic, so size it up (not for low-carbon's system font) */
+    html.light:not(.low-carbon) .section-title { font-weight: 600; font-size: clamp(2.3rem, 5.6vw, 3.3rem); letter-spacing: -0.01em; }
+    html.light:not(.low-carbon) .hero-name .name { font-weight: 600; font-style: italic; font-size: clamp(3.2rem, 11vw, 6.8rem); }
+    html.light:not(.low-carbon) .hero-name .hi { font-family: var(--font-display); font-style: italic; }
+    html.light:not(.low-carbon) .subhead { font-weight: 600; font-size: 1.4rem; }
+    html.light:not(.low-carbon) .brand { font-size: 1.3rem; font-weight: 700; }
+    html.light:not(.low-carbon) .fplacename { font-size: 1.45rem; }
+    @media (max-width: 768px) { html.light:not(.low-carbon) .brand { font-size: 1.15rem; } }
+    @media (max-width: 420px) { html.light:not(.low-carbon) .brand { font-size: 0.98rem; } }
 
     /* ---------- Responsive ---------- */
     /* Side-by-side only while the map is tall enough to give the card room.
@@ -1012,7 +1079,10 @@
       nav.topnav { padding: 0 0.7rem; }
       .nav-links a { padding: 0.5rem 0.3rem; font-size: 0.8rem; }
       .nav-links { gap: 0.1rem; }
-      .nav-right { gap: 0.5rem; }
+      .nav-right { gap: 0.3rem; }
+      /* the brand already links home, so the Home tab makes room for the toggles */
+      .nav-links a[data-sec="home"] { display: none; }
+      .lc-toggle, .theme-toggle { width: 26px; flex-shrink: 0; }
       .brand { font-size: 0.85rem; }
       .hero-actions { gap: 0.7rem; }
     }
@@ -1038,6 +1108,10 @@
         <a href="#photography" data-sec="photography">Photography</a>
         <a href="#food" data-sec="food">Food</a>
       </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme">
+        <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg>
+        <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></g></svg>
+      </button>
       <button class="lc-toggle" id="lcToggle" role="switch" aria-checked="false" title="Low-carbon mode" aria-label="Low-carbon mode">
         <svg class="lc-leaf" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
       </button>
@@ -1309,7 +1383,12 @@
     const lowCarbonAtLoad = document.documentElement.classList.contains('low-carbon');
     let lcOn = lowCarbonAtLoad;
 
-    const FONT_HREF = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap';
+    // Each theme pulls only its own fonts (same URLs as the head script)
+    const FONT_HREFS = {
+      dark: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap',
+      light: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap'
+    };
+    const currentTheme = () => document.documentElement.classList.contains('light') ? 'light' : 'dark';
     // Single source of truth for JS-drawn colour: whatever data-theme resolved to
     const themeRgb = (name) => getComputedStyle(document.documentElement)
       .getPropertyValue(name).trim().split(/[\s,]+/).map(Number);
@@ -1320,7 +1399,7 @@
     // Approx compressed sizes of what low-carbon skips (used for the savings toast when timing data is cross-origin-blocked)
     const HEAVY_EST = { three: 123628, vanta: 4544, fonts: 71637 };   // measured, not guessed
 
-    let fontsInjected = !lowCarbonAtLoad;   // head script injects fonts only when not low-carbon
+    const fontsInjected = new Set(lowCarbonAtLoad ? [] : [currentTheme()]);   // head script injects the active theme's fonts unless low-carbon
     let vantaInstance = null;
 
     function loadScript(src) {
@@ -1331,11 +1410,12 @@
       });
     }
     function ensureFonts() {
-      if (fontsInjected) return;
+      const t = currentTheme();
+      if (fontsInjected.has(t)) return;
       const l = document.createElement('link');
-      l.rel = 'stylesheet'; l.href = FONT_HREF;
+      l.rel = 'stylesheet'; l.href = FONT_HREFS[t];
       document.head.appendChild(l);
-      fontsInjected = true;
+      fontsInjected.add(t);
     }
     function initVanta() {
       if (vantaInstance || !window.VANTA) return;
@@ -1344,7 +1424,7 @@
         el: "#vanta-bg",
         mouseControls: true, touchControls: false, gyroControls: false,
         scale: 1.0, scaleMobile: 1.0,
-        color: themeHex('--accent-rgb'), backgroundColor: 0x0a0a0a,
+        color: themeHex('--accent-rgb'), backgroundColor: themeHex('--bg-rgb'),
         points: small ? 8.0 : 11.0,
         maxDistance: small ? 20.0 : 24.0,
         spacing: small ? 16.0 : 18.0
@@ -1397,6 +1477,27 @@
       showToast(on);
     }
     lcToggle.addEventListener('click', () => setLowCarbon(!lcOn));
+
+    // Light / dark: light by default, and the choice is only stored once someone flips it
+    const themeToggle = document.getElementById('themeToggle');
+    function labelThemeToggle() {
+      const next = currentTheme() === 'light' ? 'dark' : 'light';
+      themeToggle.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      themeToggle.title = 'Switch to ' + next + ' theme';
+    }
+    function setTheme(t) {
+      document.documentElement.classList.toggle('light', t === 'light');
+      try { localStorage.setItem('theme', t); } catch (e) {}
+      labelThemeToggle();
+      if (!lcOn) {
+        ensureFonts();
+        // Vanta bakes its colours in at init, so rebuild it in the new palette
+        if (vantaInstance) { destroyVanta(); startVanta(); }
+      }
+      document.dispatchEvent(new Event('themechange'));
+    }
+    labelThemeToggle();
+    themeToggle.addEventListener('click', () => setTheme(currentTheme() === 'light' ? 'dark' : 'light'));
 
     if (!lcOn) startVanta();
 
@@ -2020,8 +2121,8 @@
         });
       })();
 
-      const DOT = themeRgb('--map-dot-rgb');
-      const HOT = themeRgb('--accent-light-rgb');
+      let DOT = themeRgb('--map-dot-rgb');
+      let HOT = themeRgb('--accent-light-rgb');
 
       // Zoom & pan. A point at map fraction (u, v) sits at ((u*k + ox) * w, (v*k + oy) * h).
       const view = { k: 1, ox: 0, oy: 0 };
@@ -2199,6 +2300,12 @@
         if (dragged && !e.target.closest('.fzoom')) { e.stopPropagation(); e.preventDefault(); }
         dragged = false;
       }, true);
+
+      document.addEventListener('themechange', () => {
+        DOT = themeRgb('--map-dot-rgb');
+        HOT = themeRgb('--accent-light-rgb');
+        render();
+      });
 
       if (window.ResizeObserver) {
         new ResizeObserver(render).observe(stage);
