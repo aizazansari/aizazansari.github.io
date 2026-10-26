@@ -632,6 +632,10 @@
       --food: var(--accent);
       --food-light: var(--accent-light);
       background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-0) 100%);
+      /* the last section: tall enough that, with the footer (~9rem) below it, the Food
+         link can always bring it to the top instead of running out of page */
+      min-height: calc(100vh - var(--nav-h) - 8rem);
+      min-height: calc(100svh - var(--nav-h) - 8rem);
     }
     #food .eyebrow { color: var(--food); }
     .grad-food {
@@ -1649,15 +1653,17 @@
 
     function setActive(btn) { filterButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
 
-    function filterPhotos(filter) {
-      photoGrid.classList.add('filtering');
-      setTimeout(() => {
+    function filterPhotos(filter, instant) {
+      const apply = () => {
         currentPhotos = photoData
           .filter(p => p.categories.hasOwnProperty(filter))
           .sort((a, b) => a.categories[filter] - b.categories[filter]);
         renderPhotos(currentPhotos);
         photoGrid.classList.remove('filtering');
-      }, 180);
+      };
+      if (instant) { apply(); return; }
+      photoGrid.classList.add('filtering');
+      setTimeout(apply, 180);
     }
 
     // Path helpers — grid uses small thumbnails, lightbox uses larger versions
@@ -1736,7 +1742,30 @@
       else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
     });
 
-    filterPhotos('featured');
+    // First render is immediate (no fade), so the page has its real height
+    // before the browser jumps to a #section in the URL
+    filterPhotos('featured', true);
+
+    // Opened straight to a section (e.g. /#food): fonts and images still settle after
+    // the browser's jump, so line it up again unless the visitor has started scrolling
+    if (location.hash.length > 1) {
+      const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (target) {
+        let moved = false;
+        ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((t) =>
+          addEventListener(t, () => { moved = true; }, { once: true, passive: true }));
+        const realign = () => {
+          if (moved) return;
+          const root = document.documentElement, prev = root.style.scrollBehavior;
+          root.style.scrollBehavior = 'auto';
+          target.scrollIntoView({ block: 'start' });
+          root.style.scrollBehavior = prev;
+        };
+        realign();
+        if (document.fonts) document.fonts.ready.then(realign);
+        addEventListener('load', realign);
+      }
+    }
   </script>
 
   <!-- Food map -->
