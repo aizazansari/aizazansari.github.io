@@ -437,17 +437,6 @@
       pointer-events: none;
     }
     .exp-entry:last-child::before { display: none; }
-    .exp-when {
-      font-family: var(--font-head);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.1rem;
-    }
-    .exp-when:empty { display: none; }
-    .exp-when .present { margin-left: 0.25rem; }
     .exp-entry > .exp-main { position: static; }
     .role + .role { margin-top: 0.75rem; }
     .role-head {
@@ -462,12 +451,6 @@
       font-size: 0.9rem;
       font-weight: 500;
       color: var(--accent-light);
-    }
-    .role-date {
-      font-family: var(--font-head);
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: var(--muted);
     }
     .exp-main ul { list-style: none; }
     .exp-main ul li {
@@ -1172,7 +1155,6 @@
       <div class="exp-list">
         <!-- TikTok -->
         <div class="exp-entry">
-          <div class="exp-when">Mar 2025<span class="present">— Oct 2026</span></div>
           <div class="exp-main">
             <div class="c-head">
               <div class="logo"><img src="assets/tiktok.jpg" alt="TikTok" loading="lazy" decoding="async"></div>
@@ -1189,7 +1171,6 @@
 
         <!-- Noon (grouped) -->
         <div class="exp-entry">
-          <div class="exp-when">Aug 2021<span class="present">— Feb 2025</span></div>
           <div class="exp-main">
             <div class="c-head">
               <div class="logo"><img src="assets/noon.jpeg" alt="Noon" loading="lazy" decoding="async"></div>
@@ -1198,7 +1179,6 @@
             <div class="role">
               <div class="role-head">
                 <span class="role-title">Founding Engineer, namshi.com</span>
-                <span class="role-date">Dec 2023 — Feb 2025</span>
               </div>
               <ul>
                 <li>As the founding engineer for namshi.com (acquired for $330M), owned the end-to-end platform rewrite across search, catalog, indexing, orders, discounts, and after-sales domains, leading 10+ engineers and partnering with product, growth, and operations to design, build, and launch a platform supporting $5M/day in revenue.</li>
@@ -1207,7 +1187,6 @@
             <div class="role">
               <div class="role-head">
                 <span class="role-title">Software Engineer 2</span>
-                <span class="role-date">Feb 2023 — Nov 2023</span>
               </div>
               <ul>
                 <li>Sole engineer responsible for building high-throughput, low-latency core notifications platform from 0 to 1, handling 30M requests/day across multiple tenants.</li>
@@ -1216,7 +1195,6 @@
             <div class="role">
               <div class="role-head">
                 <span class="role-title">Software Engineer</span>
-                <span class="role-date">Aug 2021 — Jan 2023</span>
               </div>
               <ul>
                 <li>Built backend services for customer loyalty program including membership tiers, points tracking, and rewards catalog serving 1M+ active subscribers.</li>
@@ -1227,7 +1205,6 @@
 
         <!-- CAMeL Lab -->
         <div class="exp-entry">
-          <div class="exp-when">2020<span class="present">— 2021</span></div>
           <div class="exp-main">
             <div class="c-head">
               <div class="logo"><img src="assets/camel.jpg" alt="CAMeL Lab" loading="lazy" decoding="async"></div>
@@ -1244,7 +1221,6 @@
 
         <!-- Lockheed -->
         <div class="exp-entry">
-          <div class="exp-when">2020</div>
           <div class="exp-main">
             <div class="c-head">
               <div class="logo"><img src="assets/lm.jpeg" alt="Lockheed Martin" loading="lazy" decoding="async"></div>
@@ -1263,7 +1239,6 @@
       <h3 class="subhead">Education</h3>
       <div class="exp-list">
 <!--         <div class="exp-entry">
-          <div class="exp-when">2026</div>
           <div class="exp-main">
             <div class="c-head">
               <div class="logo"><img src="assets/oxford.png" alt="University of Oxford" loading="lazy" decoding="async"></div>
@@ -1278,7 +1253,6 @@
           </div>
         </div> -->
         <div class="exp-entry">
-          <div class="exp-when"></div>
           <div class="exp-main">
             <div class="c-head">
               <div class="logo"><img src="assets/nyu.png" alt="NYU Abu Dhabi" loading="lazy" decoding="async"></div>
@@ -1370,11 +1344,10 @@
         <svg viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>
       </a>
     </div>
-    <p class="copy">© <span id="year"></span> Aizaz Ansari · <a href="mailto:aizazarifansari@gmail.com">aizazarifansari@gmail.com</a></p>
+    <p class="copy">© Aizaz Ansari · <a href="mailto:aizazarifansari@gmail.com">aizazarifansari@gmail.com</a></p>
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
 
     const lowCarbonAtLoad = document.documentElement.classList.contains('low-carbon');
     let lcOn = lowCarbonAtLoad;
